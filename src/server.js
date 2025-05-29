@@ -20,11 +20,11 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 
 // Fichiers statiques
-app.use(express.static(path.join(__dirname, "../views")));
+app.use(express.static(path.join(__dirname, "../views/dist")));
 
 // Page d'accueil
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../views/index.html"));
+  res.sendFile(path.join(__dirname, "../views/dist/index.html"));
 });
 
 // Démarrage serveur (sauf en mode test)
