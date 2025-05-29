@@ -1,23 +1,37 @@
 // logique handlers
-import { Request, Response } from "express";
 
-export const login = (req, res) => {
-  // Logique de connexion
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res
-      .status(400)
-      .json({ message: "Username and password are required" });
+import { loginUser, createUser } from "./auth.service.js";
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Champs manquants" });
   }
-  res.status(200).json({ message: "Login successful" });
+
+  try {
+    const { token } = await loginUser({ email, password });
+    res.status(200).json({ token });
+  } catch (err) {
+    res.status(401).json({ message: err.message });
+  }
+};
+
+export const signin = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Champs manquants" });
+  }
+
+  try {
+    const user = await createUser({ email, password });
+    res.status(201).json({ message: "Utilisateur créé", user });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 };
 
 export const logout = (req, res) => {
-  // Logique de déconnexion
   res.status(200).json({ message: "Logout successful" });
-};
-
-export const signin = (req, res) => {
-  // Logique d'inscription
-  res.status(201).json({ message: "Signin successful" });
 };

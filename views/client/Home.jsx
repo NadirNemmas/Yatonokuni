@@ -1,8 +1,9 @@
-export default function App() {
+import Layout from "./components/layout.jsx";
+export default function Home() {
   return (
-    <div>
+    <Layout>
       <h1>Welcome to the React App</h1>
       <p>This is a simple React application.</p>
-    </div>
+    </Layout>
   );
 }

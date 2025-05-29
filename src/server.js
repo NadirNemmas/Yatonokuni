@@ -1,38 +1,37 @@
-const express = require("express");
-const { Pool } = require("pg");
-require("dotenv").config();
+import express from "express";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+import authRoutes from "./routes/auth/auth.routes.js";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Aquisition de la route du fichier index.html qui est la page d'accueil
-const path = require("path");
+// Fix ESM pour __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Middleware
+app.use(express.json());
+
+// Routes API
+app.use("/auth", authRoutes);
+
+// Fichiers statiques
 app.use(express.static(path.join(__dirname, "../views")));
 
-// Connexion PostgreSQL avec pool
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // obligatoire sur Render
-});
-
-// Tester la connexion dès le lancement
-pool
-  .connect()
-  .then((client) => {
-    console.log("✅ Connexion à PostgreSQL réussie");
-    client.release(); // libère le client pour le pool
-  })
-  .catch((err) => {
-    console.error("❌ Erreur de connexion à PostgreSQL :", err.message);
-    process.exit(1); // arrête le serveur si la DB ne fonctionne pas
-  });
-
-// Route vers la page d'accueil
+// Page d'accueil
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
-// Lancement du serveur
-app.listen(port, () => {
-  console.log(`🚀 Serveur lancé sur le port ${port}`);
-});
+// Démarrage serveur (sauf en mode test)
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`🚀 Serveur lancé sur le port ${port}`);
+  });
+}
+
+export { app };
