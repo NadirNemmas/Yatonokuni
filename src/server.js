@@ -5,6 +5,10 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Aquisition de la route du fichier index.html qui est la page d'accueil
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../views")));
+
 // Connexion PostgreSQL avec pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -23,16 +27,9 @@ pool
     process.exit(1); // arrête le serveur si la DB ne fonctionne pas
   });
 
-// Route simple de test
-app.get("/", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT NOW()");
-    res.send(
-      `Bienvenue sur YatoNoKuni 🐉<br>Heure du serveur : ${result.rows[0].now}`
-    );
-  } catch (error) {
-    res.status(500).send("Erreur lors de la récupération de la date.");
-  }
+// Route vers la page d'accueil
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../views/index.html"));
 });
 
 // Lancement du serveur
