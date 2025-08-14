@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth/auth.routes.js";
+import characterRoutes from "./routes/characters/characters.routes.js";
 
 dotenv.config();
 
@@ -18,7 +19,7 @@ app.use(express.json());
 
 // Routes API
 app.use("/auth", authRoutes);
-
+app.use("/characters", characterRoutes);
 // Fichiers statiques
 app.use(express.static(path.join(__dirname, "../views/dist")));
 

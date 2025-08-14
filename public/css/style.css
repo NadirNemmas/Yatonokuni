@@ -1,3 +1,68 @@
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  background-image: url("../../docs/images/Background-about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.page-container {
+  height: 100vh; /* Full viewport height */
+}
+.page-container-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+.div-box-container {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Georigia", serif;
+}
+.div-about {
+  height: 100%;
+}
+
+.div-features {
+  background-image: url("../../docs/images/Background3.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.div-contact {
+  background-image: url("../../docs/images/Background-contact.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.div-title {
+  text-align: center;
+}
+
+.div-description {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.navbar-wrapper {
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+}
+
 .navbar {
   width: 45%;
   margin: 0 auto;
@@ -25,8 +90,45 @@
   background-color: #e0e0e0;
   border-radius: 5px;
 }
+
+.navbar-authentication {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navbar-authentication button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.login-container button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 .header {
-  background-color: #f8f9fa;
   padding: 10px;
   text-align: center;
 }

@@ -1,3 +1,3 @@
 # Yato no kuni
 
-#### Utility website made to use specefic QoL's apps made by me.
+#### Utility website made to use specefic QoL's apps made for me.

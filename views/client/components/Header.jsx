@@ -7,7 +7,7 @@ export default function Header() {
         This is a website built mainly for my daily life to access my things
         anywhere. Basically a sort of cloud website
       </p>
-      <a target="_blank" href="https://music.youtube.com">
+      <a target="_blank" href="https://github.com/NadirNemmas/">
         Repository link
       </a>
     </div>

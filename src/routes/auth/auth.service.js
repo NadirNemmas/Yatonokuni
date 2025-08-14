@@ -1,47 +1,66 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import db from "../../db.js";
+import { supabase } from "../../supabaseClient.js";
 
-const JWT_SECRET = process.env.JWT_SECRET || "secret";
-
-export async function findUserByEmail(email) {
-  const result = await db.query("SELECT * FROM users WHERE email = $1", [
+// Create a new user
+export const createUser = async ({
+  email,
+  password,
+  first_name,
+  last_name,
+}) => {
+  // 1. Sign up with Supabase Auth
+  const { data, error: signUpError } = await supabase.auth.signUp({
     email,
-  ]);
-  return result.rows[0];
-}
+    password,
+  });
+  if (signUpError) throw signUpError;
 
-export async function loginUser({ email, password }) {
-  const user = await findUserByEmail(email);
-  if (!user) {
-    throw new Error("Utilisateur non trouvé");
-  }
+  const authId = data.user.id;
 
-  const match = await bcrypt.compare(password, user.password_hash);
-  if (!match) {
-    throw new Error("Mot de passe incorrect");
-  }
+  // 2. Insert user info into your `users` table
+  const { data: user, error: dbError } = await supabase
+    .from("users")
+    .insert([{ auth_id: authId, first_name, last_name }])
+    .single();
 
-  const token = jwt.sign(
-    { id: user.id, email: user.email, role: user.role },
-    JWT_SECRET,
-    { expiresIn: "1h" }
-  );
+  if (dbError) throw dbError;
 
-  return { token };
-}
+  return { user, auth: data.user };
+};
 
-export async function createUser({ email, password }) {
-  const existing = await findUserByEmail(email);
-  if (existing) {
-    throw new Error("Email déjà utilisé");
-  }
+// Login user
+export const loginUser = async ({ email, password }) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+  if (error) throw error;
 
-  const hash = await bcrypt.hash(password, 10);
-  const result = await db.query(
-    "INSERT INTO users (email, password_hash, role, created_at) VALUES ($1, $2, $3, NOW()) RETURNING *",
-    [email, hash, "user"]
-  );
+  // Return session and user info
+  return { session: data.session, user: data.user };
+};
 
-  return result.rows[0];
-}
+// Logout user
+export const logoutUser = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
+  return true;
+};
+
+// Retrieve full user info from your table using Supabase Auth UID
+export const getUserByToken = async (token) => {
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser(token);
+  if (authError) throw authError;
+
+  const { data: userRecord, error: dbError } = await supabase
+    .from("users")
+    .select("*")
+    .eq("auth_id", user.id)
+    .single();
+
+  if (dbError) throw dbError;
+
+  return userRecord;
+};
