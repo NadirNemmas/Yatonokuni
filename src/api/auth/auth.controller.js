@@ -21,15 +21,27 @@ export const signin = async (req, res) => {
 
 // Login
 export const login = async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password)
-    return res.status(400).json({ message: "Champs manquants" });
-
+  console.log("POST /auth/login body:", req.body);
   try {
+    const { email, password } = req.body || {};
+    if (!email || !password) {
+      return res.status(400).json({ ok: false, message: "Champs manquants" });
+    }
+
     const result = await loginUser({ email, password });
-    res.status(200).json(result);
+    console.log("loginUser result:", result);
+
+    // retourne toujours un objet JSON
+    return res.status(200).json({ ok: true, ...result });
   } catch (err) {
-    res.status(401).json({ message: err.message });
+    // log complet (stack)
+    console.error("Login error stack:", err && (err.stack || err));
+
+    // détermine un statut fiable
+    const status = err?.status || err?.statusCode || 401;
+    const message = err?.message || "Unauthorized";
+
+    return res.status(status).json({ ok: false, message });
   }
 };
 
@@ -43,7 +55,6 @@ export const logout = async (req, res) => {
   }
 };
 
-// Get logged-in user info
 export const getUser = async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "No token provided" });
@@ -52,6 +63,6 @@ export const getUser = async (req, res) => {
     const user = await getUserByToken(token);
     res.status(200).json({ user });
   } catch (err) {
-    res.status(401).json({ message: err.message });
+    res.status(401).json({ message: err.message || "Invalid token" });
   }
 };

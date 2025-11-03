@@ -1,28 +1,62 @@
-// server.js
-const express = require("express");
-const { Pool } = require("pg"); // for PostgreSQL
-const app = express();
-app.use(express.json());
+import { supabase } from "./supabaseClient.js";
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // from Supabase/Atlas
-});
+/**
+ * Insert a character into the characters table.
+ */
+export async function insertCharacter(userId, name, statsOrItemLevel) {
+  const payload = {
+    name,
+    item_level: typeof statsOrItemLevel === "number" ? statsOrItemLevel : null,
+    user_id: userId || null,
+  };
 
-app.post("/create-character", async (req, res) => {
-  const { userId, name, stats } = req.body;
-  await pool.query(
-    "INSERT INTO characters(user_id, name, stats) VALUES($1, $2, $3)",
-    [userId, name, JSON.stringify(stats)]
-  );
-  res.send({ success: true });
-});
+  const { data, error } = await supabase
+    .from("characters")
+    .insert([payload])
+    .select()
+    .single();
+  if (error) throw error;
+  return data;
+}
 
-app.get("/characters/:userId", async (req, res) => {
-  const { userId } = req.params;
-  const result = await pool.query("SELECT * FROM characters WHERE user_id=$1", [
-    userId,
-  ]);
-  res.send(result.rows);
-});
+/**
+ * Get characters for a given user.
+ */
+export async function getCharactersByUser(userId) {
+  if (!userId) {
+    const { data, error } = await supabase
+      .from("characters")
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+    return data;
+  }
 
-app.listen(3001, () => console.log("Server running on port 3001"));
+  const { data, error } = await supabase
+    .from("characters")
+    .select("*")
+    .eq("user_id", userId)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return data;
+}
+
+/**
+ * Get a user by their Supabase auth id (auth_id)
+ */
+export async function getUserByAuthId(authId) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("auth_id", authId)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+export const db = {
+  insertCharacter,
+  getCharactersByUser,
+  getUserByAuthId,
+};
