@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
+import { useAuth } from "../../src/context/AuthContext.jsx"; // ajout
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { setUser } = useAuth(); // ajout
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -13,59 +17,30 @@ export default function Login() {
 
     const res = await fetch("/auth/login", {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
 
-    // read as text first
-    const text = await res.text();
-    let data = null;
-    try {
-      data = text ? JSON.parse(text) : null;
-    } catch (e) {
-      console.warn("Response not JSON:", text);
-      data = null;
-    }
+    // lire directement JSON (plus simple)
+    const data = await res.json().catch(() => null);
 
     if (!res.ok) {
-      // backend renvoie { message: "..." } si on a suivi les snippets ci-dessus
-      const errMsg =
-        (data && data.message) ||
-        (data && data.message) ||
-        data?.message ||
-        `HTTP ${res.status}`;
-      throw new Error(errMsg || `HTTP ${res.status}`);
+      const errMsg = (data && data.message) || `HTTP ${res.status}`;
+      setLoading(false);
+      setMessage(errMsg);
+      return;
     }
 
-    // succès
-    const token = data?.session?.access_token;
-    if (token) localStorage.setItem("access_token", token);
+    // mettre à jour le contexte avec l'utilisateur retourné par le backend
+    if (data?.user) {
+      setUser(data.user);
+    } else {
+    }
+
     setMessage("✅ Logged in successfully");
-  };
-
-  const fetchUsers = async () => {
-    try {
-      const token = localStorage.getItem("access_token");
-      const headers = { "Content-Type": "application/json" };
-      if (token) headers["Authorization"] = `Bearer ${token}`;
-
-      const res = await fetch("/api/users", { method: "GET", headers });
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data?.message || `HTTP ${res.status}`);
-      }
-
-      console.log("Fetched users:", data);
-      setMessage(
-        `Fetched ${
-          Array.isArray(data) ? data.length : "result"
-        } users. Check console.`
-      );
-    } catch (err) {
-      console.error("Error fetching users:", err);
-      setMessage(`❌ Error fetching users: ${err.message}`);
-    }
+    setLoading(false);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -98,7 +73,7 @@ export default function Login() {
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-        <button onClick={fetchUsers}>Fetch users</button>
+
         {message && <p>{message}</p>}
       </div>
     </div>

@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import authRoutes from "./api/auth/auth.routes.js";
 import characterRoutes from "./api/characters/characters.routes.js";
@@ -12,12 +13,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Fix ESM pour __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(express.json());
+app.use(cookieParser());
 
 // allow dev front hosted on vite
 app.use(
