@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home.jsx";
 import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
+import Projects from "./Projects.jsx";
 import "../../public/css/style.css";
 
 createRoot(document.getElementById("react-root")).render(
@@ -15,6 +16,7 @@ createRoot(document.getElementById("react-root")).render(
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/projects" element={<Projects />} />
         </Routes>
       </AuthProvider>
     </Router>

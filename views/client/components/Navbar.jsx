@@ -10,6 +10,9 @@ export default function NavBar() {
       <div className="navbar">
         <ul>
           <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
             <a href="#about">About</a>
           </li>
           <li>
@@ -22,25 +25,16 @@ export default function NavBar() {
           {user && (
             <li>
               <a
-                href="/dashboard"
+                href="/projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigate("/dashboard");
+                  navigate("/projects");
                 }}
               >
-                Mon espace
+                Mes projets
               </a>
             </li>
           )}
-
-          <li>
-            <a
-              target="_blank"
-              href="https://github.com/NadirNemmas/GameMasterArtefact"
-            >
-              Yato no Discord Bot
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -49,7 +43,6 @@ export default function NavBar() {
           <p>Loading...</p>
         ) : user ? (
           <div className="navbar-user">
-            {/* un petit avatar "fake" pour le moment */}
             <div className="user-avatar">
               {user.email?.[0]?.toUpperCase() || "U"}
             </div>

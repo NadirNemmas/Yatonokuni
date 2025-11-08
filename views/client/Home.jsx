@@ -5,7 +5,7 @@ export default function Home() {
       <div className="page-container">
         <div id="about" className="page-container-section div-about">
           <div className="div-box-container">
-            <h2 className="div-title">About me</h2>
+            <h2 className="div-title">About</h2>
             <p className="div-description">
               This is a web application built with React. It regroups some of my
               projects, repositories, and showcases my work. Feel free to
@@ -20,7 +20,6 @@ export default function Home() {
           <div className="div-box-container">
             <h2 className="div-title">Features</h2>
             <p className="div-description">
-              {" "}
               The current feature right now are limited, the current undergoing
               feature is Lost Ark integration. Please note that some features
               may not be fully functional yet or may require a login.
