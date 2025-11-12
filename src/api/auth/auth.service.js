@@ -1,4 +1,11 @@
 import { supabase } from "../../supabaseClient.js";
+import jwt from "jsonwebtoken";
+
+const { SUPABASE_JWT_SECRET } = process.env;
+if (!SUPABASE_JWT_SECRET) {
+  console.error("SUPABASE_JWT_SECRET is not defined in environment variables");
+  process.exit(1);
+}
 
 // Create a new user
 export const createUser = async ({
@@ -33,8 +40,7 @@ export const loginUser = async ({ email, password }) => {
       email,
       password,
     });
-
-    // log utile pour debug (console serveur)
+    // Debug log
     console.log("Supabase signInWithPassword -> data:", data, "error:", error);
 
     if (error) {
@@ -69,28 +75,91 @@ export const logoutUser = async () => {
   return true;
 };
 
-export const getUserByToken = async (token) => {
-  if (!token) throw new Error("No token provided");
+/**
+ * getUserByToken
+ * - accepte soit :
+ *    * soit JWT signé localement (cookie access_token_jwt) -> on vérifie et on prend decoded.sub (UID)
+ *    * soit un access_token Supabase (session.access_token) -> on appelle supabase.auth.getUser({ access_token })
+ * - retourne { authUser, profile } ou lance une erreur
+ */
+export const getUserByToken = async (tokenOrJwtOrUid) => {
+  if (!tokenOrJwtOrUid) throw new Error("No token provided");
 
-  // Récupère l'utilisateur à partir d'un access token (shape attendu par supabase-js v2)
-  const { data: authData, error: authError } = await supabase.auth.getUser({
-    access_token: token,
-  });
-  if (authError) throw authError;
-  const authUser = authData?.user;
-  if (!authUser) throw new Error("Invalid token or user not found");
+  let uid = null;
+  let authUser = null;
 
-  // Récupère le profil dans la table users (champ auth_id)
-  const { data: userRecord, error: dbError } = await supabase
-    .from("users")
-    .select("*")
-    .eq("auth_id", authUser.id)
-    .single();
-
-  if (dbError) {
-    // possible que l'utilisateur soit créé côté Auth mais pas dans la table `users`
-    throw dbError;
+  // 1) Si on reçoit explicitement un UID (cas d'appel interne possible), accepte-le
+  if (
+    typeof tokenOrJwtOrUid === "string" &&
+    // heuristique simple : un uid supabase (UUID) contient des tirets et n'est pas un JWT (JWT a deux points '.')
+    !tokenOrJwtOrUid.includes(".") &&
+    tokenOrJwtOrUid.includes("-")
+  ) {
+    uid = tokenOrJwtOrUid;
+  } else {
+    // 2) On essaie d'abord de voir si c'est notre JWT signé localement
+    try {
+      const decoded = jwt.verify(tokenOrJwtOrUid, SUPABASE_JWT_SECRET, {
+        algorithms: ["HS256"],
+      });
+      // decoded.sub devrait être l'UID Supabase
+      if (!decoded || !decoded.sub) {
+        throw new Error("JWT valide mais sans claim 'sub'");
+      }
+      uid = decoded.sub;
+      // On reconstruit un objet authUser minimal à partir des claims (utile pour retourner quelque chose)
+      authUser = {
+        id: decoded.sub,
+        email: decoded.email,
+        user_metadata: {
+          display_name: decoded.display_name || null,
+        },
+      };
+    } catch (jwtErr) {
+      // Si ce n'était pas un JWT signé par nous, on considère que c'est possiblement
+      // un access_token Supabase et on appelle supabase.auth.getUser(...)
+      try {
+        const { data: authData, error: authError } =
+          await supabase.auth.getUser({
+            access_token_jwt: tokenOrJwtOrUid,
+          });
+        if (authError) throw authError;
+        authUser = authData?.user;
+        if (!authUser)
+          throw new Error("Invalid Supabase access token (no user)");
+        uid = authUser.id;
+      } catch (supabaseErr) {
+        // Si les deux méthodes échouent, on renvoie l'erreur originelle (JWT) ou l'erreur supabase
+        const combinedMessage = `Token is neither a valid local JWT nor a valid Supabase access token: ${
+          jwtErr.message
+        }; ${supabaseErr?.message || ""}`;
+        const e = new Error(combinedMessage);
+        e.status = 401;
+        throw e;
+      }
+    }
   }
 
-  return { authUser, profile: userRecord };
+  // 3) Récupère le profil dans la table `users` (champ auth_id)
+  try {
+    const { data: userRecord, error: dbError } = await supabase
+      .from("users")
+      .select("*")
+      .eq("auth_id", uid)
+      .single();
+
+    if (dbError) {
+      // possible que l'utilisateur soit créé côté Auth mais pas dans la table `users`
+      // on renvoie quand même authUser si présent, sinon erreur.
+      if (authUser) {
+        return { authUser, profile: null };
+      }
+      throw dbError;
+    }
+
+    return { authUser, profile: userRecord };
+  } catch (err) {
+    console.error("getUserByToken -> DB error:", err && (err.stack || err));
+    throw err;
+  }
 };

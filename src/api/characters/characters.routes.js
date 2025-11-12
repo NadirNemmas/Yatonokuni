@@ -1,6 +1,5 @@
 // src/api/characters/characters.routes.js
 import express from "express";
-import { insertCharacter, getCharactersByUser } from "../../db.js";
 const router = express.Router();
 
 // Create character

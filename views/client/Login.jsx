@@ -1,46 +1,62 @@
 import { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import { useAuth } from "../../src/context/AuthContext.jsx"; // ajout
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../src/context/AuthContext.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setUser } = useAuth(); // ajout
+  const { setUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const resolveUserShape = (userPayload) => {
+    if (!userPayload) return null;
+    if (userPayload.profile) return userPayload.profile;
+    if (userPayload.authUser) return userPayload.authUser;
+    return userPayload;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
-    const res = await fetch("/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const res = await fetch("/auth/login", {
+        method: "POST",
+        credentials: "include", // envoie le cookie HttpOnly
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    // lire directement JSON (plus simple)
-    const data = await res.json().catch(() => null);
+      // parse safe
+      const data = await res.json().catch(() => null);
 
-    if (!res.ok) {
-      const errMsg = (data && data.message) || `HTTP ${res.status}`;
+      if (!res.ok || !data) {
+        const errMsg = data?.message || `Erreur HTTP ${res.status}`;
+        setMessage(errMsg);
+        setLoading(false);
+        return;
+      }
+
+      if (data.ok && data.user) {
+        // normalise la forme du user
+        const normalized = resolveUserShape(data.user);
+        setUser(normalized);
+        setMessage("✅ Connecté");
+        // redirige après un petit délai si tu veux (optionnel)
+        navigate("/", { replace: true });
+      } else {
+        // cas improbable : backend ok mais pas de user
+        setMessage(data.message || "Erreur lors de la connexion");
+      }
+    } catch (err) {
+      console.error("Login fetch error:", err);
+      setMessage("Erreur réseau ou serveur");
+    } finally {
       setLoading(false);
-      setMessage(errMsg);
-      return;
     }
-
-    // mettre à jour le contexte avec l'utilisateur retourné par le backend
-    if (data?.user) {
-      setUser(data.user);
-    } else {
-    }
-
-    setMessage("✅ Logged in successfully");
-    setLoading(false);
-    navigate("/", { replace: true });
   };
 
   return (
@@ -67,6 +83,7 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
+              required
             />
           </div>
           <button type="submit" disabled={loading}>

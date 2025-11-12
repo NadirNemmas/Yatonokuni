@@ -20,9 +20,11 @@ html {
 }
 .div-box-container {
   background-color: white;
-  padding: 40px 60px;
+  padding: 40px 40px;
   border-radius: 8px;
   text-align: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
   width: 100%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   font-family: "Georigia", serif;
@@ -163,7 +165,10 @@ html {
 .projects-intro {
   font-size: 35px;
 }
-
+.projects-intro h2 {
+  display: flex;
+  justify-content: center;
+}
 .header {
   padding: 10px;
   text-align: center;
@@ -175,4 +180,108 @@ html {
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+.project-item {
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: space-between;
+  width: 1500px;
+  box-sizing: border-box;
+  max-width: none;
+}
+
+.project-left,
+.project-right {
+  box-sizing: border-box;
+  flex: 0 0 calc(50% - 12px);
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.project-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  justify-content: center;
+}
+
+.project-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-title {
+  text-align: center;
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.project-description {
+  margin: 0;
+  color: #333;
+}
+
+.project-techs {
+  margin-top: 8px;
+}
+.project-techs h3 {
+  display: flex;
+  justify-content: center;
+}
+.project-techs ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.project-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-title-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 0;
+}
+.project-title-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 720px) {
+  .div-box-container {
+    padding: 20px;
+    max-width: 100%;
+  }
+  .project-item {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .project-left,
+  .project-right {
+    flex: 0 0 100%;
+    padding: 0;
+  }
 }

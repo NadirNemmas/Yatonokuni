@@ -10,7 +10,7 @@ export default function NavBar() {
       <div className="navbar">
         <ul>
           <li>
-            <a href="#home">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
             <a href="#about">About</a>
@@ -31,7 +31,7 @@ export default function NavBar() {
                   navigate("/projects");
                 }}
               >
-                Mes projets
+                My Projects
               </a>
             </li>
           )}
