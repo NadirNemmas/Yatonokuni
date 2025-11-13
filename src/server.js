@@ -40,8 +40,8 @@ app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
 app.use("/users", usersRoutes);
 
-// Fichiers statiques
-app.use(express.static(path.join(__dirname, "../views/dist")));
+const staticDir = path.join(__dirname, "../views/dist");
+app.use(express.static(staticDir));
 
 // Print registered routes (helpful to confirm paths)
 setTimeout(() => {
@@ -70,9 +70,18 @@ setTimeout(() => {
   console.log("=========================");
 }, 200);
 
-// Page d'accueil
+const indexPath = path.join(staticDir, "index.html");
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/views/dist/index.html"));
+  res.sendFile(indexPath);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error("Error sending index.html:", err);
+      res.status(500).send("Internal Server Error");
+    }
+  });
 });
 
 // Démarrage serveur (sauf en mode test)
@@ -81,6 +90,7 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`🚀 Serveur lancé sur le port ${port}`);
   });
 }
+
 // Error handler (dev)
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err && (err.stack || err));
