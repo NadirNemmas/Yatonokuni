@@ -25,14 +25,7 @@ const projects = [
     image: GMAIntro,
     techs: ["JavaScript", "Discord.js", "bcrypt", "JSON", "Node.js"],
   },
-  {
-    // id: 3,
-    // title: "Projet 3",
-    // route: "/projet3",
-    // description: "Description du projet 3.",
-    // image: "/docs/images/project-3.jpg",
-    // techs: ["Svelte", "Go"],
-  },
+  ,
 ];
 // Ajout de classe CSS en fonction de la route
 const routeClass = location.pathname
