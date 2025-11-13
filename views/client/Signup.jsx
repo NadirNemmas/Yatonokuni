@@ -73,9 +73,7 @@ export default function Signup() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: "24px auto", padding: 16 }}>
-      <h2>Create an account</h2>
-
+    <div className="div-box-container">
       {message && (
         <div
           role="status"
@@ -90,7 +88,7 @@ export default function Signup() {
           {message.text}
         </div>
       )}
-
+      <h2> Create an account</h2>
       <form onSubmit={handleSubmit} noValidate>
         <div style={{ display: "flex", gap: 8 }}>
           <div style={{ flex: 1 }}>
