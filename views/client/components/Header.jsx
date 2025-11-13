@@ -1,15 +1,18 @@
 export default function Header() {
   return (
     <div className="header">
-      <h1> Yato no kuni</h1>
-      <h2>Welcome to the Yato no kuni React application!</h2>
-      <p>
-        This is a website built mainly for my daily life to access my things
-        anywhere. Basically a sort of cloud website
-      </p>
-      <a target="_blank" href="https://github.com/NadirNemmas/">
-        Repository link
-      </a>
+      <div className="div-box-container header-content">
+        <h1> Yato no kuni</h1>
+        <h2>Bienvenue dans l'application React Yato no kuni !</h2>
+        <p>
+          Ceci est un site web construit principalement pour ma vie quotidienne,
+          me permettant d'accéder à mes choses n'importe où. Essentiellement une
+          sorte de site web cloud.
+        </p>
+        <a target="_blank" href="https://github.com/NadirNemmas/Yatonokuni">
+          Lien du dépôt
+        </a>
+      </div>
     </div>
   );
 }

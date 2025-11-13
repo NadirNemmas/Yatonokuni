@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div className="footer">
-      <p>© 2025 Copyright:</p>
+      <p>© 2025 Copyright</p>
       <a
         target="_blank"
         className="text-dark"

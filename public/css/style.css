@@ -9,7 +9,21 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+.header {
+  padding: 80px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.header-content {
+  margin: 0 auto;
+  width: 90%;
+  background: rgba(255, 255, 255, 0.532);
+  border: none;
+  border-radius: 50px;
+  text-align: center;
+}
 .app-container {
   min-height: 100vh;
   width: 100%;
@@ -24,12 +38,51 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2em;
+  font-size: 1.5em;
 }
-
+.page-container button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.page-container button:hover {
+  background-color: rgb(7, 53, 192);
+}
+.required_field_indicator {
+  color: red;
+}
 .app-container.projects-gamemasterartefact {
   overflow-y: auto;
-  background-image: url("../../docs/images/Background2.jpeg"); /* chemin absolu depuis public */
+  background-image: url("../../docs/images/Background-project-item.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.app-container.login {
+  overflow-y: auto;
+  background-image: url("../../docs/images/Background-login.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.app-container.projects {
+  overflow-y: auto;
+  background-image: url("../../docs/images/Background-projects-page.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.app-container.signup {
+  overflow-y: auto;
+  background-image: url("../../docs/images/Background-signin.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,7 +110,7 @@ body {
 }
 
 .div-features {
-  background-image: url("../../docs/images/Background3.jpeg");
+  background-image: url("../../docs/images/Background-features.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -83,8 +136,9 @@ body {
 }
 
 .navbar-wrapper {
-  position: relative;
+  position: fixed;
   width: 90%;
+  left: 5%;
   margin: 20px auto;
 }
 
@@ -169,29 +223,6 @@ body {
   color: #222;
 }
 
-.login-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-}
-
-.login-container button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: none;
-  font-size: 20px;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.login-container button:hover {
-  background-color: rgb(7, 53, 192);
-}
-
 .navbar-authentication button:hover {
   background-color: rgb(7, 53, 192);
 }
@@ -213,10 +244,7 @@ body {
   display: flex;
   justify-content: center;
 }
-.header {
-  padding: 10px;
-  text-align: center;
-}
+
 .footer {
   background-color: #f8f9fa;
   padding: 10px;

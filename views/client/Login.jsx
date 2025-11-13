@@ -10,6 +10,12 @@ export default function Login() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Ajout de classe CSS en fonction de la route
+  const routeClass = location.pathname
+    .replace(/^\//, "")
+    .replace(/\//g, "-")
+    .replace(/[^a-zA-Z0-9-_]/g, "");
+
   const resolveUserShape = (userPayload) => {
     if (!userPayload) return null;
     if (userPayload.profile) return userPayload.profile;
@@ -60,38 +66,48 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <div className="div-box-container">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              id="email"
-              name="email"
-              required
-            />
+    <div className={`app-container ${routeClass}`}>
+      <div className="page-container">
+        <div className="page-container-section">
+          <div className="div-box-container">
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="email">Émail:</label>
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="password">Mots de passe :</label>
+                <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                />
+              </div>
+              <button type="submit" disabled={loading}>
+                {loading ? "Logging in..." : "Login"}
+              </button>
+              <button type="button" onClick={() => navigate("/")}>
+                Annuler
+              </button>
+            </form>
+            <p>
+              Vous ne possèdez pas de compte ? {""}
+              <a href="/signup">Inscrivez-vous ici </a>
+            </p>
+            {message && <p>{message}</p>}
           </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              id="password"
-              name="password"
-              required
-            />
-          </div>
-          <button type="submit" disabled={loading}>
-            {loading ? "Logging in..." : "Login"}
-          </button>
-        </form>
-
-        {message && <p>{message}</p>}
+        </div>
       </div>
     </div>
   );

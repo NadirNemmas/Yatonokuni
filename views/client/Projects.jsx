@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar.jsx";
 import GMAIntro from "../../docs/images/gamemaster/GMA-Introduction.png";
+import YatoKuniIntro from "../../docs/images/yatonokuni-project/yatonokuni-project-intro.png";
 import { Link } from "react-router-dom";
 const projects = [
   {
@@ -7,16 +8,19 @@ const projects = [
     title: "Yatonokuni",
     route: "/",
     description:
-      "This project was created to learn different skills in the front-end, back-end and authentication.",
-    image: "/docs/images/project-yatonokuni.jpg",
-    techs: ["React", "Node.js", "Express", "SupabaseSQL"],
+      "Une application web créé afin d'approfondir mes compétences en développement full-stack, apprendre React.js, Vite.js, et Supabase. " +
+      "\nL'application permet aux utilisateurs de créer un compte, se connecter." +
+      "\nLe but principal est de montrer mes projets personnels et compétences en développement web. " +
+      "\nL'application à des fonctionnalités cachées accessibles uniquement aux utilisateurs connectés. Ces fonctionnalités sont principalement prévues pour moi-même.",
+    image: YatoKuniIntro,
+    techs: ["React.js", "Node.js", "Express", "SupabaseSQL"],
   },
   {
     id: 2,
     title: "GameMasterArtefact",
     route: "/projects/gamemasterartefact",
     description:
-      "GameMasterArtefact — bot Discord pour gérer des personnages de jeu de rôle : comptes, sessions (ID Discord)," +
+      "Ce projet est un bot Discord pour gérer des personnages de jeu de rôle : comptes, sessions (ID Discord), " +
       "fiches de personnages, jets de compétences et commandes d'administration. Stockage simple via fichiers JSON, mot de passe hashé (bcrypt) et commandes slash pour consulter/metre à jour les fiches.",
     image: GMAIntro,
     techs: ["JavaScript", "Discord.js", "bcrypt", "JSON", "Node.js"],
@@ -30,14 +34,19 @@ const projects = [
     techs: ["Svelte", "Go"],
   },
 ];
+// Ajout de classe CSS en fonction de la route
+const routeClass = location.pathname
+  .replace(/^\//, "")
+  .replace(/\//g, "-")
+  .replace(/[^a-zA-Z0-9-_]/g, "");
 
 export default function Projets() {
   return (
-    <div className="app-container">
+    <div className={`app-container ${routeClass}`}>
       <Navbar />
       <div className="projects-container">
-        <div className="div-box-container">
-          <div className="projects-intro">
+        <div className="header">
+          <div className="header-content">
             <h2>Mes projets</h2>
             <p>
               Bienvenue sur ma page de projets. Cette page présente mon travail

@@ -10,31 +10,29 @@ export default function NavBar() {
       <div className="navbar">
         <ul>
           <li>
-            <a href="/">Home</a>
+            <a href="/">Accueil</a>
           </li>
           <li>
-            <a href="/#about">About</a>
+            <a href="/#about">À propos</a>
           </li>
           <li>
-            <a href="/#features">Features</a>
+            <a href="/#features">Fonctionnalités</a>
           </li>
           <li>
             <a href="/#contact">Contact</a>
           </li>
 
-          {user && (
-            <li>
-              <a
-                href="/projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/projects");
-                }}
-              >
-                My Projects
-              </a>
-            </li>
-          )}
+          <li>
+            <a
+              href="/projects"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/projects");
+              }}
+            >
+              Mes Projets
+            </a>
+          </li>
         </ul>
       </div>
 

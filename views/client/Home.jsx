@@ -6,25 +6,35 @@ export default function Home() {
         <div className="page-container">
           <div id="about" className="page-container-section div-about">
             <div className="div-box-container">
-              <h2 className="div-title">About</h2>
+              <h2 className="div-title">À propos</h2>
               <p className="div-description">
-                This is a web application built with React. It regroups some of
-                my projects, repositories, and showcases my work. Feel free to
-                explore the features and learn more about what I do. Account
-                creation is undergoing some improvements and will be available
-                soon.
+                Bienvenue sur ma plateforme web construite avec React.
+                <br /> Ce site regroupe certains de mes projets et mes dépôts,
+                et met en avant mon travail.
+                <br /> N'hésitez pas à explorer les fonctionnalités et à en
+                apprendre plus sur ce que je fais.
+                <br /> La création de compte est en cours d'amélioration et sera
+                bientôt disponible.
               </p>
             </div>
           </div>
 
           <div id="features" className="page-container-section div-features">
             <div className="div-box-container">
-              <h2 className="div-title">Features</h2>
+              <h2 className="div-title">Fonctionnalités</h2>
               <p className="div-description">
-                The current feature right now are limited, the current
-                undergoing feature is Lost Ark integration. Please note that
-                some features may not be fully functional yet or may require a
-                login.
+                Les fonctionnalités actuelles sont pour le moment limitées.
+                <br />
+                L'authentification des utilisateurs (inscription, connexion) est
+                en place.
+                <br />
+                Une fois connecté, vous pourrez accéder à des fonctionnalités
+                supplémentaires et des contenus exclusifs.
+                <br />
+                Veuillez noter que certaines fonctionnalités peuvent ne pas être
+                entièrement opérationnelles ou peuvent nécessiter une connexion.
+                <br />
+                L'intégration Lost Ark est actuellement en développement.
               </p>
             </div>
           </div>
@@ -34,6 +44,13 @@ export default function Home() {
               <h2 className="div-title">Contact</h2>
               <p className="div-description">
                 If you have any questions, feel free to reach out!
+                <br />
+                Émail d'école :{" "}
+                <a href="mailto:ahmed-nadir.nemmas.1@ens.etsmtl.ca">
+                  ahmed-nadir.nemmas.1@ens.etsmtl.ca
+                </a>
+                <br /> Émail personnel :{" "}
+                <a href="mailto:nadirne91@gmail.com">nadirne91@gmail.com</a>.
               </p>
             </div>
           </div>
