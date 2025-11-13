@@ -7,7 +7,6 @@ export default function Footer() {
           Copyright
         </a>
       </p>
-      {"\n"}
       <a href="https://yatonokuni.onrender.com">Yatonokuni.ca</a>
     </div>
   );
