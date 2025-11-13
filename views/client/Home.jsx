@@ -45,7 +45,8 @@ export default function Home() {
             <div className="div-box-container">
               <h2 className="div-title">Contact</h2>
               <p className="div-description">
-                If you have any questions, feel free to reach out!
+                Si vous avez des questions, des suggestions ou si vous souhaitez
+                me contacter, n'hésitez pas à le faire via :
                 <br />
                 Émail d'école :{" "}
                 <a href="mailto:ahmed-nadir.nemmas.1@ens.etsmtl.ca">
