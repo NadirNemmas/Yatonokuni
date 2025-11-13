@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar.jsx";
+import Layout from "./components/Layout.jsx";
 import GMAIntro from "../../docs/images/gamemaster/GMA-Introduction.png";
 import YatoKuniIntro from "../../docs/images/yatonokuni-project/yatonokuni-project-intro.png";
 import { Link } from "react-router-dom";
@@ -43,49 +43,54 @@ const routeClass = location.pathname
 export default function Projets() {
   return (
     <div className={`app-container ${routeClass}`}>
-      <Navbar />
-      <div className="projects-container">
-        <div className="header">
-          <div className="header-content">
-            <h2>Mes projets</h2>
-            <p>
-              Bienvenue sur ma page de projets. Cette page présente mon travail
-              et met en valeur mes compétences.
-            </p>
+      <Layout>
+        <div className="projects-container">
+          <div className="header">
+            <div className="header-content">
+              <h2>Mes projets</h2>
+              <p>
+                Bienvenue sur ma page de projets. Cette page présente mon
+                travail et met en valeur mes compétences.
+              </p>
+            </div>
+          </div>
+
+          <div className="projects-list">
+            {projects.map((p) => (
+              <div className="div-box-container" key={p.id}>
+                <article className="project-item">
+                  <div className="project-left">
+                    <h2 className="project-title">
+                      <Link to={p.route} target="_blank">
+                        {p.title}
+                      </Link>
+                    </h2>
+                    <p className="project-description">{p.description}</p>
+                    <div className="project-techs">
+                      <h3>Technologies utilisées</h3>
+                      <ul className="tech-list">
+                        {p.techs.map((t) => (
+                          <li className="tech-badge" key={t}>
+                            {t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="project-right">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="project-image"
+                    />
+                  </div>
+                </article>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="projects-list">
-          {projects.map((p) => (
-            <div className="div-box-container" key={p.id}>
-              <article className="project-item">
-                <div className="project-left">
-                  <h2 className="project-title">
-                    <Link to={p.route} target="_blank">
-                      {p.title}
-                    </Link>
-                  </h2>
-                  <p className="project-description">{p.description}</p>
-                  <div className="project-techs">
-                    <h3>Technologies utilisées</h3>
-                    <ul className="tech-list">
-                      {p.techs.map((t) => (
-                        <li className="tech-badge" key={t}>
-                          {t}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="project-right">
-                  <img src={p.image} alt={p.title} className="project-image" />
-                </div>
-              </article>
-            </div>
-          ))}
-        </div>
-      </div>
+      </Layout>
     </div>
   );
 }

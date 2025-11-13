@@ -1,7 +1,9 @@
+import Header from "./components/Header.jsx";
 import Layout from "./components/Layout.jsx";
 export default function Home() {
   return (
     <div className="app-container">
+      <Header />
       <Layout>
         <div className="page-container">
           <div id="about" className="page-container-section div-about">

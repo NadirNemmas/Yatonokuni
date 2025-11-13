@@ -8,6 +8,7 @@ import Signup from "./Signup.jsx";
 import Projects from "./Projects.jsx";
 import GameMasterArtefact from "./GameMasterArtefact.jsx";
 import "../../public/css/style.css";
+import Licence from "./Licence.jsx";
 
 createRoot(document.getElementById("react-root")).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById("react-root")).render(
             path="/projects/gamemasterartefact"
             element={<GameMasterArtefact />}
           />
+          <Route path="/licence" element={<Licence />} />
         </Routes>
       </AuthProvider>
     </Router>
