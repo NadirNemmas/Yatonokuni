@@ -50,8 +50,8 @@ export default function NavBar() {
           </div>
         ) : (
           <>
-            <button onClick={() => navigate("/login")}>Login</button>
-            <button onClick={() => navigate("/signup")}>Signup</button>
+            <button onClick={() => navigate("/login")}>Connexion</button>
+            <button onClick={() => navigate("/signup")}>Inscription</button>
           </>
         )}
       </div>
