@@ -48,7 +48,8 @@ body {
   text-align: center;
   margin-bottom: 50px;
   margin-top: 30px;
-  width: 100%;
+  margin-right: 20px;
+  width: 90%;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   font-family: "Georigia", serif;
 }
@@ -93,6 +94,7 @@ body {
   margin: 0 auto;
   padding: 10px;
   border: 2px solid #000;
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 50px;
 }
 .navbar ul {
@@ -227,7 +229,8 @@ body {
   gap: 24px;
   align-items: center;
   justify-content: space-between;
-  width: 100%; /* change de 1500px à 100% */
+  width: 100%;
+  margin-right: 20px;
   padding: 0;
   box-sizing: border-box;
 }

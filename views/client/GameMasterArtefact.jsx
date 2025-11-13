@@ -102,9 +102,13 @@ const commandsList = [
 export default function GameMasterArtefact() {
   const location = useLocation();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [collapsed, setCollapsed] = useState({});
+  const [collapsed, setCollapsed] = useState(
+    commandsList.reduce((acc, cmd) => {
+      acc[cmd.id] = true;
+      return acc;
+    }, {})
+  );
 
-  // 🔍 Debug temporaire (facultatif)
   useEffect(() => {
     console.log("Current slide:", currentSlide, "path:", location.pathname);
   }, [currentSlide, location.pathname]);

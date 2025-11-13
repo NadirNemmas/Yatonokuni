@@ -58,7 +58,7 @@ export default function Projets() {
                   </h2>
                   <p className="project-description">{p.description}</p>
                   <div className="project-techs">
-                    <h3>Technologies</h3>
+                    <h3>Technologies utilisées</h3>
                     <ul className="tech-list">
                       {p.techs.map((t) => (
                         <li className="tech-badge" key={t}>
