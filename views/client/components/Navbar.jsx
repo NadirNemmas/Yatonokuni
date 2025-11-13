@@ -26,7 +26,6 @@ export default function NavBar() {
             <a
               href="/projects"
               onClick={(e) => {
-                e.preventDefault();
                 navigate("/projects");
               }}
             >

@@ -61,9 +61,7 @@ export default function Projets() {
                 <article className="project-item">
                   <div className="project-left">
                     <h2 className="project-title">
-                      <Link to={p.route} target="_blank">
-                        {p.title}
-                      </Link>
+                      <Link to={p.route}>{p.title}</Link>
                     </h2>
                     <p className="project-description">{p.description}</p>
                     <div className="project-techs">

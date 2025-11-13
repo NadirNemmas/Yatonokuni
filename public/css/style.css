@@ -28,8 +28,8 @@ body {
   min-height: 100vh;
   width: 100%;
   background: transparent;
-  display: flex; /* added */
-  flex-direction: column; /* added */
+  display: flex;
+  flex-direction: column;
 }
 
 .page-container {
@@ -107,6 +107,19 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   font-family: "Georigia", serif;
 }
+.back-button {
+  position: absolute;
+  left: 5%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+}
+.back-button .back-arrow {
+  font-size: 18px;
+  line-height: 1;
+}
+
 .div-about {
   height: 100%;
 }
