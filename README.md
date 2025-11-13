@@ -119,19 +119,29 @@ Site utilitaire personnel regroupant plusieurs outils / démos et projets person
 
 ## Contribuer
 
-Ce projet est principalement personnel. Pour contributions :
+## 🔒 Contribuer
 
-- Ouvrir une issue pour discuter d'un changement.
-- Fork -> branche -> PR si besoin.
+Ce projet est strictement personnel.  
+Aucune contribution, modification ou redistribution n’est acceptée sans autorisation préalable de l’auteur.
 
 ---
 
 ## Licence
 
-Par défaut, pas de licence explicite fournie ici. Ajoutez une licence (ex : MIT) si vous souhaitez autoriser la réutilisation.
+Ce projet est distribué sous la licence MIT. Voir le fichier [`LICENCE`](./LICENCE) à la racine du dépôt pour le texte complet.
+
+Résumé :
+
+- **Licence :** MIT
+- **Auteur :** Ahmed Nadir Nemmas (2025)
+- **Droits :** libre utilisation, copie, modification, distribution et sous-licence, à condition de conserver l’avis de copyright et la licence d’origine.
+- **Garantie :** aucune — le logiciel est fourni _“tel quel”_, sans garantie d’aucune sorte.
 
 ---
 
 ## Contact
 
-Pour toute question : nadirne91@gmail.com
+Pour toute question :
+
+Émail personnel : nadirne91@gmail.com  
+Émail de l'ÉTS : ahmed-nadir.nemmas.1@ens.etsmtl.ca
