@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar.jsx";
 import GMAIntro from "../../docs/images/gamemaster/GMA-Introduction.png";
+import { Link } from "react-router-dom";
 const projects = [
   {
     id: 1,
@@ -13,7 +14,7 @@ const projects = [
   {
     id: 2,
     title: "GameMasterArtefact",
-    route: "/gamemasterartefact",
+    route: "/projects/gamemasterartefact",
     description:
       "GameMasterArtefact — bot Discord pour gérer des personnages de jeu de rôle : comptes, sessions (ID Discord)," +
       "fiches de personnages, jets de compétences et commandes d'administration. Stockage simple via fichiers JSON, mot de passe hashé (bcrypt) et commandes slash pour consulter/metre à jour les fiches.",
@@ -32,7 +33,7 @@ const projects = [
 
 export default function Projets() {
   return (
-    <>
+    <div className="app-container">
       <Navbar />
       <div className="projects-container">
         <div className="div-box-container">
@@ -51,9 +52,9 @@ export default function Projets() {
               <article className="project-item">
                 <div className="project-left">
                   <h2 className="project-title">
-                    <a href={p.route} target="_blank">
+                    <Link to={p.route} target="_blank">
                       {p.title}
-                    </a>
+                    </Link>
                   </h2>
                   <p className="project-description">{p.description}</p>
                   <div className="project-techs">
@@ -76,6 +77,6 @@ export default function Projets() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,11 +1,19 @@
-html {
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   background-image: url("../../docs/images/Background-about.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
 }
 
 .page-container {
@@ -18,6 +26,21 @@ html {
   align-items: center;
   font-size: 2em;
 }
+
+.app-container.projects-gamemasterartefact {
+  overflow-y: auto;
+  background-image: url("../../docs/images/Background2.jpeg"); /* chemin absolu depuis public */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.gamemaster-container {
+  min-height: calc(100vh - 80px);
+  padding: 40px 0;
+}
+
 .div-box-container {
   background-color: white;
   padding: 40px 40px;
@@ -98,6 +121,16 @@ html {
   right: 5%;
   top: 4.5%;
   transform: translateY(-50%);
+  z-index: 9999;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  margin-top: 5px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .navbar-authentication button {
@@ -154,6 +187,13 @@ html {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+.login-container button:hover {
+  background-color: rgb(7, 53, 192);
+}
+
+.navbar-authentication button:hover {
+  background-color: rgb(7, 53, 192);
+}
 .projects-container {
   display: flex;
   flex-direction: column;
@@ -184,12 +224,12 @@ html {
 
 .project-item {
   display: flex;
-  padding: 0;
+  gap: 24px;
   align-items: center;
   justify-content: space-between;
-  width: 1500px;
+  width: 100%; /* change de 1500px à 100% */
+  padding: 0;
   box-sizing: border-box;
-  max-width: none;
 }
 
 .project-left,
@@ -210,17 +250,26 @@ html {
 
 .project-right {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 8px;
 }
 
-.project-title {
+.project-title,
+.project-subtitle {
   text-align: center;
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
 }
-
+.project-note {
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+  font-weight: bold;
+  font-size: small;
+}
 .project-description {
   margin: 0;
   color: #333;
@@ -269,6 +318,213 @@ html {
   text-decoration: underline;
 }
 
+/* Conteneur du diaporama */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  margin: 0 auto;
+}
+
+/* Slides */
+.slide {
+  display: none; /* change de position: absolute */
+  width: 100%;
+  height: auto;
+}
+
+.slide.active {
+  display: block; /* show active slide */
+  animation: fadeIn 0.5s ease;
+}
+
+.slide img {
+  width: 100%;
+  height: auto; /* change de 50% */
+  display: block;
+  object-fit: contain;
+}
+
+/* Boutons navigation */
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.prev {
+  left: 8px;
+}
+
+.next {
+  right: 8px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots navigation */
+.dots-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+  margin: 0;
+  background: transparent;
+}
+.dot {
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #333;
+}
+
+.dot:hover {
+  background-color: #666;
+}
+
+/* Commands list */
+.commands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.command-item {
+  border-left: 3px solid #007bff;
+  padding-left: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+
+.command-name {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  color: #007bff;
+}
+
+.command-description {
+  margin: 0 0 8px 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.command-fields {
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+.command-fields strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.fields-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 16px;
+}
+
+.fields-list li {
+  margin: 4px 0;
+  padding-left: 12px;
+  position: relative;
+}
+
+.fields-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}
+
+.fields-list strong {
+  display: inline;
+  font-weight: 600;
+}
+
+.no-fields {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Command header: name + toggle */
+.command-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* toggle button (arrow) */
+.cmd-toggle {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  border-radius: 6px;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+.cmd-toggle:hover {
+  background: rgba(0, 123, 255, 0.06);
+}
+
+/* arrow rotates when expanded (aria-expanded="true") */
+.cmd-toggle[aria-expanded="true"] .arrow {
+  transform: rotate(90deg);
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* Animation fade */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 720px) {
   .div-box-container {
     padding: 20px;
@@ -283,5 +539,12 @@ html {
   .project-right {
     flex: 0 0 100%;
     padding: 0;
+  }
+  @media only screen and (max-width: 300px) {
+    .prev,
+    .next,
+    .text {
+      font-size: 11px;
+    }
   }
 }
