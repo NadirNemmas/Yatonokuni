@@ -26,16 +26,13 @@ export default function Signup() {
 
   function validate(values) {
     const e = {};
-    if (!values.firstName.trim()) e.firstName = "First name is required";
-    if (!values.lastName.trim()) e.lastName = "Last name is required";
-    if (!values.email.trim()) e.email = "Email is required";
-    else if (!emailRe.test(values.email)) e.email = "Enter a valid email";
-    if (!values.password) e.password = "Password is required";
+    if (!values.firstName.trim()) e.firstName = "Prénom requis";
+    if (!values.lastName.trim()) e.lastName = "Nom de famille requis";
+    if (!values.email.trim()) e.email = "Email requis";
+    else if (!emailRe.test(values.email)) e.email = "Entrez un email valide";
+    if (!values.password) e.password = "Mot de passe requis";
     else if (values.password.length < 8)
-      e.password = "Password must be at least 8 characters";
-    if (!values.phone.trim()) e.phone = "Phone number is required";
-    else if (!phoneRe.test(values.phone))
-      e.phone = "Enter a valid phone number";
+      e.password = "Le mot de passe doit contenir au moins 8 caractères";
     return e;
   }
 
@@ -92,7 +89,7 @@ export default function Signup() {
               <div>
                 <div>
                   <label>
-                    Prénom
+                    Prénom{" "}
                     <input
                       name="firstName"
                       value={form.firstName}
@@ -104,9 +101,13 @@ export default function Signup() {
                       required
                     />
                   </label>
-                  <label className="required_field_indicator">*</label>
+
                   {errors.firstName && (
-                    <div id="err-firstName" role="alert">
+                    <div
+                      id="err-firstName"
+                      role="alert"
+                      className="required_field_indicator"
+                    >
                       {errors.firstName}
                     </div>
                   )}
@@ -114,7 +115,7 @@ export default function Signup() {
 
                 <div>
                   <label>
-                    Nom de famille
+                    Nom de famille{" "}
                     <input
                       name="lastName"
                       value={form.lastName}
@@ -126,9 +127,13 @@ export default function Signup() {
                       required
                     />
                   </label>
-                  <label className="required_field_indicator">*</label>
+
                   {errors.lastName && (
-                    <div id="err-lastName" role="alert">
+                    <div
+                      id="err-lastName"
+                      role="alert"
+                      className="required_field_indicator"
+                    >
                       {errors.lastName}
                     </div>
                   )}
@@ -137,7 +142,7 @@ export default function Signup() {
 
               <div>
                 <label>
-                  Émail
+                  Émail{" "}
                   <input
                     type="email"
                     name="email"
@@ -148,17 +153,20 @@ export default function Signup() {
                     required
                   />
                 </label>
-                <label className="required_field_indicator">*</label>
+
                 {errors.email && (
-                  <div id="err-email" role="alert">
+                  <div
+                    id="err-email"
+                    role="alert"
+                    className="required_field_indicator"
+                  >
                     {errors.email}
                   </div>
                 )}
               </div>
-
               <div>
                 <label>
-                  Mots de passe
+                  Mots de passe{" "}
                   <input
                     type="password"
                     name="password"
@@ -171,9 +179,13 @@ export default function Signup() {
                     required
                   />
                 </label>
-                <label className="required_field_indicator">*</label>
+
                 {errors.password && (
-                  <div id="err-password" role="alert">
+                  <div
+                    id="err-password"
+                    role="alert"
+                    className="required_field_indicator"
+                  >
                     {errors.password}
                   </div>
                 )}

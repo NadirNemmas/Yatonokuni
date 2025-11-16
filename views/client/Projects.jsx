@@ -25,7 +25,6 @@ const projects = [
     image: GMAIntro,
     techs: ["JavaScript", "Discord.js", "bcrypt", "JSON", "Node.js"],
   },
-  ,
 ];
 // Ajout de classe CSS en fonction de la route
 const routeClass = location.pathname
@@ -40,10 +39,14 @@ export default function Projets() {
         <div className="projects-container">
           <div className="header">
             <div className="header-content">
-              <h2>Mes projets</h2>
+              <h2>Mes projets personnels</h2>
               <p>
-                Bienvenue sur ma page de projets. Cette page présente mon
-                travail et met en valeur mes compétences.
+                Bienvenue sur ma page de projets personnels. Cette page présente
+                une sélection de projets que j'ai développés pour approfondir
+                mes compétences en programmation et explorer de nouvelles
+                technologies. Chaque projet reflète ma passion pour le
+                développement logiciel et mon engagement envers l'apprentissage
+                continu.
               </p>
             </div>
           </div>
