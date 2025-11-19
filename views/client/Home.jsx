@@ -27,8 +27,8 @@ export default function Home() {
               <p className="div-description">
                 Les fonctionnalités actuelles sont pour le moment limitées.
                 <br />
-                L'authentification des utilisateurs (inscription, connexion) est
-                en place.
+                L'authentification des utilisateurs (inscription(En coursde
+                finission), connexion) est en place.
                 <br />
                 Une fois connecté, vous pourrez accéder à des fonctionnalités
                 supplémentaires et des contenus exclusifs.
