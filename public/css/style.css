@@ -278,6 +278,12 @@ body {
   box-shadow: none;
 }
 
+.project-link {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: inline-block;
+}
 .project-item {
   display: flex;
   gap: 24px;

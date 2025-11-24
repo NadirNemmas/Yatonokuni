@@ -141,7 +141,14 @@ export default function GameMasterArtefact() {
               >
                 <ArrowLeft size={16} strokeWidth={1.75} /> Retour
               </button>
-              <h2>GameMasterArtefact</h2>
+              <a
+                className="project-link"
+                href="https://github.com/NadirNemmas/GameMasterArtefact"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GameMasterArtefact
+              </a>
               <div className="project-item">
                 <div className="project-left">
                   <h3 className="project-title">Description :</h3>
