@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import Layout from "../components/Layout";
 export default function Signup() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -80,131 +80,133 @@ export default function Signup() {
 
   return (
     <div className={`app-container ${routeClass}`}>
-      <div className="page-container">
-        <div className="page-container-section">
-          <div className="div-box-container">
-            {message && <div role="status">{message.text}</div>}
-            <h2>Créer un compte</h2>
-            <form onSubmit={handleSubmit} noValidate>
-              <div>
+      <Layout>
+        <div className="page-container">
+          <div className="page-container-section">
+            <div className="div-box-container">
+              {message && <div role="status">{message.text}</div>}
+              <h2>Créer un compte</h2>
+              <form onSubmit={handleSubmit} noValidate>
+                <div>
+                  <div>
+                    <label>
+                      Prénom{" "}
+                      <input
+                        name="firstName"
+                        value={form.firstName}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.firstName}
+                        aria-describedby={
+                          errors.firstName ? "err-firstName" : undefined
+                        }
+                        required
+                      />
+                    </label>
+
+                    {errors.firstName && (
+                      <div
+                        id="err-firstName"
+                        role="alert"
+                        className="required_field_indicator"
+                      >
+                        {errors.firstName}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <label>
+                      Nom de famille{" "}
+                      <input
+                        name="lastName"
+                        value={form.lastName}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.lastName}
+                        aria-describedby={
+                          errors.lastName ? "err-lastName" : undefined
+                        }
+                        required
+                      />
+                    </label>
+
+                    {errors.lastName && (
+                      <div
+                        id="err-lastName"
+                        role="alert"
+                        className="required_field_indicator"
+                      >
+                        {errors.lastName}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 <div>
                   <label>
-                    Prénom{" "}
+                    Émail{" "}
                     <input
-                      name="firstName"
-                      value={form.firstName}
+                      type="email"
+                      name="email"
+                      value={form.email}
                       onChange={handleChange}
-                      aria-invalid={!!errors.firstName}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={errors.email ? "err-email" : undefined}
+                      required
+                    />
+                  </label>
+
+                  {errors.email && (
+                    <div
+                      id="err-email"
+                      role="alert"
+                      className="required_field_indicator"
+                    >
+                      {errors.email}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label>
+                    Mots de passe{" "}
+                    <input
+                      type="password"
+                      name="password"
+                      value={form.password}
+                      onChange={handleChange}
+                      aria-invalid={!!errors.password}
                       aria-describedby={
-                        errors.firstName ? "err-firstName" : undefined
+                        errors.password ? "err-password" : undefined
                       }
                       required
                     />
                   </label>
 
-                  {errors.firstName && (
+                  {errors.password && (
                     <div
-                      id="err-firstName"
+                      id="err-password"
                       role="alert"
                       className="required_field_indicator"
                     >
-                      {errors.firstName}
+                      {errors.password}
                     </div>
                   )}
                 </div>
 
-                <div>
-                  <label>
-                    Nom de famille{" "}
-                    <input
-                      name="lastName"
-                      value={form.lastName}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.lastName}
-                      aria-describedby={
-                        errors.lastName ? "err-lastName" : undefined
-                      }
-                      required
-                    />
-                  </label>
-
-                  {errors.lastName && (
-                    <div
-                      id="err-lastName"
-                      role="alert"
-                      className="required_field_indicator"
-                    >
-                      {errors.lastName}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div>
-                <label>
-                  Émail{" "}
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.email}
-                    aria-describedby={errors.email ? "err-email" : undefined}
-                    required
-                  />
-                </label>
-
-                {errors.email && (
-                  <div
-                    id="err-email"
-                    role="alert"
-                    className="required_field_indicator"
-                  >
-                    {errors.email}
-                  </div>
-                )}
-              </div>
-              <div>
-                <label>
-                  Mots de passe{" "}
-                  <input
-                    type="password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.password}
-                    aria-describedby={
-                      errors.password ? "err-password" : undefined
-                    }
-                    required
-                  />
-                </label>
-
-                {errors.password && (
-                  <div
-                    id="err-password"
-                    role="alert"
-                    className="required_field_indicator"
-                  >
-                    {errors.password}
-                  </div>
-                )}
-              </div>
-
-              <button type="submit" disabled={submitting}>
-                {submitting ? "Création du compte..." : "S'inscrire"}
-              </button>
-              <button type="button" onClick={() => navigate("/")}>
-                Accueil
-              </button>
-            </form>
-            <p>
-              Vous avez déjà un compte ? {""}
-              <a href="/login">Connectez-vous ici</a>
-            </p>
+                <button type="submit" disabled={submitting}>
+                  {submitting ? "Création du compte..." : "S'inscrire"}
+                </button>
+                <button type="button" onClick={() => navigate("/")}>
+                  Accueil
+                </button>
+              </form>
+              <p>
+                Vous avez déjà un compte ? {""}
+                <a href="/login">Connectez-vous ici</a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </Layout>
     </div>
   );
 }

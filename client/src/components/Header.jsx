@@ -22,7 +22,7 @@ export default function Header() {
           </p>
           <p>
             <a target="_blank" href="https://github.com/NadirNemmas/Yatonokuni">
-              Lien vers mon dépot GitHub
+              Lien vers le dépot GitHub du projet
             </a>
           </p>
         </div>

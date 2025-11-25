@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import Layout from "../components/Layout.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -67,48 +68,50 @@ export default function Login() {
 
   return (
     <div className={`app-container ${routeClass}`}>
-      <div className="page-container">
-        <div className="page-container-section">
-          <div className="div-box-container">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="email">Émail:</label>
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="password">Mots de passe :</label>
-                <input
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                />
-              </div>
-              <button type="submit" disabled={loading}>
-                {loading ? "Logging in..." : "Login"}
-              </button>
-              <button type="button" onClick={() => navigate("/")}>
-                Annuler
-              </button>
-            </form>
-            <p>
-              Vous ne possèdez pas de compte ? {""}
-              <a href="/signup">Inscrivez-vous ici </a>
-            </p>
-            {message && <p>{message}</p>}
+      <Layout>
+        <div className="page-container">
+          <div className="page-container-section">
+            <div className="div-box-container">
+              <h2>Login</h2>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="email">Émail:</label>
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password">Mots de passe :</label>
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                  />
+                </div>
+                <button type="submit" disabled={loading}>
+                  {loading ? "Logging in..." : "Login"}
+                </button>
+                <button type="button" onClick={() => navigate("/")}>
+                  Annuler
+                </button>
+              </form>
+              <p>
+                Vous ne possèdez pas de compte ? {""}
+                <a href="/signup">Inscrivez-vous ici </a>
+              </p>
+              {message && <p>{message}</p>}
+            </div>
           </div>
         </div>
-      </div>
+      </Layout>
     </div>
   );
 }
