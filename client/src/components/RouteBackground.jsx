@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { routeBackgrounds } from "../lib/backgrounds.js";
+import { routeBackgrounds } from "../lib/data/routeBackgrounds.js";
 
 export default function RouteBackground({ children }) {
   const { pathname } = useLocation();

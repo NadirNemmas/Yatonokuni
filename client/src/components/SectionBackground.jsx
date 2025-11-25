@@ -1,4 +1,4 @@
-import { sectionBackgrounds } from "../lib/sectionBackgrounds.js";
+import { sectionBackgrounds } from "../lib/data/sectionBackgrounds.js";
 
 export default function SectionBackground({
   sectionKey,
