@@ -40,7 +40,7 @@ app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
 app.use("/users", usersRoutes);
 
-const staticDir = path.join(__dirname, "../client/dist");
+const staticDir = path.join(__dirname, "../../client/dist");
 app.use(express.static(staticDir));
 
 // Print registered routes (helpful to confirm paths)
