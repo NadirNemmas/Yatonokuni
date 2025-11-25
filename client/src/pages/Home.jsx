@@ -1,5 +1,6 @@
-import Header from "./components/Header.jsx";
-import Layout from "./components/Layout.jsx";
+import Header from "../components/Header.jsx";
+import Layout from "../components/Layout.jsx";
+import SectionBackground from "../components/SectionBackground.jsx";
 export default function Home() {
   return (
     <div className="app-container">
@@ -21,7 +22,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div id="features" className="page-container-section div-features">
+          <SectionBackground
+            sectionKey="features"
+            className="page-container-section div-features"
+            id="features"
+          >
             <div className="div-box-container">
               <h2 className="div-title">Fonctionnalités</h2>
               <p className="div-description">
@@ -39,9 +44,13 @@ export default function Home() {
                 L'intégration Lost Ark est actuellement en développement.
               </p>
             </div>
-          </div>
+          </SectionBackground>
 
-          <div id="contact" className="page-container-section div-contact">
+          <SectionBackground
+            sectionKey="contact"
+            className="page-container-section div-contact"
+            id="contact"
+          >
             <div className="div-box-container">
               <h2 className="div-title">Contact</h2>
               <p className="div-description">
@@ -56,7 +65,7 @@ export default function Home() {
                 <a href="mailto:nadirne91@gmail.com">nadirne91@gmail.com</a>.
               </p>
             </div>
-          </div>
+          </SectionBackground>
         </div>
       </Layout>
     </div>

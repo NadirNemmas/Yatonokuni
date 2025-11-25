@@ -4,11 +4,9 @@ import { resolve } from "path";
 
 export default defineConfig({
   plugins: [react()],
-  root: "views",
+  root: "client",
   build: {
-    rollupOptions: {
-      input: resolve(__dirname, "views/index.html"),
-    },
+    outDir: "dist",
   },
   server: {
     proxy: {

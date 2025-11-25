@@ -4,9 +4,9 @@ import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
-import authRoutes from "./api/auth/auth.routes.js";
-import characterRoutes from "./api/characters/characters.routes.js";
-import usersRoutes from "./api/users/users.routes.js";
+import authRoutes from "../src/api/auth/auth.routes.js";
+import characterRoutes from "../src/api/characters/characters.routes.js";
+import usersRoutes from "../src/api/users/users.routes.js";
 
 dotenv.config();
 

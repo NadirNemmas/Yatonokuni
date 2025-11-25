@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../src/context/AuthContext.jsx";
-
+import { useAuth } from "../context/AuthContext.jsx";
+const scrollToSection = (id) => {
+  const element = document.getElementById(id);
+  element?.scrollIntoView({ behavior: "smooth" });
+};
 export default function NavBar() {
   const navigate = useNavigate();
   const { user, logout, loading } = useAuth();
@@ -10,22 +13,55 @@ export default function NavBar() {
       <div className="navbar">
         <ul>
           <li>
-            <a href="/">Accueil</a>
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/");
+              }}
+            >
+              Accueil
+            </a>
           </li>
           <li>
-            <a href="/#about">À propos</a>
+            <a
+              href="/#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("about");
+              }}
+            >
+              À propos
+            </a>
           </li>
           <li>
-            <a href="/#features">Fonctionnalités</a>
+            <a
+              href="/#features"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("features");
+              }}
+            >
+              Fonctionnalités
+            </a>
           </li>
           <li>
-            <a href="/#contact">Contact</a>
+            <a
+              href="/#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+              }}
+            >
+              Contact
+            </a>
           </li>
 
           <li>
             <a
               href="/projects"
               onClick={(e) => {
+                e.preventDefault();
                 navigate("/projects");
               }}
             >

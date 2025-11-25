@@ -1,14 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { AuthProvider } from "../../src/context/AuthContext.jsx";
+import { AuthProvider } from "../context/AuthContext.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Home.jsx";
-import Login from "./Login.jsx";
-import Signup from "./Signup.jsx";
-import Projects from "./Projects.jsx";
-import GameMasterArtefact from "./GameMasterArtefact.jsx";
-import "../../public/css/style.css";
-import Licence from "./Licence.jsx";
+import Home from "../pages/Home.jsx";
+import Login from "../pages/Login.jsx";
+import Signup from "../pages/Signup.jsx";
+import Projects from "../pages/Projects.jsx";
+import GameMasterArtefact from "../pages/GameMasterArtefact.jsx";
+import Licence from "../pages/Licence.jsx";
+import "../styles/global.css";
 
 createRoot(document.getElementById("react-root")).render(
   <StrictMode>

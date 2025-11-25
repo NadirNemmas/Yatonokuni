@@ -3,12 +3,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  background-image: url("../../docs/images/Background-about.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 .header {
   padding: 80px 10px 10px 10px;
@@ -64,38 +58,6 @@ body {
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
-.app-container.projects-gamemasterartefact {
-  overflow-y: auto;
-  background-image: url("../../docs/images/Background-project-item.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.app-container.login {
-  overflow-y: auto;
-  background-image: url("../../docs/images/Background-login.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.app-container.projects {
-  overflow-y: auto;
-  background-image: url("../../docs/images/Background-projects-page.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.app-container.signup {
-  overflow-y: auto;
-  background-image: url("../../docs/images/Background-signin.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
 
 .gamemaster-container {
   min-height: calc(100vh - 80px);
@@ -128,22 +90,6 @@ body {
 
 .div-about {
   height: 100%;
-}
-
-.div-features {
-  background-image: url("../../docs/images/Background-features.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-.div-contact {
-  background-image: url("../../docs/images/Background-contact.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 .div-title {
