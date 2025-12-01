@@ -1,4 +1,4 @@
-import Layout from "../components/Layout.jsx";
+import Layout from "../components/Layout/Layout.jsx";
 import GMALogin from "../../../docs/images/gamemaster/GMA-login&roll.gif";
 import GMALogout from "../../../docs/images/gamemaster/GMA-logout&query.gif";
 import GMAUser from "../../../docs/images/gamemaster/GMA-User&Sheet.gif";

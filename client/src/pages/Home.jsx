@@ -1,6 +1,6 @@
-import Header from "../components/Header.jsx";
-import Layout from "../components/Layout.jsx";
-import SectionBackground from "../components/SectionBackground.jsx";
+import Header from "../components/Header/Header.jsx";
+import Layout from "../components/Layout/Layout.jsx";
+import SectionBackground from "../components/Background/SectionBackground.jsx";
 export default function Home() {
   return (
     <div className="app-container">

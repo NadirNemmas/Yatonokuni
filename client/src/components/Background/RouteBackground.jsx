@@ -1,26 +1,20 @@
-import { sectionBackgrounds } from "../lib/data/sectionBackgrounds.js";
+import { useLocation } from "react-router-dom";
+import { routeBackgrounds } from "../../lib/data/routeBackgrounds.js";
 
-export default function SectionBackground({
-  sectionKey,
-  className = "",
-  id,
-  children,
-}) {
-  const bg = sectionBackgrounds[sectionKey];
+export default function RouteBackground({ children }) {
+  const { pathname } = useLocation();
+  const bg = routeBackgrounds[pathname];
 
   return (
     <div
-      className={className}
       style={{
         backgroundImage: bg ? `url(${bg})` : "none",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
-        minHeight: "100vh",
         width: "100%",
       }}
-      id={id}
     >
       {children}
     </div>

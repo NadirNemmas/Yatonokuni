@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 const scrollToSection = (id) => {
   const element = document.getElementById(id);
   element?.scrollIntoView({ behavior: "smooth" });

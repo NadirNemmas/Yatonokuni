@@ -1,4 +1,4 @@
-import Layout from "../components/Layout.jsx";
+import Layout from "../components/Layout/Layout.jsx";
 import { Link } from "react-router-dom";
 import { projects } from "../lib/data/listProjects.js";
 

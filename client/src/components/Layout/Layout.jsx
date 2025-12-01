@@ -1,6 +1,6 @@
-import NavBar from "./Navbar";
-import Footer from "./Footer";
-import RouteBackground from "./RouteBackground";
+import NavBar from "../NavBar/Navbar.jsx";
+import Footer from "../Footer/Footer.jsx";
+import RouteBackground from "../Background/RouteBackground.jsx";
 
 export default function Layout({ children }) {
   return (
