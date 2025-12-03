@@ -6,7 +6,7 @@ import Signup from "../pages/Signup.jsx";
 import Projects from "../pages/Projects.jsx";
 import GameMasterArtefact from "../pages/GameMasterArtefact.jsx";
 import Licence from "../pages/Licence.jsx";
-import TestPage from "../pages/TestPage.jsx";
+// import TestPage from "../pages/TestPage.jsx";
 
 export default function AppRoute() {
   return (
