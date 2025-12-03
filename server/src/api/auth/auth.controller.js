@@ -1,4 +1,9 @@
-import { loginUser, getUserByToken, logoutUser } from "../auth/auth.service.js";
+import {
+  loginUser,
+  signupUser,
+  getUserByToken,
+  logoutUser,
+} from "../auth/auth.service.js";
 import jwt from "jsonwebtoken";
 
 const { SUPABASE_JWT_SECRET, SUPABASE_JWT_EXPIRY_TIME, NODE_ENV } = process.env;
@@ -10,9 +15,31 @@ const jwtExpiry = SUPABASE_JWT_EXPIRY_TIME
   ? parseInt(SUPABASE_JWT_EXPIRY_TIME, 10)
   : 3600;
 
-export const signin = async (email, password) => {
-  return await loginUser({ email, password });
+// POST /auth/signup
+export const signup = async (req, res) => {
+  try {
+    const { firstName, lastName, email, password } = req.body || {};
+
+    if (!email || !password || !firstName || !lastName)
+      return res.status(400).json({ ok: false, message: "Champs manquants" });
+
+    const user = await signupUser({
+      email,
+      password,
+      firstName,
+      lastName,
+    });
+
+    return res.status(200).json({ ok: true, user });
+  } catch (err) {
+    console.error("Signup error:", err);
+    return res.status(400).json({
+      ok: false,
+      message: err?.message || "Signup failed",
+    });
+  }
 };
+
 // POST /auth/login
 export const login = async (req, res) => {
   try {
@@ -20,7 +47,7 @@ export const login = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ ok: false, message: "Champs manquants" });
 
-    const { session, user } = await loginUser({ email, password }); // ton service existant
+    const { session, user } = await loginUser({ email, password });
     if (!session || !user)
       return res.status(401).json({ ok: false, message: "Auth failed" });
 

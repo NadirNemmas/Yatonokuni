@@ -1,0 +1,225 @@
+.projects-list {
+  margin-left: 80px;
+}
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 20px;
+}
+.projects-intro {
+  font-size: 35px;
+}
+.projects-intro h2 {
+  display: flex;
+  justify-content: center;
+}
+.project-link {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.project-item {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-right: 20px;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.project-left,
+.project-right {
+  box-sizing: border-box;
+  flex: 0 0 calc(50% - 12px);
+  min-width: 0;
+  padding: 0 12px;
+}
+
+.project-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  justify-content: center;
+}
+
+.project-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.project-title,
+.project-subtitle {
+  text-align: center;
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.project-note {
+  text-align: center;
+  margin: 0;
+  font-style: italic;
+  font-weight: bold;
+  font-size: small;
+}
+.project-description {
+  margin: 0;
+  color: #333;
+}
+
+.project-techs {
+  margin-top: 8px;
+}
+.project-techs h3 {
+  display: flex;
+  justify-content: center;
+}
+.project-techs ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.project-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.project-title-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 0;
+}
+.project-title-link:hover {
+  text-decoration: underline;
+}
+
+/* Commands list */
+.commands-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.command-item {
+  border-left: 3px solid #007bff;
+  padding-left: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+
+.command-name {
+  margin: 0 0 4px 0;
+  font-size: 1.05rem;
+  color: #007bff;
+}
+
+.command-description {
+  margin: 0 0 8px 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.command-fields {
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+.command-fields strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.fields-list {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 0 16px;
+}
+
+.fields-list li {
+  margin: 4px 0;
+  padding-left: 12px;
+  position: relative;
+}
+
+.fields-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #007bff;
+}
+
+.fields-list strong {
+  display: inline;
+  font-weight: 600;
+}
+
+.no-fields {
+  margin: 0;
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Command header: name + toggle */
+.command-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* toggle button (arrow) */
+.cmd-toggle {
+  background: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  border-radius: 6px;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+.cmd-toggle:hover {
+  background: #007bff0f;
+}
+
+/* arrow rotates when expanded (aria-expanded="true") */
+.cmd-toggle[aria-expanded="true"] .arrow {
+  transform: rotate(90deg);
+}
+.arrow {
+  display: inline-block;
+  transition: transform 0.18s ease;
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 700;
+}
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

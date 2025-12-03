@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout.jsx";
+import SubmitForm from "../components/Forms/SubmitForms.jsx";
 export default function Signup() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    phone: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -17,12 +18,6 @@ export default function Signup() {
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRe = /^\+?[0-9\s\-()]{7,20}$/;
-
-  // Ajout de classe CSS en fonction de la route
-  const routeClass = location.pathname
-    .replace(/^\//, "")
-    .replace(/\//g, "-")
-    .replace(/[^a-zA-Z0-9-_]/g, "");
 
   function validate(values) {
     const e = {};
@@ -44,7 +39,8 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setMessage(null);
+    setLoading(true);
+    setMessage("");
     const validation = validate(form);
     setErrors(validation);
     if (Object.keys(validation).length) return;
@@ -52,7 +48,7 @@ export default function Signup() {
     setSubmitting(true);
     try {
       // Replace URL with your real signup endpoint
-      const res = await fetch("/api/signup", {
+      const res = await fetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -69,8 +65,8 @@ export default function Signup() {
         lastName: "",
         email: "",
         password: "",
-        phone: "",
       });
+      navigate("/login");
     } catch (err) {
       setMessage({ type: "error", text: err.message || "Server error" });
     } finally {
@@ -79,134 +75,114 @@ export default function Signup() {
   }
 
   return (
-    <div className={`app-container ${routeClass}`}>
-      <Layout>
-        <div className="page-container">
-          <div className="page-container-section">
-            <div className="div-box-container">
-              {message && <div role="status">{message.text}</div>}
-              <h2>Créer un compte</h2>
-              <form onSubmit={handleSubmit} noValidate>
-                <div>
-                  <div>
-                    <label>
-                      Prénom{" "}
-                      <input
-                        name="firstName"
-                        value={form.firstName}
-                        onChange={handleChange}
-                        aria-invalid={!!errors.firstName}
-                        aria-describedby={
-                          errors.firstName ? "err-firstName" : undefined
-                        }
-                        required
-                      />
-                    </label>
+    <Layout>
+      <div className="page-container-section">
+        {loading && (
+          <div className="loading-overlay">
+            <div className="loader"></div>
+            <p>Création du compte...</p>
+          </div>
+        )}
+        <SubmitForm
+          title="Créer un compte"
+          message={message}
+          onSubmit={handleSubmit}
+          loading={loading}
+          primaryButtonLabel="S'inscrire"
+          secondaryButtonLabel="Acceuil"
+          textEndForm={
+            <>
+              Vous avez déjà un compte ? {""}
+              <a href="/login">Connectez-vous ici</a>
+            </>
+          }
+        >
+          <div>
+            <label>
+              Nom de famille{" "}
+              <input
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                aria-invalid={!!errors.lastName}
+                aria-describedby={errors.lastName ? "err-lastName" : undefined}
+                required
+              />
+            </label>
 
-                    {errors.firstName && (
-                      <div
-                        id="err-firstName"
-                        role="alert"
-                        className="required_field_indicator"
-                      >
-                        {errors.firstName}
-                      </div>
-                    )}
-                  </div>
+            {errors.lastName && (
+              <div id="err-lastName" role="alert" className="alert-message">
+                {errors.lastName}
+              </div>
+            )}
+          </div>
 
-                  <div>
-                    <label>
-                      Nom de famille{" "}
-                      <input
-                        name="lastName"
-                        value={form.lastName}
-                        onChange={handleChange}
-                        aria-invalid={!!errors.lastName}
-                        aria-describedby={
-                          errors.lastName ? "err-lastName" : undefined
-                        }
-                        required
-                      />
-                    </label>
+          <div>
+            <div>
+              <label>
+                Prénom{" "}
+                <input
+                  name="firstName"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  aria-invalid={!!errors.firstName}
+                  aria-describedby={
+                    errors.firstName ? "err-firstName" : undefined
+                  }
+                  required
+                />
+              </label>
 
-                    {errors.lastName && (
-                      <div
-                        id="err-lastName"
-                        role="alert"
-                        className="required_field_indicator"
-                      >
-                        {errors.lastName}
-                      </div>
-                    )}
-                  </div>
+              {errors.firstName && (
+                <div id="err-firstName" role="alert" className="alert-message">
+                  {errors.firstName}
                 </div>
-
-                <div>
-                  <label>
-                    Émail{" "}
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.email}
-                      aria-describedby={errors.email ? "err-email" : undefined}
-                      required
-                    />
-                  </label>
-
-                  {errors.email && (
-                    <div
-                      id="err-email"
-                      role="alert"
-                      className="required_field_indicator"
-                    >
-                      {errors.email}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <label>
-                    Mots de passe{" "}
-                    <input
-                      type="password"
-                      name="password"
-                      value={form.password}
-                      onChange={handleChange}
-                      aria-invalid={!!errors.password}
-                      aria-describedby={
-                        errors.password ? "err-password" : undefined
-                      }
-                      required
-                    />
-                  </label>
-
-                  {errors.password && (
-                    <div
-                      id="err-password"
-                      role="alert"
-                      className="required_field_indicator"
-                    >
-                      {errors.password}
-                    </div>
-                  )}
-                </div>
-
-                <button type="submit" disabled={submitting}>
-                  {submitting ? "Création du compte..." : "S'inscrire"}
-                </button>
-                <button type="button" onClick={() => navigate("/")}>
-                  Accueil
-                </button>
-              </form>
-              <p>
-                Vous avez déjà un compte ? {""}
-                <a href="/login">Connectez-vous ici</a>
-              </p>
+              )}
             </div>
           </div>
-        </div>
-      </Layout>
-    </div>
+
+          <div>
+            <label>
+              Émail{" "}
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "err-email" : undefined}
+                required
+              />
+            </label>
+
+            {errors.email && (
+              <div id="err-email" role="alert" className="alert-message">
+                {errors.email}
+              </div>
+            )}
+          </div>
+          <div>
+            <label>
+              Mots de passe{" "}
+              <input
+                type="password"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                aria-invalid={!!errors.password}
+                aria-describedby={errors.password ? "err-password" : undefined}
+                required
+              />
+            </label>
+
+            {errors.password && (
+              <div id="err-password" role="alert" className="alert-message">
+                {errors.password}
+              </div>
+            )}
+          </div>
+        </SubmitForm>
+      </div>
+    </Layout>
   );
 }

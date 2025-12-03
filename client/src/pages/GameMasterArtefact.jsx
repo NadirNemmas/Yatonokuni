@@ -2,20 +2,18 @@ import Layout from "../components/Layout/Layout.jsx";
 import GMALogin from "../../../docs/images/gamemaster/GMA-login&roll.gif";
 import GMALogout from "../../../docs/images/gamemaster/GMA-logout&query.gif";
 import GMAUser from "../../../docs/images/gamemaster/GMA-User&Sheet.gif";
-import { useLocation } from "react-router-dom";
 import { commandsList } from "../lib/data/listCommands.js";
-import { useState, useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-
-const imageSlider = [
-  { id: 1, src: GMALogin, alt: "GMA Login and Roll Command" },
-  { id: 2, src: GMALogout, alt: "GMA Logout and Query Command" },
-  { id: 3, src: GMAUser, alt: "GMA User and Sheet Command" },
-];
+import { useState } from "react";
+import ContainerBox from "../components/ContainerBox/ContainerBox.jsx";
+import ItemProjectContainer from "../components/ContainerBox/ItemProjectContainer.jsx";
 
 export default function GameMasterArtefact() {
-  const location = useLocation();
+  const imageSlider = [
+    { id: 1, src: GMALogin, alt: "GMA Login and Roll Command" },
+    { id: 2, src: GMALogout, alt: "GMA Logout and Query Command" },
+    { id: 3, src: GMAUser, alt: "GMA User and Sheet Command" },
+  ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const initialCollapsed = commandsList.reduce((acc, cmd) => {
     acc[cmd.id] = true;
@@ -24,16 +22,9 @@ export default function GameMasterArtefact() {
 
   const [collapsed, setCollapsed] = useState(initialCollapsed);
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    console.log("Current slide:", currentSlide, "path:", location.pathname);
-  }, [currentSlide, location.pathname]);
-
-  // Ajout de classe CSS en fonction de la route
-  const routeClass = location.pathname
-    .replace(/^\//, "")
-    .replace(/\//g, "-")
-    .replace(/[^a-zA-Z0-9-_]/g, "");
+  // useEffect(() => {
+  //   console.log("Current slide:", currentSlide, "path:", location.pathname);
+  // }, [currentSlide, location.pathname]);
 
   const plusSlides = (n) =>
     setCurrentSlide(
@@ -43,186 +34,31 @@ export default function GameMasterArtefact() {
   const goToSlide = (index) => setCurrentSlide(index);
 
   return (
-    <div className={`app-container ${routeClass}`}>
-      <div className="page-container">
-        <Layout>
-          <div className="projects-container">
-            <div className="div-box-container">
-              <button
-                className="back-button"
-                onClick={() => navigate("/projects")}
-              >
-                <ArrowLeft size={16} strokeWidth={1.75} /> Retour
-              </button>
-              <a
-                className="project-link"
-                href="https://github.com/NadirNemmas/GameMasterArtefact"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GameMasterArtefact
-              </a>
-              <div className="project-item">
-                <div className="project-left">
-                  <h3 className="project-title">Description :</h3>
-                  <p className="project-description">
-                    GameMasterArtefact est un bot Discord conçue pour les
-                    maîtres de jeu et les joueurs de jeux de rôle en ligne. Elle
-                    permet de gérer les personnages, les feuilles de personnage,
-                    et d'exécuter des commandes spécifiques pour faciliter le
-                    déroulement des sessions de jeu.
-                  </p>
-                  <h3 className="project-subtitle">Principales commandes :</h3>
-                  <div className="commands-list">
-                    {commandsList.map((cmd) => {
-                      const isCollapsed = !!collapsed?.[cmd.id];
-                      return (
-                        <div key={cmd.id} className="command-item">
-                          <div className="command-header">
-                            <h4 className="command-name">{cmd.commandName}</h4>
-
-                            <button
-                              type="button"
-                              className="cmd-toggle"
-                              aria-expanded={!isCollapsed}
-                              onClick={() =>
-                                setCollapsed((prev) => ({
-                                  ...(prev || {}),
-                                  [cmd.id]: !prev?.[cmd.id],
-                                }))
-                              }
-                            >
-                              <span className="arrow" aria-hidden="true">
-                                ▸
-                              </span>
-                            </button>
-                          </div>
-
-                          <p className="command-description">
-                            {cmd.description}
-                          </p>
-
-                          {/* only show fields block when NOT collapsed */}
-                          {!isCollapsed && (
-                            <>
-                              <div className="command-fields">
-                                <strong>Champs requis :</strong>
-                                {cmd.required_fields &&
-                                cmd.fields_required &&
-                                cmd.fields_required.length > 0 ? (
-                                  <ul className="fields-list">
-                                    {cmd.fields_required.map((field, index) => (
-                                      <span key={index}>
-                                        {Object.entries(field).map(
-                                          ([key, value]) => (
-                                            <li key={key}>
-                                              <strong>{key}</strong> : {value}
-                                            </li>
-                                          )
-                                        )}
-                                      </span>
-                                    ))}
-                                  </ul>
-                                ) : (
-                                  <p className="no-fields">Aucun</p>
-                                )}
-                              </div>
-
-                              <div className="command-fields">
-                                <strong>Champs optionnels :</strong>
-                                {cmd.optional_fields &&
-                                cmd.optional_fields.length > 0 ? (
-                                  <ul className="fields-list">
-                                    {cmd.optional_fields.map((field, index) => (
-                                      <span key={index}>
-                                        {Object.entries(field).map(
-                                          ([key, value]) => (
-                                            <li key={key}>
-                                              <strong>{key}</strong> : {value}
-                                            </li>
-                                          )
-                                        )}
-                                      </span>
-                                    ))}
-                                  </ul>
-                                ) : (
-                                  <p className="no-fields">Aucun</p>
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <p className="project-note">
-                    Il est possible d'avoir plus d'informations sur les
-                    commandes en cliquant sur la flèche à côté du nom de la
-                    commande.
-                  </p>
-                </div>
-
-                <div className="project-right">
-                  <div
-                    className="slideshow-container"
-                    aria-roledescription="carousel"
-                  >
-                    {imageSlider.map((img, index) => (
-                      <div
-                        key={img.id}
-                        className={`slide ${
-                          index === currentSlide ? "active" : ""
-                        }`}
-                        role="group"
-                        aria-roledescription="slide"
-                        aria-label={`${index + 1} of ${imageSlider.length}`}
-                      >
-                        <img src={img.src} alt={img.alt} />
-                      </div>
-                    ))}
-
-                    <button
-                      className="prev"
-                      onClick={() => plusSlides(-1)}
-                      aria-label="Previous slide"
-                      type="button"
-                    >
-                      ❮
-                    </button>
-                    <button
-                      className="next"
-                      onClick={() => plusSlides(1)}
-                      aria-label="Next slide"
-                      type="button"
-                    >
-                      ❯
-                    </button>
-                  </div>
-
-                  <div
-                    className="dots-container"
-                    role="tablist"
-                    aria-label="Slide navigation"
-                  >
-                    {imageSlider.map((img, index) => (
-                      <button
-                        key={img.id}
-                        type="button"
-                        className={`dot ${
-                          index === currentSlide ? "active" : ""
-                        }`}
-                        onClick={() => goToSlide(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                        aria-pressed={index === currentSlide}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Layout>
+    <Layout>
+      <div className="projects-container">
+        <ItemProjectContainer
+          imageSlider={imageSlider}
+          fonctionsList={commandsList}
+          title="GameMasterArtefact"
+          link="https://github.com/NadirNemmas/GameMasterArtefact"
+          description={
+            <p>
+              GameMasterArtefact est un bot Discord conçue pour les maîtres de
+              jeu et les joueurs de jeux de rôle en ligne. Elle permet de gérer
+              les personnages, les feuilles de personnage, et d'exécuter des
+              commandes spécifiques pour faciliter le déroulement des sessions
+              de jeu.
+            </p>
+          }
+          fonctionsTitle="Principales commandes :"
+          projectNote={
+            <p>
+              Il est possible d'avoir plus d'informations sur les commandes en
+              cliquant sur la flèche à côté du nom de la commande.
+            </p>
+          }
+        ></ItemProjectContainer>
       </div>
-    </div>
+    </Layout>
   );
 }

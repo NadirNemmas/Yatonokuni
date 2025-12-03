@@ -6,7 +6,6 @@ import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import authRoutes from "../src/api/auth/auth.routes.js";
 import characterRoutes from "../src/api/characters/characters.routes.js";
-import usersRoutes from "../src/api/users/users.routes.js";
 
 dotenv.config();
 
@@ -38,7 +37,6 @@ app.use((req, res, next) => {
 // Routes API
 app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
-app.use("/users", usersRoutes);
 
 const staticDir = path.join(__dirname, "../../client/dist");
 app.use(express.static(staticDir));

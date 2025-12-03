@@ -6,7 +6,10 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // check auth on mount
+  // Fetch l'utisateur connecté une fois après le montage
+  // Ceci est executé APRÈS le premier render et vérifie si une session existe déjà
+  // Met à jour `user` et change le `loading` en false quand il termine.
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -16,7 +19,6 @@ export function AuthProvider({ children }) {
         });
         const data = await res.json();
         if (data?.ok && data.user) {
-          // data.user peut être { authUser, profile } selon getUserByToken
           const resolved = data.user.profile
             ? data.user
             : data.user.authUser || data.user;

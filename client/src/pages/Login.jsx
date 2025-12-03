@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import Layout from "../components/Layout/Layout.jsx";
+import SubmitForm from "../components/Forms/SubmitForms.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -10,12 +11,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // Ajout de classe CSS en fonction de la route
-  const routeClass = location.pathname
-    .replace(/^\//, "")
-    .replace(/\//g, "-")
-    .replace(/[^a-zA-Z0-9-_]/g, "");
 
   const resolveUserShape = (userPayload) => {
     if (!userPayload) return null;
@@ -52,10 +47,8 @@ export default function Login() {
         const normalized = resolveUserShape(data.user);
         setUser(normalized);
         setMessage("✅ Connecté");
-        // redirige après un petit délai si tu veux (optionnel)
         navigate("/", { replace: true });
       } else {
-        // cas improbable : backend ok mais pas de user
         setMessage(data.message || "Erreur lors de la connexion");
       }
     } catch (err) {
@@ -67,51 +60,47 @@ export default function Login() {
   };
 
   return (
-    <div className={`app-container ${routeClass}`}>
-      <Layout>
-        <div className="page-container">
-          <div className="page-container-section">
-            <div className="div-box-container">
-              <h2>Login</h2>
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label htmlFor="email">Émail:</label>
-                  <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password">Mots de passe :</label>
-                  <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                  />
-                </div>
-                <button type="submit" disabled={loading}>
-                  {loading ? "Logging in..." : "Login"}
-                </button>
-                <button type="button" onClick={() => navigate("/")}>
-                  Annuler
-                </button>
-              </form>
-              <p>
-                Vous ne possèdez pas de compte ? {""}
-                <a href="/signup">Inscrivez-vous ici </a>
-              </p>
-              {message && <p>{message}</p>}
-            </div>
+    <Layout>
+      <div className="page-container-section">
+        <SubmitForm
+          title="Login"
+          message={message}
+          onSubmit={handleSubmit}
+          loading={loading}
+          primaryButtonLabel="Se connecter"
+          secondaryButtonLabel="Annuler"
+          textEndForm={
+            <>
+              Vous ne possèdez pas de compte ?{" "}
+              <a href="/signup">Inscrivez-vous ici</a>{" "}
+            </>
+          }
+        >
+          <div>
+            <label htmlFor="email">Émail :</label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
           </div>
-        </div>
-      </Layout>
-    </div>
+
+          <div>
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              id="password"
+              name="password"
+              required
+            />
+          </div>
+        </SubmitForm>
+      </div>
+    </Layout>
   );
 }

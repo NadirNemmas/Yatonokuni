@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
+import ContainerBox from "../components/ContainerBox/ContainerBox";
+import Layout from "../components/Layout/Layout";
+import HomeButton from "../components/Buttons/HomeButton";
+
 export default function Licence() {
-  const navigate = useNavigate();
   return (
-    <div className="page-container">
-      <div className="page-container-section">
-        <div className="div-box-container">
+    <Layout>
+      <div className="projects-container">
+        <ContainerBox>
           <h1>Licence MIT</h1>
-
           <p>Copyright (c) 2025 Ahmed Nadir Nemmas</p>
-
           <p>
             Permission is hereby granted, free of charge, to any person
             obtaining a copy of this software and associated documentation files
@@ -18,12 +18,10 @@ export default function Licence() {
             of the Software, and to permit persons to whom the Software is
             furnished to do so, subject to the following conditions:
           </p>
-
           <p>
             The above copyright notice and this permission notice shall be
             included in all copies or substantial portions of the Software.
           </p>
-
           <p>
             THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY
             KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
@@ -34,19 +32,15 @@ export default function Licence() {
             CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
             SOFTWARE.
           </p>
-
           <hr />
-
           <p className="licence-note">
             Ce projet est distribué sous la licence MIT. Vous pouvez consulter
             ce texte à tout moment sur cette page ou dans le fichier{" "}
             <code>LICENSE</code> à la racine du dépôt.
           </p>
-          <button type="button" onClick={() => navigate("/")}>
-            Retour à l&apos;accueil
-          </button>
-        </div>
+          <HomeButton title="Retour à l'accueil" />
+        </ContainerBox>
       </div>
-    </div>
+    </Layout>
   );
 }

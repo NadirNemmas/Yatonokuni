@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
+import NavigationButton from "../Buttons/NavigationButton.jsx";
 const scrollToSection = (id) => {
   const element = document.getElementById(id);
   element?.scrollIntoView({ behavior: "smooth" });
@@ -85,8 +86,14 @@ export default function NavBar() {
           </div>
         ) : (
           <>
-            <button onClick={() => navigate("/login")}>Connexion</button>
-            <button onClick={() => navigate("/signup")}>Inscription</button>
+            <NavigationButton
+              title="Connexion"
+              destination="/login"
+            ></NavigationButton>
+            <NavigationButton
+              title="S'inscrire"
+              destination="/signup"
+            ></NavigationButton>
           </>
         )}
       </div>

@@ -7,33 +7,23 @@ if (!SUPABASE_JWT_SECRET) {
   process.exit(1);
 }
 
-// Create a new user
-export const createUser = async ({
-  email,
-  password,
-  first_name,
-  last_name,
-}) => {
-  // 1. Sign up with Supabase Auth
-  const { data, error: signUpError } = await supabase.auth.signUp({
+// Sign up the user
+export async function signupUser({ email, password, firstName, lastName }) {
+  const { data, error } = await supabase.auth.admin.createUser({
     email,
     password,
+    email_confirm: true,
+    user_metadata: {
+      firstName,
+      lastName,
+    },
   });
-  if (signUpError) throw signUpError;
 
-  const authId = data.user.id;
+  if (error) throw error;
+  return data.user;
+}
 
-  // 2. Insert user info into your `users` table
-  const { data: user, error: dbError } = await supabase
-    .from("users")
-    .insert([{ auth_id: authId, first_name, last_name }])
-    .single();
-
-  if (dbError) throw dbError;
-
-  return { user, auth: data.user };
-};
-
+// Login the user
 export const loginUser = async ({ email, password }) => {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -68,7 +58,7 @@ export const loginUser = async ({ email, password }) => {
   }
 };
 
-// Logout user
+// Logout the user
 export const logoutUser = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;

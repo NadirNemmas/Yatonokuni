@@ -6,6 +6,7 @@ import Signup from "../pages/Signup.jsx";
 import Projects from "../pages/Projects.jsx";
 import GameMasterArtefact from "../pages/GameMasterArtefact.jsx";
 import Licence from "../pages/Licence.jsx";
+import TestPage from "../pages/TestPage.jsx";
 
 export default function AppRoute() {
   return (
@@ -15,6 +16,8 @@ export default function AppRoute() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/projects" element={<Projects />} />
+      <Route path="/test" element={<TestPage />} />
+
       <Route
         path="/projects/gamemasterartefact"
         element={<GameMasterArtefact />}
