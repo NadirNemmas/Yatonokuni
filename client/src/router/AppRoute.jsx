@@ -16,7 +16,7 @@ export default function AppRoute() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/projects" element={<Projects />} />
-      <Route path="/test" element={<TestPage />} />
+      {/* <Route path="/test" element={<TestPage />} /> */}
 
       <Route
         path="/projects/gamemasterartefact"
