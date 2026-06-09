@@ -1,4 +1,4 @@
-import "./buttonStyle.css";
+import "./styles/buttons.scss";
 
 export default function SubmitButton({ title, loading, loadingText }) {
   return (

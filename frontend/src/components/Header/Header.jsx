@@ -1,5 +1,5 @@
 import RouteBackground from "../Background/RouteBackground";
-import "./headerStyle.css";
+import "./styles/header.scss";
 export default function Header({ title, children }) {
   return (
     <RouteBackground>

@@ -8,9 +8,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-.button:hover {
-  background-color: rgb(7, 53, 192);
+
+.button {
+  &:hover {
+    background-color: rgb(7, 53, 192);
+  }
 }
+
 .back-button {
   position: absolute;
   left: 5%;
@@ -18,8 +22,9 @@
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-}
-.back-button .back-arrow {
-  font-size: 18px;
-  line-height: 1;
+
+  .back-arrow {
+    font-size: 18px;
+    line-height: 1;
+  }
 }

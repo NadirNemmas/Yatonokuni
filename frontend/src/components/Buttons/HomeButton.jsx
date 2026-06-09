@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "./buttonStyle.css";
+import "./styles/buttons.scss";
 export default function HomeButton({ title }) {
   const navigate = useNavigate();
   return (

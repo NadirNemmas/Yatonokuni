@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./styles/navbar.scss";
 import { useAuth } from "../../context/AuthContext.jsx";
 import NavigationButton from "../Buttons/NavigationButton.jsx";
 const scrollToSection = (id) => {

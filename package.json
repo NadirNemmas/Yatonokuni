@@ -2,20 +2,17 @@
   "name": "yato-no-kuni",
   "version": "1.0.0",
   "type": "module",
-  "main": "server.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "start": "node server/src/server.js"
+    "dev": "vite --config frontend/vite.config.js",
+    "build": "vite build --config frontend/vite.config.js",
+    "preview": "vite preview --config frontend/vite.config.js",
+    "start": "node backend/src/server.js",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.78.0",
-    "@tailwindcss/vite": "^4.1.17",
     "bcrypt": "^6.0.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
+    "bootstrap": "^5.3.8",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
@@ -25,16 +22,13 @@
     "pg": "^8.16.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.8.0",
-    "tailwind-merge": "^3.4.0"
+    "react-router-dom": "^7.8.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.5.0",
-    "autoprefixer": "^10.4.22",
     "jest": "^29.7.0",
-    "postcss": "^8.5.6",
+    "sass": "^1.100.0",
     "supertest": "^7.1.1",
-    "tailwindcss": "^4.1.17",
     "vite": "^6.3.5"
   }
 }

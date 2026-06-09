@@ -1,0 +1,43 @@
+@import 'bootstrap/scss/bootstrap';
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 720px) {
+  .div-box-container {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .project-item {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .project-left,
+  .project-right {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .prev,
+  .next {
+    font-size: 11px;
+  }
+}

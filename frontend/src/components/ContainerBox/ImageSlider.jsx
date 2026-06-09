@@ -1,4 +1,4 @@
-import "./imageSliderStyle.css";
+import "./styles/image-slider.scss";
 import { useState } from "react";
 
 export default function ImageSlider({ imageSlider }) {

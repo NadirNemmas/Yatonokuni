@@ -1,6 +1,7 @@
 import NavBar from "../NavBar/Navbar.jsx";
 import Footer from "../Footer/Footer.jsx";
 import RouteBackground from "../Background/RouteBackground.jsx";
+import "./styles/layout.scss";
 export default function Layout({ children }) {
   return (
     <div className="app-container">

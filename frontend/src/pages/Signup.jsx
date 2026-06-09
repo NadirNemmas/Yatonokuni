@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout.jsx";
+import "./styles/pages.scss";
 import SubmitForm from "../components/Forms/SubmitForms.jsx";
 export default function Signup() {
   const navigate = useNavigate();

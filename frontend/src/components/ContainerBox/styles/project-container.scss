@@ -1,27 +1,19 @@
-.projects-list {
-  margin-left: 80px;
-}
-.projects-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  padding: 20px;
-}
 .projects-intro {
   font-size: 35px;
+
+  h2 {
+    display: flex;
+    justify-content: center;
+  }
 }
-.projects-intro h2 {
-  display: flex;
-  justify-content: center;
-}
+
 .project-link {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 12px;
   display: inline-block;
 }
+
 .project-item {
   display: flex;
   gap: 24px;
@@ -64,6 +56,7 @@
   font-size: 1.6rem;
   font-weight: 700;
 }
+
 .project-note {
   text-align: center;
   margin: 0;
@@ -71,6 +64,7 @@
   font-weight: bold;
   font-size: small;
 }
+
 .project-description {
   margin: 0;
   color: #333;
@@ -78,20 +72,23 @@
 
 .project-techs {
   margin-top: 8px;
+
+  h3 {
+    display: flex;
+    justify-content: center;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
 }
-.project-techs h3 {
-  display: flex;
-  justify-content: center;
-}
-.project-techs ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-}
+
 .project-image {
   width: 100%;
   max-width: 100%;
@@ -105,12 +102,12 @@
   text-decoration: none;
   display: inline-block;
   padding: 4px 0;
-}
-.project-title-link:hover {
-  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-/* Commands list */
 .commands-list {
   display: flex;
   flex-direction: column;
@@ -140,36 +137,36 @@
 .command-fields {
   margin: 8px 0;
   font-size: 0.9rem;
-}
 
-.command-fields strong {
-  display: block;
-  margin-bottom: 4px;
-  color: #222;
+  strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #222;
+  }
 }
 
 .fields-list {
   list-style: none;
   padding: 0;
   margin: 4px 0 0 16px;
-}
 
-.fields-list li {
-  margin: 4px 0;
-  padding-left: 12px;
-  position: relative;
-}
+  li {
+    margin: 4px 0;
+    padding-left: 12px;
+    position: relative;
 
-.fields-list li:before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #007bff;
-}
+    &:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #007bff;
+    }
+  }
 
-.fields-list strong {
-  display: inline;
-  font-weight: 600;
+  strong {
+    display: inline;
+    font-weight: 600;
+  }
 }
 
 .no-fields {
@@ -179,7 +176,6 @@
   font-style: italic;
 }
 
-/* Command header: name + toggle */
 .command-header {
   display: flex;
   align-items: center;
@@ -187,7 +183,6 @@
   gap: 12px;
 }
 
-/* toggle button (arrow) */
 .cmd-toggle {
   background: transparent;
   border: none;
@@ -199,15 +194,16 @@
   color: #000;
   border-radius: 6px;
   transition: transform 0.18s ease, background-color 0.18s ease;
-}
-.cmd-toggle:hover {
-  background: #007bff0f;
+
+  &:hover {
+    background: rgba(0, 123, 255, 0.06);
+  }
+
+  &[aria-expanded="true"] .arrow {
+    transform: rotate(90deg);
+  }
 }
 
-/* arrow rotates when expanded (aria-expanded="true") */
-.cmd-toggle[aria-expanded="true"] .arrow {
-  transform: rotate(90deg);
-}
 .arrow {
   display: inline-block;
   transition: transform 0.18s ease;
@@ -215,6 +211,7 @@
   line-height: 1;
   font-weight: 700;
 }
+
 .tech-list {
   display: flex;
   flex-wrap: wrap;

@@ -1,6 +1,7 @@
 import Header from "../components/Header/Header.jsx";
 import Layout from "../components/Layout/Layout.jsx";
 import SectionBackground from "../components/Background/SectionBackground.jsx";
+import "./styles/pages.scss";
 export default function Home() {
   return (
     <Layout>

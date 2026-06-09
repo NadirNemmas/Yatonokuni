@@ -3,6 +3,8 @@ import Header from "../components/Header/Header.jsx";
 import { Link } from "react-router-dom";
 import { projects } from "../lib/data/listProjects.js";
 import ContainerBox from "../components/ContainerBox/ContainerBox.jsx";
+import "../components/ContainerBox/styles/project-container.scss";
+import "./styles/pages.scss";
 
 export default function Projets() {
   return (

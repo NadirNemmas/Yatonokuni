@@ -4,16 +4,16 @@ import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
-import authRoutes from "../src/api/auth/auth.routes.js";
-import characterRoutes from "../src/api/characters/characters.routes.js";
-
-dotenv.config();
-
-const app = express();
-const port = process.env.PORT || 3000;
+import authRoutes from "./api/auth/auth.routes.js";
+import characterRoutes from "./api/characters/characters.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, "../../.env") });
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
 
-const staticDir = path.join(__dirname, "../../client/dist");
+const staticDir = path.join(__dirname, "../../frontend/dist");
 app.use(express.static(staticDir));
 
 // Print registered routes (helpful to confirm paths)

@@ -1,5 +1,6 @@
 import ContainerBox from "../components/ContainerBox/ContainerBox";
 import Layout from "../components/Layout/Layout";
+import "./styles/pages.scss";
 import HomeButton from "../components/Buttons/HomeButton";
 
 export default function Licence() {

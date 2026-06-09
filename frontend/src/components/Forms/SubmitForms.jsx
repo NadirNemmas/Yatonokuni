@@ -1,6 +1,6 @@
 import HomeButton from "../Buttons/HomeButton.jsx";
 import SubmitButton from "../Buttons/SubmitButton.jsx";
-import "./submitFormStyle.css";
+import "./styles/forms.scss";
 
 export default function SubmitForm({
   title,

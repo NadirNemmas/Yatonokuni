@@ -1,4 +1,4 @@
-import "./projectContainer.css";
+import "./styles/project-container.scss";
 import ImageSlider from "./ImageSlider";
 import BackButton from "../Buttons/BackButton";
 import ContainerBox from "./ContainerBox";
