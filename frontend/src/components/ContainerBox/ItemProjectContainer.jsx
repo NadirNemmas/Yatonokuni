@@ -21,17 +21,9 @@ export default function ItemProjectContainer({
   const [collapsed, setCollapsed] = useState(initialCollapsed);
   return (
     <div className="projects-container">
+      <BackButton />
       <ContainerBox>
-        <BackButton />
-
-        <a
-          className="project-link"
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {title}
-        </a>
+        <h1 className="project-link">{title}</h1>
         <div className="project-item">
           <div className="project-left">
             <h3 className="project-title">Description</h3>

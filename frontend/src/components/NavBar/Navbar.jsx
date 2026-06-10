@@ -6,7 +6,7 @@ import { Menu, X, Home, FolderOpen, LogOut } from "lucide-react";
 import "./styles/navbar.scss";
 
 const NAV_ITEMS = [
-  { label: "Accueil",     icon: Home,       type: "route", to: "/" },
+  { label: "Accueil", icon: Home, type: "route", to: "/" },
   { label: "Mes Projets", icon: FolderOpen, type: "route", to: "/projects" },
 ];
 
@@ -27,7 +27,11 @@ export default function NavBar() {
     <>
       <div className="navbar-wrapper">
         <div className="navbar-pill">
-          <button className="hamburger-btn" onClick={() => setDrawerOpen(true)} aria-label="Ouvrir le menu">
+          <button
+            className="hamburger-btn"
+            onClick={() => setDrawerOpen(true)}
+            aria-label="Ouvrir le menu"
+          >
             <Menu size={20} />
           </button>
           <ul className="nav-links">
@@ -35,7 +39,10 @@ export default function NavBar() {
               <li key={item.label}>
                 <a
                   href={item.to}
-                  onClick={(e) => { e.preventDefault(); handleItem(item); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleItem(item);
+                  }}
                 >
                   {item.label}
                 </a>
@@ -47,10 +54,12 @@ export default function NavBar() {
         <div className="navbar-auth">
           {loading ? null : user ? (
             <div className="navbar-user">
-              <div className="user-avatar">{user.email?.[0]?.toUpperCase() || "U"}</div>
+              <div className="user-avatar">
+                {user.email?.[0]?.toUpperCase() || "U"}
+              </div>
               <span className="user-email">{user.email}</span>
               <button className="logout-btn" onClick={logout}>
-                <LogOut size={14} /> Connexion
+                <LogOut size={14} /> Déconnexion
               </button>
             </div>
           ) : (
@@ -62,11 +71,18 @@ export default function NavBar() {
         </div>
       </div>
 
-      <div className={`nav-drawer-overlay${drawerOpen ? " open" : ""}`} onClick={closeDrawer}>
+      <div
+        className={`nav-drawer-overlay${drawerOpen ? " open" : ""}`}
+        onClick={closeDrawer}
+      >
         <nav className="nav-drawer" onClick={(e) => e.stopPropagation()}>
           <div className="nav-drawer-header">
             <span className="nav-drawer-brand">Yato no Kuni</span>
-            <button className="nav-drawer-close" onClick={closeDrawer} aria-label="Fermer">
+            <button
+              className="nav-drawer-close"
+              onClick={closeDrawer}
+              aria-label="Fermer"
+            >
               <X size={18} />
             </button>
           </div>
@@ -88,18 +104,41 @@ export default function NavBar() {
           <div className="nav-drawer-footer">
             {loading ? null : user ? (
               <div className="drawer-user">
-                <div className="user-avatar large">{user.email?.[0]?.toUpperCase() || "U"}</div>
+                <div className="user-avatar large">
+                  {user.email?.[0]?.toUpperCase() || "U"}
+                </div>
                 <div className="drawer-user-info">
                   <div className="drawer-user-email">{user.email}</div>
-                  <button className="drawer-logout" onClick={() => { logout(); closeDrawer(); }}>
+                  <button
+                    className="drawer-logout"
+                    onClick={() => {
+                      logout();
+                      closeDrawer();
+                    }}
+                  >
                     <LogOut size={13} /> Deconnexion
                   </button>
                 </div>
               </div>
             ) : (
               <div className="drawer-auth-buttons">
-                <button onClick={() => { navigate("/login"); closeDrawer(); }}>Connexion</button>
-                <button className="primary" onClick={() => { navigate("/signup"); closeDrawer(); }}>S'inscrire</button>
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                    closeDrawer();
+                  }}
+                >
+                  Connexion
+                </button>
+                <button
+                  className="primary"
+                  onClick={() => {
+                    navigate("/signup");
+                    closeDrawer();
+                  }}
+                >
+                  S'inscrire
+                </button>
               </div>
             )}
           </div>

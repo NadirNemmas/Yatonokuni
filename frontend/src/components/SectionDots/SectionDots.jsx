@@ -21,7 +21,7 @@ export default function SectionDots({ sections = [] }) {
 
       const obs = new IntersectionObserver(
         ([entry]) => { if (entry.isIntersecting) setActiveId(id); },
-        { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
+        { rootMargin: "-10% 0px -50% 0px", threshold: 0 }
       );
       obs.observe(el);
       observers.push(obs);

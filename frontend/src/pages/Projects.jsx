@@ -4,23 +4,14 @@ import Layout from "../components/Layout/Layout.jsx";
 import Header from "../components/Header/Header.jsx";
 import ContainerBox from "../components/ContainerBox/ContainerBox.jsx";
 import SectionDots from "../components/SectionDots/SectionDots.jsx";
-import ImageSlider from "../components/ContainerBox/ImageSlider.jsx";
 import YatoKuniIntro from "../../../docs/images/yatonokuni-project/yatonokuni-project-intro.png";
 import GMAIntro from "../../../docs/images/gamemaster/GMA-Introduction.png";
-import GMAUserSheet from "../../../docs/images/gamemaster/GMA-User&Sheet.gif";
-import GMALoginRoll from "../../../docs/images/gamemaster/GMA-login&roll.gif";
-import GMALogoutQuery from "../../../docs/images/gamemaster/GMA-logout&query.gif";
 import "../components/ContainerBox/styles/project-container.scss";
 import "./styles/pages.scss";
 
-const imagesBySlug = {
-  "/": [{ id: 1, src: YatoKuniIntro, alt: "Yatonokuni" }],
-  "/projects/gamemasterartefact": [
-    { id: 1, src: GMAIntro, alt: "GameMasterArtefact introduction" },
-    { id: 2, src: GMAUserSheet, alt: "GameMasterArtefact user & sheet" },
-    { id: 3, src: GMALoginRoll, alt: "GameMasterArtefact login & roll" },
-    { id: 4, src: GMALogoutQuery, alt: "GameMasterArtefact logout & query" },
-  ],
+const introBySlug = {
+  "/": { src: YatoKuniIntro, alt: "Yatonokuni" },
+  "/projects/gamemasterartefact": { src: GMAIntro, alt: "GameMasterArtefact" },
 };
 
 export default function Projets() {
@@ -84,17 +75,13 @@ export default function Projets() {
                     </div>
                   </div>
 
-                  {imagesBySlug[p.slug] && (
+                  {introBySlug[p.slug] && (
                     <div className="project-right">
-                      {imagesBySlug[p.slug].length > 1 ? (
-                        <ImageSlider imageSlider={imagesBySlug[p.slug]} />
-                      ) : (
-                        <img
-                          src={imagesBySlug[p.slug][0].src}
-                          alt={imagesBySlug[p.slug][0].alt}
-                          className="project-image"
-                        />
-                      )}
+                      <img
+                        src={introBySlug[p.slug].src}
+                        alt={introBySlug[p.slug].alt}
+                        className="project-image"
+                      />
                       {p.git_repo && (
                         <a
                           href={p.git_repo}

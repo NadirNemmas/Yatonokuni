@@ -1,11 +1,11 @@
-import BgAbout from "../../../../docs/images/Background-about.jpg";
+import BgAcceuil from "../../../../docs/images/Background-acceuil.jpg";
 import BgLogin from "../../../../docs/images/Background-login.png";
 import BgSignup from "../../../../docs/images/Background-signin.jpeg";
 import BgProjectsPage from "../../../../docs/images/Background-projects-page.png";
 import BgProjectItem from "../../../../docs/images/Background-project-item.jpeg";
 
 export const routeBackgrounds = {
-  "/": BgAbout,
+  "/": BgAcceuil,
   "/login": BgLogin,
   "/signup": BgSignup,
   "/projects": BgProjectsPage,
