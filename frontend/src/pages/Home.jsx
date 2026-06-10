@@ -1,10 +1,21 @@
 import Header from "../components/Header/Header.jsx";
 import Layout from "../components/Layout/Layout.jsx";
 import SectionBackground from "../components/Background/SectionBackground.jsx";
+import SectionDots from "../components/SectionDots/SectionDots.jsx";
 import "./styles/pages.scss";
+
+const HOME_SECTIONS = [
+  { id: null,       label: "Haut" },
+  { id: "about",    label: "À propos" },
+  { id: "features", label: "Fonctionnalités" },
+  { id: "contact",  label: "Contact" },
+];
+
 export default function Home() {
   return (
     <Layout>
+      <SectionDots sections={HOME_SECTIONS} />
+
       <Header title="Yato no kuni">
         <h2>Bienvenue dans l'application React Yato no kuni !</h2>
         <p>
@@ -13,10 +24,7 @@ export default function Home() {
           sorte de site web cloud.
         </p>
         <p>
-          <a
-            target="_blank"
-            href="https://eportfolio.etsmtl.ca/Portfolio/Clef/FpX7fDj0zplsdZZdVmN3"
-          >
+          <a target="_blank" href="https://eportfolio.etsmtl.ca/Portfolio/Clef/FpX7fDj0zplsdZZdVmN3">
             Lien vers mon porfolio ÉTS
           </a>
         </p>
@@ -26,6 +34,7 @@ export default function Home() {
           </a>
         </p>
       </Header>
+
       <div className="page-container">
         <div id="about" className="page-container-section div-about">
           <div className="div-box-container">
@@ -52,8 +61,7 @@ export default function Home() {
             <p className="div-description">
               Les fonctionnalités actuelles sont pour le moment limitées.
               <br />
-              L'authentification des utilisateurs (inscription, connexion) est
-              en place.
+              L'authentification des utilisateurs (inscription, connexion) est en place.
               <br />
               Une fois connecté, vous pourrez accéder à des fonctionnalités
               supplémentaires et des contenus exclusifs.

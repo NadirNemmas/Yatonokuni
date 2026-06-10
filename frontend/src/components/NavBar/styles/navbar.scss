@@ -1,94 +1,317 @@
+$primary: #007bff;
+$dark: #1a1a2e;
+$glass: rgba(255, 255, 255, 0.88);
+$glass-border: rgba(255, 255, 255, 0.45);
+$shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+
+// ── Top bar ──────────────────────────────────────────────────────────
 .navbar-wrapper {
   position: fixed;
-  width: 90%;
-  left: 5%;
-  margin: 20px auto;
+  width: 92%;
+  left: 4%;
+  top: 0;
+  margin: 14px auto;
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+
+  > * { pointer-events: all; }
 }
 
-.navbar {
-  width: 45%;
-  margin: 0 auto;
-  padding: 10px;
-  border: 2px solid #000;
-  background: rgba(255, 255, 255, 0.3);
+.navbar-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: $glass;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid $glass-border;
   border-radius: 50px;
+  box-shadow: $shadow;
+}
 
-  ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  color: $dark;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: rgba($primary, 0.1);
+    color: $primary;
   }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   a {
     text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease;
+    color: $dark;
+    font-weight: 500;
+    font-size: 0.87rem;
+    padding: 7px 13px;
+    border-radius: 30px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    display: block;
 
     &:hover {
-      background-color: #e0e0e0;
-      border-radius: 5px;
+      background: $primary;
+      color: white;
     }
   }
 }
 
-.navbar-authentication {
-  position: fixed;
-  right: 5%;
-  top: 4.5%;
-  transform: translateY(-50%);
-  z-index: 9999;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(8px);
-  margin-top: 5px;
-  padding: 12px 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+// ── Auth pill ─────────────────────────────────────────────────────────
+.navbar-auth {
   display: flex;
   align-items: center;
-  gap: 12px;
-
-  button {
-    margin-left: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+  gap: 6px;
+  padding: 8px 14px;
+  background: $glass;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid $glass-border;
+  border-radius: 50px;
+  box-shadow: $shadow;
 }
 
 .navbar-user {
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-radius: 10px;
-  padding: 6px 8px;
+  gap: 8px;
+}
+
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   background: transparent;
+  border: 1px solid rgba($dark, 0.18);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  color: $dark;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #fff0f0;
+    border-color: #dc3545;
+    color: #dc3545;
+  }
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: #555;
+  background: linear-gradient(135deg, $primary, #6610f2);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 700;
   flex-shrink: 0;
+
+  &.large {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
 }
 
 .user-email {
-  font-weight: 600;
-  color: #222;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: $dark;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ── Drawer overlay ────────────────────────────────────────────────────
+.nav-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+
+  &.open {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+// ── Drawer panel ──────────────────────────────────────────────────────
+.nav-drawer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 280px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 40px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .nav-drawer-overlay.open & {
+    transform: translateX(0);
+  }
+}
+
+.nav-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+}
+
+.nav-drawer-brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $dark;
+  letter-spacing: 0.3px;
+}
+
+.nav-drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #f5f5f5;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #ffe0e0;
+    color: #dc3545;
+  }
+}
+
+.nav-drawer-links {
+  list-style: none;
+  padding: 16px 12px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+
+  li button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    color: $dark;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-align: left;
+
+    &:hover {
+      background: rgba($primary, 0.08);
+      color: $primary;
+      padding-left: 22px;
+    }
+  }
+}
+
+.nav-drawer-footer {
+  padding: 16px 20px 28px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.drawer-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.drawer-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.drawer-user-email {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $dark;
+}
+
+.drawer-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #dc3545;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+
+  &:hover { text-decoration: underline; }
+}
+
+.drawer-auth-buttons {
+  display: flex;
+  gap: 8px;
+
+  button {
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1.5px solid rgba($primary, 0.3);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    background: transparent;
+    color: $primary;
+    transition: opacity 0.2s;
+
+    &.primary {
+      background: $primary;
+      border-color: $primary;
+      color: white;
+    }
+
+    &:hover { opacity: 0.82; }
+  }
 }

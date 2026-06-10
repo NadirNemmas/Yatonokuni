@@ -1,5 +1,9 @@
 @import 'bootstrap/scss/bootstrap';
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   height: 100%;
@@ -18,13 +22,14 @@ body {
 
 @media (max-width: 720px) {
   .div-box-container {
-    padding: 20px;
+    padding: 24px 20px;
     max-width: 100%;
+    border-radius: 16px;
   }
 
   .project-item {
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     align-items: stretch;
   }
 
@@ -32,6 +37,20 @@ body {
   .project-right {
     flex: 0 0 100%;
     padding: 0;
+  }
+
+  .navbar-pill .nav-links {
+    display: none;
+  }
+
+  .header-content {
+    padding: 36px 24px;
+
+    h1 { font-size: 2rem; }
+  }
+
+  .submitForm {
+    padding: 36px 24px;
   }
 }
 

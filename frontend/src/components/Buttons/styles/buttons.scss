@@ -1,18 +1,27 @@
-.page-container button {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 26px;
+  border: none;
+  border-radius: 30px;
+  background: #007bff;
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin: 4px;
+  letter-spacing: 0.2px;
+
   &:hover {
-    background-color: rgb(7, 53, 192);
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.38);
   }
+
+  &:active { transform: translateY(0); }
+  &:disabled { opacity: 0.55; cursor: not-allowed; }
 }
 
 .back-button {
@@ -21,7 +30,21 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 12px;
+  padding: 8px 18px;
+  background: white;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 30px;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.88rem;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f0f4ff;
+    border-color: #007bff;
+    color: #007bff;
+  }
 
   .back-arrow {
     font-size: 18px;
