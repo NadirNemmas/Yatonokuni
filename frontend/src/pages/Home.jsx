@@ -36,7 +36,11 @@ export default function Home() {
       </Header>
 
       <div className="page-container">
-        <div id="about" className="page-container-section div-about">
+        <SectionBackground
+          sectionKey="about"
+          className="page-container-section div-about"
+          id="about"
+        >
           <div className="div-box-container">
             <h2 className="div-title">À propos</h2>
             <p className="div-description">
@@ -49,7 +53,7 @@ export default function Home() {
               bientôt disponible.
             </p>
           </div>
-        </div>
+        </SectionBackground>
 
         <SectionBackground
           sectionKey="features"

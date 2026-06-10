@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import authRoutes from "./api/auth/auth.routes.js";
 import characterRoutes from "./api/characters/characters.routes.js";
+import projetsRoutes from "./api/projets/projets.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,11 +16,9 @@ dotenv.config({ path: path.join(__dirname, "../../.env") });
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// allow dev front hosted on vite
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -27,7 +26,6 @@ app.use(
   })
 );
 
-// Dev logging simple des requêtes
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
   if (req.body && Object.keys(req.body).length) console.log("Body:", req.body);
@@ -37,59 +35,9 @@ app.use((req, res, next) => {
 // Routes API
 app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
+app.use("/projets", projetsRoutes);
 
-const staticDir = path.join(__dirname, "../../frontend/dist");
-app.use(express.static(staticDir));
-
-// Print registered routes (helpful to confirm paths)
-setTimeout(() => {
-  console.log("=== Registered routes ===");
-  try {
-    app._router.stack.forEach((r) => {
-      if (r.route && r.route.path) {
-        console.log(
-          Object.keys(r.route.methods).join(",").toUpperCase(),
-          r.route.path
-        );
-      } else if (r.name === "router") {
-        r.handle.stack.forEach((s) => {
-          if (s.route && s.route.path) {
-            console.log(
-              Object.keys(s.route.methods).join(",").toUpperCase(),
-              s.route.path
-            );
-          }
-        });
-      }
-    });
-  } catch (e) {
-    console.error("Error printing routes:", e);
-  }
-  console.log("=========================");
-}, 200);
-
-const indexPath = path.join(staticDir, "index.html");
-app.get("/", (req, res) => {
-  res.sendFile(indexPath);
-});
-
-app.get("*", (req, res) => {
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
-});
-
-// Démarrage serveur (sauf en mode test)
-if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => {
-    console.log(`🚀 Serveur lancé sur le port ${port}`);
-  });
-}
-
-// Error handler (dev)
+// Error handler
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err && (err.stack || err));
   if (process.env.NODE_ENV === "production") {
@@ -101,5 +49,11 @@ app.use((err, req, res, next) => {
     });
   }
 });
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`🚀 Serveur lancé sur le port ${port}`);
+  });
+}
 
 export { app };

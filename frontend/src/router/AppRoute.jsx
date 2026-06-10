@@ -10,21 +10,21 @@ import Licence from "../pages/Licence.jsx";
 export default function AppRoute() {
   return (
     <>
-    <ScrollToTop />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/projects" element={<Projects />} />
-      {/* <Route path="/test" element={<TestPage />} /> */}
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/projects" element={<Projects />} />
+        {/* <Route path="/test" element={<TestPage />} /> */}
 
-      <Route
-        path="/projects/gamemasterartefact"
-        element={<GameMasterArtefact />}
-      />
-      <Route path="/licence" element={<Licence />} />
-    </Routes>
+        <Route
+          path="/projects/gamemasterartefact"
+          element={<GameMasterArtefact />}
+        />
+        <Route path="/licence" element={<Licence />} />
+      </Routes>
     </>
   );
 }

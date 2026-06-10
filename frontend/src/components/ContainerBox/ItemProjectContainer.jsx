@@ -117,6 +117,16 @@ export default function ItemProjectContainer({
           </div>
           <div className="project-right">
             <ImageSlider imageSlider={imageSlider}></ImageSlider>
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-git-link"
+              >
+                Vers le dépôt Git →
+              </a>
+            )}
           </div>
         </div>
       </ContainerBox>
