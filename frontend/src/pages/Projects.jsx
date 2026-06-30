@@ -20,7 +20,7 @@ export default function Projets() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8000/projets")
+    fetch("/projets")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .finally(() => setLoading(false));
