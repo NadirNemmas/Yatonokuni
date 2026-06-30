@@ -1,0 +1,95 @@
+{
+  "lang": {
+    "label": "言語"
+  },
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "signup": "登録",
+    "openMenu": "メニューを開く",
+    "close": "閉じる",
+    "brand": "Yato no Kuni"
+  },
+  "footer": {
+    "copyright": "© 2025 著作権",
+    "siteLink": "Yatonokuni.ca"
+  },
+  "home": {
+    "welcome": "Yato no kuni Reactアプリへようこそ！",
+    "intro": "このウェブサイトは主に日常生活のために作られており、どこからでもアクセスできます。",
+    "portfolioLink": "ÉTSポートフォリオへのリンク",
+    "githubLink": "プロジェクトのGitHubリポジトリへのリンク",
+    "sections": {
+      "top": "トップ",
+      "about": "概要",
+      "features": "機能",
+      "contact": "お問い合わせ"
+    },
+    "about": {
+      "title": "概要",
+      "description": "Reactで構築されたウェブプラットフォームへようこそ。\n このサイトでは私のプロジェクトやリポジトリを紹介しています。\n 機能を探索して、私の活動についてもっと知ってください。\n アカウント作成機能は改善中で、まもなく利用可能になります。"
+    },
+    "features": {
+      "title": "機能",
+      "description": "現在の機能は限られています。\nユーザー認証（登録、ログイン）が実装されています。\nログイン後、追加機能や限定コンテンツにアクセスできます。\n一部の機能は完全に動作しないか、ログインが必要な場合があります。\nLost Arkの統合は現在開発中です。"
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "intro": "ご質問やご提案がある場合は、以下からご連絡ください：",
+      "schoolEmail": "学校メール",
+      "personalEmail": "個人メール"
+    }
+  },
+  "login": {
+    "title": "ログイン",
+    "email": "メール",
+    "password": "パスワード",
+    "submit": "ログイン",
+    "cancel": "キャンセル",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "signupLink": "こちらで登録",
+    "success": "✅ ログインしました",
+    "networkError": "ネットワークまたはサーバーエラー"
+  },
+  "signup": {
+    "title": "アカウント作成",
+    "lastName": "姓",
+    "firstName": "名",
+    "email": "メール",
+    "password": "パスワード",
+    "submit": "登録",
+    "cancel": "ホーム",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "loginLink": "こちらでログイン",
+    "loading": "アカウント作成中...",
+    "errors": {
+      "firstNameRequired": "名は必須です",
+      "lastNameRequired": "姓は必須です",
+      "emailRequired": "メールは必須です",
+      "emailInvalid": "有効なメールを入力してください",
+      "passwordRequired": "パスワードは必須です",
+      "passwordTooShort": "パスワードは8文字以上必要です"
+    }
+  },
+  "projects": {
+    "title": "個人プロジェクト",
+    "intro": "個人プロジェクトページへようこそ。プログラミングスキルを深め、新技術を探求するために開発したプロジェクトを紹介します。",
+    "loading": "プロジェクトを読み込み中...",
+    "technologies": "使用技術",
+    "gitLink": "Gitリポジトリへ →"
+  },
+  "item": {
+    "description": "説明",
+    "requiredFields": "必須フィールド：",
+    "optionalFields": "任意フィールド：",
+    "none": "なし",
+    "gitLink": "Gitリポジトリへ →"
+  },
+  "gma": {
+    "description": "GameMasterArtefactは、ゲームマスターとオンラインRPGプレイヤーのために設計されたDiscordボットです。",
+    "fonctionsTitle": "主なコマンド：",
+    "note": "コマンド名の横の矢印をクリックすると、詳細情報が表示されます。"
+  }
+}

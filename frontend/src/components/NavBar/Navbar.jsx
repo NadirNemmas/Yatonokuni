@@ -1,19 +1,22 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
+import { useTranslation } from "react-i18next";
 import NavigationButton from "../Buttons/NavigationButton.jsx";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
 import { Menu, X, Home, FolderOpen, LogOut } from "lucide-react";
 import "./styles/navbar.scss";
-
-const NAV_ITEMS = [
-  { label: "Accueil", icon: Home, type: "route", to: "/" },
-  { label: "Mes Projets", icon: FolderOpen, type: "route", to: "/projects" },
-];
 
 export default function NavBar() {
   const navigate = useNavigate();
   const { user, logout, loading } = useAuth();
+  const { t } = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const NAV_ITEMS = [
+    { label: t("nav.home"), icon: Home, type: "route", to: "/" },
+    { label: t("nav.projects"), icon: FolderOpen, type: "route", to: "/projects" },
+  ];
 
   const closeDrawer = () => setDrawerOpen(false);
 
@@ -30,7 +33,7 @@ export default function NavBar() {
           <button
             className="hamburger-btn"
             onClick={() => setDrawerOpen(true)}
-            aria-label="Ouvrir le menu"
+            aria-label={t("nav.openMenu")}
           >
             <Menu size={20} />
           </button>
@@ -59,13 +62,13 @@ export default function NavBar() {
               </div>
               <span className="user-email">{user.email}</span>
               <button className="logout-btn" onClick={logout}>
-                <LogOut size={14} /> Déconnexion
+                <LogOut size={14} /> {t("nav.logout")}
               </button>
             </div>
           ) : (
             <>
-              <NavigationButton title="Connexion" destination="/login" />
-              <NavigationButton title="S'inscrire" destination="/signup" />
+              <NavigationButton title={t("nav.login")} destination="/login" />
+              <NavigationButton title={t("nav.signup")} destination="/signup" />
             </>
           )}
         </div>
@@ -77,11 +80,11 @@ export default function NavBar() {
       >
         <nav className="nav-drawer" onClick={(e) => e.stopPropagation()}>
           <div className="nav-drawer-header">
-            <span className="nav-drawer-brand">Yato no Kuni</span>
+            <span className="nav-drawer-brand">{t("nav.brand")}</span>
             <button
               className="nav-drawer-close"
               onClick={closeDrawer}
-              aria-label="Fermer"
+              aria-label={t("nav.close")}
             >
               <X size={18} />
             </button>
@@ -116,7 +119,7 @@ export default function NavBar() {
                       closeDrawer();
                     }}
                   >
-                    <LogOut size={13} /> Deconnexion
+                    <LogOut size={13} /> {t("nav.logout")}
                   </button>
                 </div>
               </div>
@@ -128,7 +131,7 @@ export default function NavBar() {
                     closeDrawer();
                   }}
                 >
-                  Connexion
+                  {t("nav.login")}
                 </button>
                 <button
                   className="primary"
@@ -137,10 +140,11 @@ export default function NavBar() {
                     closeDrawer();
                   }}
                 >
-                  S'inscrire
+                  {t("nav.signup")}
                 </button>
               </div>
             )}
+            <LanguageSwitcher />
           </div>
         </nav>
       </div>

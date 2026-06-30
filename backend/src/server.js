@@ -4,6 +4,8 @@ import cors from "cors";
 import path from "path";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger.js";
 import authRoutes from "./api/auth/auth.routes.js";
 import characterRoutes from "./api/characters/characters.routes.js";
 import projetsRoutes from "./api/projets/projets.routes.js";
@@ -31,6 +33,9 @@ app.use((req, res, next) => {
   if (req.body && Object.keys(req.body).length) console.log("Body:", req.body);
   next();
 });
+
+// Swagger
+app.use("/swagger.html", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes API
 app.use("/auth", authRoutes);

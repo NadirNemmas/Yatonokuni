@@ -1,0 +1,88 @@
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .lang-icon {
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  .lang-btn-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: inherit;
+    opacity: 0.5;
+    padding: 0;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 0.85; }
+    &.active { opacity: 1; }
+  }
+
+  .lang-sep {
+    font-size: 0.7rem;
+    opacity: 0.35;
+  }
+
+  // Mode select (> SELECT_THRESHOLD langues)
+  &.lang-switcher--select {
+    .lang-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .lang-select {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+
+      option {
+        color: #1a1a2e;
+        background: white;
+      }
+    }
+  }
+}
+
+// ── Contexte footer (fond sombre) ─────────────────────────────────────
+.footer .lang-switcher {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.4);
+  margin-top: 0;
+}
+
+// ── Contexte nav drawer (centrage) ───────────────────────────────────
+.nav-drawer-footer .lang-switcher {
+  display: flex;
+  width: fit-content;
+  margin: 14px auto 0;
+  color: #1a1a2e;
+  border-color: rgba(26, 26, 46, 0.35);
+}

@@ -1,0 +1,95 @@
+{
+  "lang": {
+    "label": "Idioma"
+  },
+  "nav": {
+    "home": "Inicio",
+    "projects": "Mis Proyectos",
+    "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
+    "signup": "Registrarse",
+    "openMenu": "Abrir menú",
+    "close": "Cerrar",
+    "brand": "Yato no Kuni"
+  },
+  "footer": {
+    "copyright": "© 2025 Derechos de autor",
+    "siteLink": "Yatonokuni.ca"
+  },
+  "home": {
+    "welcome": "¡Bienvenido a la aplicación React Yato no kuni!",
+    "intro": "Este es un sitio web construido principalmente para mi vida cotidiana, permitiéndome acceder a mis cosas desde cualquier lugar.",
+    "portfolioLink": "Enlace a mi portfolio ÉTS",
+    "githubLink": "Enlace al repositorio GitHub del proyecto",
+    "sections": {
+      "top": "Inicio",
+      "about": "Acerca de",
+      "features": "Funcionalidades",
+      "contact": "Contacto"
+    },
+    "about": {
+      "title": "Acerca de",
+      "description": "Bienvenido a mi plataforma web construida con React.\n Este sitio reúne algunos de mis proyectos y repositorios, y muestra mi trabajo.\n No dudes en explorar las funcionalidades y aprender más sobre lo que hago.\n La creación de cuentas está siendo mejorada y estará disponible pronto."
+    },
+    "features": {
+      "title": "Funcionalidades",
+      "description": "Las funcionalidades actuales son limitadas por el momento.\nLa autenticación de usuarios (registro, inicio de sesión) está implementada.\nUna vez conectado, podrás acceder a funcionalidades adicionales y contenido exclusivo.\nTenga en cuenta que algunas funcionalidades pueden no estar completamente operativas.\nLa integración con Lost Ark está actualmente en desarrollo."
+    },
+    "contact": {
+      "title": "Contacto",
+      "intro": "Si tienes preguntas, sugerencias o deseas contactarme, no dudes en hacerlo a través de:",
+      "schoolEmail": "Correo escolar",
+      "personalEmail": "Correo personal"
+    }
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Iniciar sesión",
+    "cancel": "Cancelar",
+    "noAccount": "¿No tienes cuenta?",
+    "signupLink": "Regístrate aquí",
+    "success": "✅ Conectado",
+    "networkError": "Error de red o servidor"
+  },
+  "signup": {
+    "title": "Crear una cuenta",
+    "lastName": "Apellido",
+    "firstName": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Registrarse",
+    "cancel": "Inicio",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "loginLink": "Inicia sesión aquí",
+    "loading": "Creando cuenta...",
+    "errors": {
+      "firstNameRequired": "El nombre es obligatorio",
+      "lastNameRequired": "El apellido es obligatorio",
+      "emailRequired": "El correo es obligatorio",
+      "emailInvalid": "Introduce un correo válido",
+      "passwordRequired": "La contraseña es obligatoria",
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres"
+    }
+  },
+  "projects": {
+    "title": "Mis proyectos personales",
+    "intro": "Bienvenido a mi página de proyectos personales. Esta página presenta una selección de proyectos que he desarrollado para profundizar mis habilidades de programación.",
+    "loading": "Cargando proyectos...",
+    "technologies": "Tecnologías utilizadas",
+    "gitLink": "Ir al repositorio Git →"
+  },
+  "item": {
+    "description": "Descripción",
+    "requiredFields": "Campos requeridos:",
+    "optionalFields": "Campos opcionales:",
+    "none": "Ninguno",
+    "gitLink": "Ir al repositorio Git →"
+  },
+  "gma": {
+    "description": "GameMasterArtefact es un bot de Discord diseñado para maestros de juego y jugadores de juegos de rol en línea.",
+    "fonctionsTitle": "Comandos principales:",
+    "note": "Puedes obtener más información sobre los comandos haciendo clic en la flecha junto al nombre del comando."
+  }
+}

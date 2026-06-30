@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useProjects } from "../context/ProjectsContext.jsx";
 import Layout from "../components/Layout/Layout.jsx";
 import Header from "../components/Header/Header.jsx";
 import ContainerBox from "../components/ContainerBox/ContainerBox.jsx";
@@ -16,17 +18,16 @@ const introBySlug = {
 
 export default function Projets() {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
+  const { projects, fetchProjects } = useProjects();
+  const loading = projects === null;
+  const projectList = projects ?? [];
 
   useEffect(() => {
-    fetch("/projets")
-      .then((res) => res.json())
-      .then((data) => setProjects(data))
-      .finally(() => setLoading(false));
+    fetchProjects();
   }, []);
 
-  const projectSections = projects.map((p) => ({
+  const projectSections = projectList.map((p) => ({
     id: `project-${p.id}`,
     label: p.name,
   }));
@@ -36,24 +37,18 @@ export default function Projets() {
       <SectionDots sections={projectSections} />
 
       <div className="projects-container">
-        <Header title="Mes projets personnels">
-          <p>
-            Bienvenue sur ma page de projets personnels. Cette page présente une
-            sélection de projets que j'ai développés pour approfondir mes
-            compétences en programmation et explorer de nouvelles technologies.
-            Chaque projet reflète ma passion pour le développement logiciel et
-            mon engagement envers l'apprentissage continu.
-          </p>
+        <Header title={t("projects.title")}>
+          <p>{t("projects.intro")}</p>
         </Header>
 
         {loading ? (
-          <div className="projects-loading">
-            <div className="loading-spinner" />
-            <p>Chargement des projets...</p>
+          <div className="loading-overlay">
+            <div className="loader" />
+            <p>{t("projects.loading")}</p>
           </div>
         ) : (
           <div className="projects-list">
-            {projects.map((p) => (
+            {projectList.map((p) => (
               <ContainerBox
                 key={p.id}
                 id={`project-${p.id}`}
@@ -64,11 +59,11 @@ export default function Projets() {
                     <h2 className="project-title">{p.name}</h2>
                     <p className="project-description">{p.description}</p>
                     <div className="project-techs">
-                      <h3>Technologies utilisées</h3>
+                      <h3>{t("projects.technologies")}</h3>
                       <ul className="tech-list">
-                        {p.technologies.map((t) => (
-                          <li className="tech-badge" key={t}>
-                            {t}
+                        {p.technologies.map((tech) => (
+                          <li className="tech-badge" key={tech}>
+                            {tech}
                           </li>
                         ))}
                       </ul>
@@ -90,7 +85,7 @@ export default function Projets() {
                           className="project-git-link"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          Vers le dépôt Git →
+                          {t("projects.gitLink")}
                         </a>
                       )}
                     </div>

@@ -1,0 +1,95 @@
+{
+  "lang": {
+    "label": "Langue"
+  },
+  "nav": {
+    "home": "Accueil",
+    "projects": "Mes Projets",
+    "logout": "Déconnexion",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "openMenu": "Ouvrir le menu",
+    "close": "Fermer",
+    "brand": "Yato no Kuni"
+  },
+  "footer": {
+    "copyright": "© 2025 Copyright",
+    "siteLink": "Yatonokuni.ca"
+  },
+  "home": {
+    "welcome": "Bienvenue dans l'application React Yato no kuni !",
+    "intro": "Ceci est un site web construit principalement pour ma vie quotidienne, me permettant d'accéder à mes choses n'importe où. Essentiellement une sorte de site web cloud.",
+    "portfolioLink": "Lien vers mon porfolio ÉTS",
+    "githubLink": "Lien vers le dépot GitHub du projet",
+    "sections": {
+      "top": "Haut",
+      "about": "À propos",
+      "features": "Fonctionnalités",
+      "contact": "Contact"
+    },
+    "about": {
+      "title": "À propos",
+      "description": "Bienvenue sur ma plateforme web construite avec React.\n Ce site regroupe certains de mes projets et mes dépôts, et met en avant mon travail.\n N'hésitez pas à explorer les fonctionnalités et à en apprendre plus sur ce que je fais.\n La création de compte est en cours d'amélioration et sera bientôt disponible."
+    },
+    "features": {
+      "title": "Fonctionnalités",
+      "description": "Les fonctionnalités actuelles sont pour le moment limitées.\nL'authentification des utilisateurs (inscription, connexion) est en place.\nUne fois connecté, vous pourrez accéder à des fonctionnalités supplémentaires et des contenus exclusifs.\nVeuillez noter que certaines fonctionnalités peuvent ne pas être entièrement opérationnelles ou peuvent nécessiter une connexion.\nL'intégration Lost Ark est actuellement en développement."
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "Si vous avez des questions, des suggestions ou si vous souhaitez me contacter, n'hésitez pas à le faire via :",
+      "schoolEmail": "Émail d'école",
+      "personalEmail": "Émail personnel"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "email": "Émail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "cancel": "Annuler",
+    "noAccount": "Vous ne possèdez pas de compte ?",
+    "signupLink": "Inscrivez-vous ici",
+    "success": "✅ Connecté",
+    "networkError": "Erreur réseau ou serveur"
+  },
+  "signup": {
+    "title": "Créer un compte",
+    "lastName": "Nom de famille",
+    "firstName": "Prénom",
+    "email": "Émail",
+    "password": "Mots de passe",
+    "submit": "S'inscrire",
+    "cancel": "Accueil",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "loginLink": "Connectez-vous ici",
+    "loading": "Création du compte...",
+    "errors": {
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom de famille requis",
+      "emailRequired": "Email requis",
+      "emailInvalid": "Entrez un email valide",
+      "passwordRequired": "Mot de passe requis",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères"
+    }
+  },
+  "projects": {
+    "title": "Mes projets personnels",
+    "intro": "Bienvenue sur ma page de projets personnels. Cette page présente une sélection de projets que j'ai développés pour approfondir mes compétences en programmation et explorer de nouvelles technologies. Chaque projet reflète ma passion pour le développement logiciel et mon engagement envers l'apprentissage continu.",
+    "loading": "Chargement des projets...",
+    "technologies": "Technologies utilisées",
+    "gitLink": "Vers le dépôt Git →"
+  },
+  "item": {
+    "description": "Description",
+    "requiredFields": "Champs requis :",
+    "optionalFields": "Champs optionnels :",
+    "none": "Aucun",
+    "gitLink": "Vers le dépôt Git →"
+  },
+  "gma": {
+    "description": "GameMasterArtefact est un bot Discord conçue pour les maîtres de jeu et les joueurs de jeux de rôle en ligne. Elle permet de gérer les personnages, les feuilles de personnage, et d'exécuter des commandes spécifiques pour faciliter le déroulement des sessions de jeu.",
+    "fonctionsTitle": "Principales commandes :",
+    "note": "Il est possible d'avoir plus d'informations sur les commandes en cliquant sur la flèche à côté du nom de la commande."
+  }
+}

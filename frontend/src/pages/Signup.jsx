@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Layout from "../components/Layout/Layout.jsx";
 import "./styles/pages.scss";
 import SubmitForm from "../components/Forms/SubmitForms.jsx";
+
 export default function Signup() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
@@ -18,17 +21,16 @@ export default function Signup() {
   const [message, setMessage] = useState(null);
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRe = /^\+?[0-9\s\-()]{7,20}$/;
 
   function validate(values) {
     const e = {};
-    if (!values.firstName.trim()) e.firstName = "Prénom requis";
-    if (!values.lastName.trim()) e.lastName = "Nom de famille requis";
-    if (!values.email.trim()) e.email = "Email requis";
-    else if (!emailRe.test(values.email)) e.email = "Entrez un email valide";
-    if (!values.password) e.password = "Mot de passe requis";
+    if (!values.firstName.trim()) e.firstName = t("signup.errors.firstNameRequired");
+    if (!values.lastName.trim()) e.lastName = t("signup.errors.lastNameRequired");
+    if (!values.email.trim()) e.email = t("signup.errors.emailRequired");
+    else if (!emailRe.test(values.email)) e.email = t("signup.errors.emailInvalid");
+    if (!values.password) e.password = t("signup.errors.passwordRequired");
     else if (values.password.length < 8)
-      e.password = "Le mot de passe doit contenir au moins 8 caractères";
+      e.password = t("signup.errors.passwordTooShort");
     return e;
   }
 
@@ -48,7 +50,6 @@ export default function Signup() {
 
     setSubmitting(true);
     try {
-      // Replace URL with your real signup endpoint
       const res = await fetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -61,12 +62,7 @@ export default function Signup() {
       }
 
       setMessage({ type: "success", text: "Account created successfully." });
-      setForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-      });
+      setForm({ firstName: "", lastName: "", email: "", password: "" });
       navigate("/login");
     } catch (err) {
       setMessage({ type: "error", text: err.message || "Server error" });
@@ -81,26 +77,26 @@ export default function Signup() {
         {loading && (
           <div className="loading-overlay">
             <div className="loader"></div>
-            <p>Création du compte...</p>
+            <p>{t("signup.loading")}</p>
           </div>
         )}
         <SubmitForm
-          title="Créer un compte"
+          title={t("signup.title")}
           message={message}
           onSubmit={handleSubmit}
           loading={loading}
-          primaryButtonLabel="S'inscrire"
-          secondaryButtonLabel="Acceuil"
+          primaryButtonLabel={t("signup.submit")}
+          secondaryButtonLabel={t("signup.cancel")}
           textEndForm={
             <>
-              Vous avez déjà un compte ? {""}
-              <a href="/login">Connectez-vous ici</a>
+              {t("signup.hasAccount")}{" "}
+              <a href="/login">{t("signup.loginLink")}</a>
             </>
           }
         >
           <div>
             <label>
-              Nom de famille{" "}
+              {t("signup.lastName")}{" "}
               <input
                 name="lastName"
                 value={form.lastName}
@@ -110,7 +106,6 @@ export default function Signup() {
                 required
               />
             </label>
-
             {errors.lastName && (
               <div id="err-lastName" role="alert" className="alert-message">
                 {errors.lastName}
@@ -121,19 +116,16 @@ export default function Signup() {
           <div>
             <div>
               <label>
-                Prénom{" "}
+                {t("signup.firstName")}{" "}
                 <input
                   name="firstName"
                   value={form.firstName}
                   onChange={handleChange}
                   aria-invalid={!!errors.firstName}
-                  aria-describedby={
-                    errors.firstName ? "err-firstName" : undefined
-                  }
+                  aria-describedby={errors.firstName ? "err-firstName" : undefined}
                   required
                 />
               </label>
-
               {errors.firstName && (
                 <div id="err-firstName" role="alert" className="alert-message">
                   {errors.firstName}
@@ -144,7 +136,7 @@ export default function Signup() {
 
           <div>
             <label>
-              Émail{" "}
+              {t("signup.email")}{" "}
               <input
                 type="email"
                 name="email"
@@ -155,16 +147,16 @@ export default function Signup() {
                 required
               />
             </label>
-
             {errors.email && (
               <div id="err-email" role="alert" className="alert-message">
                 {errors.email}
               </div>
             )}
           </div>
+
           <div>
             <label>
-              Mots de passe{" "}
+              {t("signup.password")}{" "}
               <input
                 type="password"
                 name="password"
@@ -175,7 +167,6 @@ export default function Signup() {
                 required
               />
             </label>
-
             {errors.password && (
               <div id="err-password" role="alert" className="alert-message">
                 {errors.password}

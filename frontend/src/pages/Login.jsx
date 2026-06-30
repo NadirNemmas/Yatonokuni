@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import { useTranslation } from "react-i18next";
 import Layout from "../components/Layout/Layout.jsx";
 import SubmitForm from "../components/Forms/SubmitForms.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
   const { setUser } = useAuth();
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -32,7 +34,6 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
 
-      // parse safe
       const data = await res.json().catch(() => null);
 
       if (!res.ok || !data) {
@@ -43,17 +44,16 @@ export default function Login() {
       }
 
       if (data.ok && data.user) {
-        // normalise la forme du user
         const normalized = resolveUserShape(data.user);
         setUser(normalized);
-        setMessage("✅ Connecté");
+        setMessage(t("login.success"));
         navigate("/", { replace: true });
       } else {
-        setMessage(data.message || "Erreur lors de la connexion");
+        setMessage(data.message || t("login.networkError"));
       }
     } catch (err) {
       console.error("Login fetch error:", err);
-      setMessage("Erreur réseau ou serveur");
+      setMessage(t("login.networkError"));
     } finally {
       setLoading(false);
     }
@@ -63,21 +63,21 @@ export default function Login() {
     <Layout>
       <div className="page-container-section">
         <SubmitForm
-          title="Login"
+          title={t("login.title")}
           message={message}
           onSubmit={handleSubmit}
           loading={loading}
-          primaryButtonLabel="Se connecter"
-          secondaryButtonLabel="Annuler"
+          primaryButtonLabel={t("login.submit")}
+          secondaryButtonLabel={t("login.cancel")}
           textEndForm={
             <>
-              Vous ne possèdez pas de compte ?{" "}
-              <a href="/signup">Inscrivez-vous ici</a>{" "}
+              {t("login.noAccount")}{" "}
+              <a href="/signup">{t("login.signupLink")}</a>{" "}
             </>
           }
         >
           <div>
-            <label htmlFor="email">Émail :</label>
+            <label htmlFor="email">{t("login.email")} :</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -89,7 +89,7 @@ export default function Login() {
           </div>
 
           <div>
-            <label htmlFor="password">Mot de passe :</label>
+            <label htmlFor="password">{t("login.password")} :</label>
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}

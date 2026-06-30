@@ -1,0 +1,95 @@
+{
+  "lang": {
+    "label": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "My Projects",
+    "logout": "Logout",
+    "login": "Login",
+    "signup": "Sign up",
+    "openMenu": "Open menu",
+    "close": "Close",
+    "brand": "Yato no Kuni"
+  },
+  "footer": {
+    "copyright": "© 2025 Copyright",
+    "siteLink": "Yatonokuni.ca"
+  },
+  "home": {
+    "welcome": "Welcome to the Yato no kuni React application!",
+    "intro": "This is a website built primarily for my daily life, allowing me to access my things from anywhere. Essentially a kind of cloud website.",
+    "portfolioLink": "Link to my ÉTS portfolio",
+    "githubLink": "Link to the project's GitHub repository",
+    "sections": {
+      "top": "Top",
+      "about": "About",
+      "features": "Features",
+      "contact": "Contact"
+    },
+    "about": {
+      "title": "About",
+      "description": "Welcome to my web platform built with React.\n This site brings together some of my projects and repositories, and showcases my work.\n Feel free to explore the features and learn more about what I do.\n Account creation is being improved and will be available soon."
+    },
+    "features": {
+      "title": "Features",
+      "description": "Current features are limited at the moment.\nUser authentication (registration, login) is in place.\nOnce logged in, you will be able to access additional features and exclusive content.\nPlease note that some features may not be fully operational or may require a login.\nLost Ark integration is currently under development."
+    },
+    "contact": {
+      "title": "Contact",
+      "intro": "If you have any questions, suggestions, or would like to contact me, feel free to do so via:",
+      "schoolEmail": "School email",
+      "personalEmail": "Personal email"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "cancel": "Cancel",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Sign up here",
+    "success": "✅ Logged in",
+    "networkError": "Network or server error"
+  },
+  "signup": {
+    "title": "Create an account",
+    "lastName": "Last name",
+    "firstName": "First name",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Sign up",
+    "cancel": "Home",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Log in here",
+    "loading": "Creating account...",
+    "errors": {
+      "firstNameRequired": "First name required",
+      "lastNameRequired": "Last name required",
+      "emailRequired": "Email required",
+      "emailInvalid": "Enter a valid email",
+      "passwordRequired": "Password required",
+      "passwordTooShort": "Password must be at least 8 characters"
+    }
+  },
+  "projects": {
+    "title": "My personal projects",
+    "intro": "Welcome to my personal projects page. This page showcases a selection of projects I have developed to deepen my programming skills and explore new technologies. Each project reflects my passion for software development and my commitment to continuous learning.",
+    "loading": "Loading projects...",
+    "technologies": "Technologies used",
+    "gitLink": "Go to Git repository →"
+  },
+  "item": {
+    "description": "Description",
+    "requiredFields": "Required fields:",
+    "optionalFields": "Optional fields:",
+    "none": "None",
+    "gitLink": "Go to Git repository →"
+  },
+  "gma": {
+    "description": "GameMasterArtefact is a Discord bot designed for game masters and online role-playing game players. It allows you to manage characters, character sheets, and execute specific commands to facilitate the flow of game sessions.",
+    "fonctionsTitle": "Main commands:",
+    "note": "You can get more information about the commands by clicking the arrow next to the command name."
+  }
+}

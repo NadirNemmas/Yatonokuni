@@ -3,9 +3,8 @@ export default function ContainerBox({ children, onClick, id }) {
   return (
     <div
       id={id}
-      className="div-box-container"
+      className={`div-box-container${onClick ? " div-box-container--clickable" : ""}`}
       onClick={onClick}
-      style={onClick ? { cursor: "pointer" } : undefined}
     >
       {children}
     </div>

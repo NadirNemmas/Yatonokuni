@@ -1,36 +1,35 @@
+import { useTranslation } from "react-i18next";
 import Header from "../components/Header/Header.jsx";
 import Layout from "../components/Layout/Layout.jsx";
 import SectionBackground from "../components/Background/SectionBackground.jsx";
 import SectionDots from "../components/SectionDots/SectionDots.jsx";
 import "./styles/pages.scss";
 
-const HOME_SECTIONS = [
-  { id: null,       label: "Haut" },
-  { id: "about",    label: "À propos" },
-  { id: "features", label: "Fonctionnalités" },
-  { id: "contact",  label: "Contact" },
-];
-
 export default function Home() {
+  const { t } = useTranslation();
+
+  const HOME_SECTIONS = [
+    { id: null, label: t("home.sections.top") },
+    { id: "about", label: t("home.sections.about") },
+    { id: "features", label: t("home.sections.features") },
+    { id: "contact", label: t("home.sections.contact") },
+  ];
+
   return (
     <Layout>
       <SectionDots sections={HOME_SECTIONS} />
 
       <Header title="Yato no kuni">
-        <h2>Bienvenue dans l'application React Yato no kuni !</h2>
-        <p>
-          Ceci est un site web construit principalement pour ma vie quotidienne,
-          me permettant d'accéder à mes choses n'importe où. Essentiellement une
-          sorte de site web cloud.
-        </p>
+        <h2>{t("home.welcome")}</h2>
+        <p>{t("home.intro")}</p>
         <p>
           <a target="_blank" href="https://eportfolio.etsmtl.ca/Portfolio/Clef/FpX7fDj0zplsdZZdVmN3">
-            Lien vers mon porfolio ÉTS
+            {t("home.portfolioLink")}
           </a>
         </p>
         <p>
           <a target="_blank" href="https://github.com/NadirNemmas/Yatonokuni">
-            Lien vers le dépot GitHub du projet
+            {t("home.githubLink")}
           </a>
         </p>
       </Header>
@@ -42,15 +41,9 @@ export default function Home() {
           id="about"
         >
           <div className="div-box-container">
-            <h2 className="div-title">À propos</h2>
-            <p className="div-description">
-              Bienvenue sur ma plateforme web construite avec React.
-              <br /> Ce site regroupe certains de mes projets et mes dépôts, et
-              met en avant mon travail.
-              <br /> N'hésitez pas à explorer les fonctionnalités et à en
-              apprendre plus sur ce que je fais.
-              <br /> La création de compte est en cours d'amélioration et sera
-              bientôt disponible.
+            <h2 className="div-title">{t("home.about.title")}</h2>
+            <p className="div-description" style={{ whiteSpace: "pre-line" }}>
+              {t("home.about.description")}
             </p>
           </div>
         </SectionBackground>
@@ -61,19 +54,9 @@ export default function Home() {
           id="features"
         >
           <div className="div-box-container">
-            <h2 className="div-title">Fonctionnalités</h2>
-            <p className="div-description">
-              Les fonctionnalités actuelles sont pour le moment limitées.
-              <br />
-              L'authentification des utilisateurs (inscription, connexion) est en place.
-              <br />
-              Une fois connecté, vous pourrez accéder à des fonctionnalités
-              supplémentaires et des contenus exclusifs.
-              <br />
-              Veuillez noter que certaines fonctionnalités peuvent ne pas être
-              entièrement opérationnelles ou peuvent nécessiter une connexion.
-              <br />
-              L'intégration Lost Ark est actuellement en développement.
+            <h2 className="div-title">{t("home.features.title")}</h2>
+            <p className="div-description" style={{ whiteSpace: "pre-line" }}>
+              {t("home.features.description")}
             </p>
           </div>
         </SectionBackground>
@@ -84,17 +67,17 @@ export default function Home() {
           id="contact"
         >
           <div className="div-box-container">
-            <h2 className="div-title">Contact</h2>
+            <h2 className="div-title">{t("home.contact.title")}</h2>
             <p className="div-description">
-              Si vous avez des questions, des suggestions ou si vous souhaitez
-              me contacter, n'hésitez pas à le faire via :
+              {t("home.contact.intro")}
               <br />
-              Émail d'école :{" "}
+              {t("home.contact.schoolEmail")} :{" "}
               <a href="mailto:ahmed-nadir.nemmas.1@ens.etsmtl.ca">
                 ahmed-nadir.nemmas.1@ens.etsmtl.ca
               </a>
-              <br /> Émail personnel :{" "}
-              <a href="mailto:nadirne91@gmail.com">nadirne91@gmail.com</a>.
+              <br />
+              {t("home.contact.personalEmail")} :{" "}
+              <a href="mailto:nadirne91@gmail.com">nadirne91@gmail.com</a>
             </p>
           </div>
         </SectionBackground>

@@ -3,6 +3,7 @@ import ImageSlider from "./ImageSlider";
 import BackButton from "../Buttons/BackButton";
 import ContainerBox from "./ContainerBox";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ItemProjectContainer({
   imageSlider,
@@ -13,12 +14,15 @@ export default function ItemProjectContainer({
   fonctionsTitle,
   projectNote,
 }) {
+  const { t } = useTranslation();
+
   const initialCollapsed = fonctionsList.reduce((acc, cmd) => {
     acc[cmd.id] = true;
     return acc;
   }, {});
 
   const [collapsed, setCollapsed] = useState(initialCollapsed);
+
   return (
     <div className="projects-container">
       <BackButton />
@@ -26,7 +30,7 @@ export default function ItemProjectContainer({
         <h1 className="project-link">{title}</h1>
         <div className="project-item">
           <div className="project-left">
-            <h3 className="project-title">Description</h3>
+            <h3 className="project-title">{t("item.description")}</h3>
             <div className="project-description">{description}</div>
             <h3 className="project-subtitle">{fonctionsTitle}</h3>
             <div className="commands-list">
@@ -36,7 +40,6 @@ export default function ItemProjectContainer({
                   <div key={cmd.id} className="command-item">
                     <div className="command-header">
                       <h4 className="command-name">{cmd.commandName}</h4>
-
                       <button
                         type="button"
                         className="cmd-toggle"
@@ -48,19 +51,16 @@ export default function ItemProjectContainer({
                           }))
                         }
                       >
-                        <span className="arrow" aria-hidden="true">
-                          ▸
-                        </span>
+                        <span className="arrow" aria-hidden="true">▸</span>
                       </button>
                     </div>
 
                     <div className="command-description">{cmd.description}</div>
 
-                    {/* only show fields block when NOT collapsed */}
                     {!isCollapsed && (
                       <>
                         <div className="command-fields">
-                          <strong>Champs requis :</strong>
+                          <strong>{t("item.requiredFields")}</strong>
                           {cmd.required_fields &&
                           cmd.fields_required &&
                           cmd.fields_required.length > 0 ? (
@@ -76,12 +76,12 @@ export default function ItemProjectContainer({
                               ))}
                             </ul>
                           ) : (
-                            <p className="no-fields">Aucun</p>
+                            <p className="no-fields">{t("item.none")}</p>
                           )}
                         </div>
 
                         <div className="command-fields">
-                          <strong>Champs optionnels :</strong>
+                          <strong>{t("item.optionalFields")}</strong>
                           {cmd.optional_fields &&
                           cmd.optional_fields.length > 0 ? (
                             <ul className="fields-list">
@@ -96,7 +96,7 @@ export default function ItemProjectContainer({
                               ))}
                             </ul>
                           ) : (
-                            <p className="no-fields">Aucun</p>
+                            <p className="no-fields">{t("item.none")}</p>
                           )}
                         </div>
                       </>
@@ -108,7 +108,7 @@ export default function ItemProjectContainer({
             <div className="project-note">{projectNote}</div>
           </div>
           <div className="project-right">
-            <ImageSlider imageSlider={imageSlider}></ImageSlider>
+            <ImageSlider imageSlider={imageSlider} />
             {link && (
               <a
                 href={link}
@@ -116,7 +116,7 @@ export default function ItemProjectContainer({
                 rel="noopener noreferrer"
                 className="project-git-link"
               >
-                Vers le dépôt Git →
+                {t("item.gitLink")}
               </a>
             )}
           </div>
