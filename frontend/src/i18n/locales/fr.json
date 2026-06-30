@@ -10,7 +10,8 @@
     "signup": "S'inscrire",
     "openMenu": "Ouvrir le menu",
     "close": "Fermer",
-    "brand": "Yato no Kuni"
+    "brand": "Yato no Kuni",
+    "profile": "Mon profil"
   },
   "footer": {
     "copyright": "© 2025 Copyright",
@@ -50,8 +51,11 @@
     "cancel": "Annuler",
     "noAccount": "Vous ne possèdez pas de compte ?",
     "signupLink": "Inscrivez-vous ici",
-    "success": "✅ Connecté",
-    "networkError": "Erreur réseau ou serveur"
+    "success": "Connexion réussie !",
+    "loading": "Connexion en cours...",
+    "timeout": "La requête a expiré, veuillez réessayer",
+    "networkError": "Erreur réseau ou serveur",
+    "redirectIn": "Redirection dans {{count}}s..."
   },
   "signup": {
     "title": "Créer un compte",
@@ -64,13 +68,16 @@
     "hasAccount": "Vous avez déjà un compte ?",
     "loginLink": "Connectez-vous ici",
     "loading": "Création du compte...",
+    "success": "Compte créé avec succès !",
+    "redirectIn": "Redirection dans {{count}}s...",
     "errors": {
       "firstNameRequired": "Prénom requis",
       "lastNameRequired": "Nom de famille requis",
       "emailRequired": "Email requis",
       "emailInvalid": "Entrez un email valide",
       "passwordRequired": "Mot de passe requis",
-      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères"
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+      "timeout": "La requête a expiré, veuillez réessayer"
     }
   },
   "projects": {
@@ -86,6 +93,26 @@
     "optionalFields": "Champs optionnels :",
     "none": "Aucun",
     "gitLink": "Vers le dépôt Git →"
+  },
+  "profile": {
+    "title": "Mon profil",
+    "sectionInfo": "Informations personnelles",
+    "sectionLinks": "Comptes externes",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "email": "Émail",
+    "username": "Nom d'utilisateur",
+    "usernamePlaceholder": "ex : nadir42",
+    "dateOfBirth": "Date de naissance",
+    "optional": "(optionnel)",
+    "changePhoto": "Changer la photo",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "loading": "Enregistrement...",
+    "success": "Profil mis à jour !",
+    "redirectIn": "Retour dans {{count}}s...",
+    "noChange": "Aucune modification détectée",
+    "error": "Erreur lors de la mise à jour du profil"
   },
   "gma": {
     "description": "GameMasterArtefact est un bot Discord conçue pour les maîtres de jeu et les joueurs de jeux de rôle en ligne. Elle permet de gérer les personnages, les feuilles de personnage, et d'exécuter des commandes spécifiques pour faciliter le déroulement des sessions de jeu.",

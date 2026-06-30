@@ -14,6 +14,14 @@ if (!supabaseUrl || !supabaseKey) {
   );
 }
 
+// Client pour les opérations auth (signInWithPassword, signOut, admin.*)
 export const supabase = createClient(supabaseUrl, supabaseKey, {
   auth: { persistSession: false },
+});
+
+// Client pour les requêtes DB — n'appelle jamais signInWithPassword,
+// donc le service role key ne sera jamais remplacé par un JWT utilisateur.
+export const supabaseAdmin = createClient(supabaseUrl, supabaseKey, {
+  auth: { persistSession: false, autoRefreshToken: false },
+  global: { headers: { Authorization: `Bearer ${supabaseKey}` } },
 });

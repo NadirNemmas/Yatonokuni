@@ -10,7 +10,8 @@
     "signup": "Registrarse",
     "openMenu": "Abrir menú",
     "close": "Cerrar",
-    "brand": "Yato no Kuni"
+    "brand": "Yato no Kuni",
+    "profile": "Mi perfil"
   },
   "footer": {
     "copyright": "© 2025 Derechos de autor",
@@ -50,8 +51,11 @@
     "cancel": "Cancelar",
     "noAccount": "¿No tienes cuenta?",
     "signupLink": "Regístrate aquí",
-    "success": "✅ Conectado",
-    "networkError": "Error de red o servidor"
+    "success": "¡Sesión iniciada con éxito!",
+    "loading": "Iniciando sesión...",
+    "timeout": "La solicitud expiró, inténtalo de nuevo",
+    "networkError": "Error de red o servidor",
+    "redirectIn": "Redirigiendo en {{count}}s..."
   },
   "signup": {
     "title": "Crear una cuenta",
@@ -64,13 +68,16 @@
     "hasAccount": "¿Ya tienes cuenta?",
     "loginLink": "Inicia sesión aquí",
     "loading": "Creando cuenta...",
+    "success": "¡Cuenta creada con éxito!",
+    "redirectIn": "Redirigiendo en {{count}}s...",
     "errors": {
       "firstNameRequired": "El nombre es obligatorio",
       "lastNameRequired": "El apellido es obligatorio",
       "emailRequired": "El correo es obligatorio",
       "emailInvalid": "Introduce un correo válido",
       "passwordRequired": "La contraseña es obligatoria",
-      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres"
+      "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+      "timeout": "La solicitud expiró, inténtalo de nuevo"
     }
   },
   "projects": {
@@ -86,6 +93,26 @@
     "optionalFields": "Campos opcionales:",
     "none": "Ninguno",
     "gitLink": "Ir al repositorio Git →"
+  },
+  "profile": {
+    "title": "Mi perfil",
+    "sectionInfo": "Información personal",
+    "sectionLinks": "Cuentas externas",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "username": "Nombre de usuario",
+    "usernamePlaceholder": "ej. nadir42",
+    "dateOfBirth": "Fecha de nacimiento",
+    "optional": "(opcional)",
+    "changePhoto": "Cambiar foto",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "loading": "Guardando...",
+    "success": "¡Perfil actualizado!",
+    "redirectIn": "Volver en {{count}}s...",
+    "noChange": "No se detectaron cambios",
+    "error": "Error al actualizar el perfil"
   },
   "gma": {
     "description": "GameMasterArtefact es un bot de Discord diseñado para maestros de juego y jugadores de juegos de rol en línea.",

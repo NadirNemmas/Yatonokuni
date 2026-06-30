@@ -1,8 +1,10 @@
 import {
   loginUser,
   signupUser,
-  getUserByToken,
+  getUserProfileById,
   logoutUser,
+  updateUserProfile,
+  uploadAvatar,
 } from "../auth/auth.service.js";
 import jwt from "jsonwebtoken";
 
@@ -78,13 +80,13 @@ export const login = async (req, res) => {
       });
     }
 
-    // répond l'objet user (frontend aura accès à ça)
+    const profile = await getUserProfileById(user.id);
+
     return res.status(200).json({
       ok: true,
       user: {
-        id: user.id,
-        email: user.email,
-        display_name: user.user_metadata?.full_name || null,
+        authUser: { id: user.id, email: user.email, user_metadata: user.user_metadata },
+        profile,
       },
       expiresIn: jwtExpiry,
     });
@@ -100,18 +102,57 @@ export const login = async (req, res) => {
 // GET /auth/user
 export const getUser = async (req, res) => {
   try {
-    console.log("req.cookies:", req.cookies); // debug cookies reçus
     const token = req.cookies?.access_token_jwt;
     if (!token) return res.status(200).json({ ok: true, user: null });
 
-    const result = await getUserByToken(token);
-    return res.status(200).json({ ok: true, user: result });
+    const decoded = jwt.verify(token, SUPABASE_JWT_SECRET, { algorithms: ["HS256"] });
+    const uid = decoded.sub;
+    const profile = await getUserProfileById(uid);
+
+    return res.status(200).json({
+      ok: true,
+      user: {
+        authUser: { id: uid, email: decoded.email },
+        profile,
+      },
+    });
   } catch (err) {
-    console.error("getUser error:", err && (err.stack || err));
-    // en cas de token invalide on nettoie le cookie côté serveur et renvoie null
     res.clearCookie("access_token_jwt", { path: "/" });
     res.clearCookie("refresh_token", { path: "/" });
     return res.status(200).json({ ok: true, user: null });
+  }
+};
+
+// PUT /auth/profile
+export const updateProfile = async (req, res) => {
+  try {
+    const token = req.cookies?.access_token_jwt;
+    if (!token) return res.status(401).json({ ok: false, message: "Non authentifié" });
+
+    const decoded = jwt.verify(token, SUPABASE_JWT_SECRET, { algorithms: ["HS256"] });
+    const uid = decoded.sub;
+
+    const {
+      email, username, date_of_birth,
+      github_url, linkedin_url, instagram_url, website_url,
+      avatar,
+    } = req.body || {};
+
+    let avatar_url;
+    if (avatar) {
+      avatar_url = await uploadAvatar(uid, avatar);
+    }
+
+    const profile = await updateUserProfile(uid, {
+      email, username, date_of_birth,
+      github_url, linkedin_url, instagram_url, website_url,
+      ...(avatar_url ? { avatar_url } : {}),
+    });
+
+    return res.status(200).json({ ok: true, profile });
+  } catch (err) {
+    console.error("updateProfile error:", err && (err.stack || err));
+    return res.status(500).json({ ok: false, message: err?.message || "Erreur serveur" });
   }
 };
 

@@ -10,7 +10,8 @@
     "signup": "登録",
     "openMenu": "メニューを開く",
     "close": "閉じる",
-    "brand": "Yato no Kuni"
+    "brand": "Yato no Kuni",
+    "profile": "プロフィール"
   },
   "footer": {
     "copyright": "© 2025 著作権",
@@ -50,8 +51,11 @@
     "cancel": "キャンセル",
     "noAccount": "アカウントをお持ちでないですか？",
     "signupLink": "こちらで登録",
-    "success": "✅ ログインしました",
-    "networkError": "ネットワークまたはサーバーエラー"
+    "success": "ログインに成功しました！",
+    "loading": "ログイン中...",
+    "timeout": "リクエストがタイムアウトしました。もう一度お試しください",
+    "networkError": "ネットワークまたはサーバーエラー",
+    "redirectIn": "{{count}}秒後にリダイレクト..."
   },
   "signup": {
     "title": "アカウント作成",
@@ -64,13 +68,16 @@
     "hasAccount": "すでにアカウントをお持ちですか？",
     "loginLink": "こちらでログイン",
     "loading": "アカウント作成中...",
+    "success": "アカウントが作成されました！",
+    "redirectIn": "{{count}}秒後にリダイレクト...",
     "errors": {
       "firstNameRequired": "名は必須です",
       "lastNameRequired": "姓は必須です",
       "emailRequired": "メールは必須です",
       "emailInvalid": "有効なメールを入力してください",
       "passwordRequired": "パスワードは必須です",
-      "passwordTooShort": "パスワードは8文字以上必要です"
+      "passwordTooShort": "パスワードは8文字以上必要です",
+      "timeout": "リクエストがタイムアウトしました。もう一度お試しください"
     }
   },
   "projects": {
@@ -86,6 +93,26 @@
     "optionalFields": "任意フィールド：",
     "none": "なし",
     "gitLink": "Gitリポジトリへ →"
+  },
+  "profile": {
+    "title": "マイプロフィール",
+    "sectionInfo": "個人情報",
+    "sectionLinks": "外部アカウント",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メール",
+    "username": "ユーザー名",
+    "usernamePlaceholder": "例：nadir42",
+    "dateOfBirth": "生年月日",
+    "optional": "（任意）",
+    "changePhoto": "写真を変更",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "loading": "保存中...",
+    "success": "プロフィールを更新しました！",
+    "redirectIn": "{{count}}秒後に戻ります...",
+    "noChange": "変更が検出されませんでした",
+    "error": "プロフィールの更新中にエラーが発生しました"
   },
   "gma": {
     "description": "GameMasterArtefactは、ゲームマスターとオンラインRPGプレイヤーのために設計されたDiscordボットです。",

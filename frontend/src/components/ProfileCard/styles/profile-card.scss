@@ -1,0 +1,212 @@
+.profile-card {
+  display: flex;
+  width: min(960px, 96vw);
+  margin: 0 auto;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.14), 0 2px 6px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+
+  @media (max-width: 680px) {
+    flex-direction: column;
+  }
+}
+
+/* ── Sidebar ──────────────────────────────────── */
+.profile-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 24px 44px;
+  gap: 12px;
+
+  @media (max-width: 680px) {
+    width: 100%;
+    padding: 40px 24px 32px;
+  }
+}
+
+.profile-avatar-wrap {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.profile-avatar-img,
+.profile-avatar-placeholder {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.18);
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar-placeholder {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+
+.profile-avatar-btn {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #007bff;
+  border: 2.5px solid #16213e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover { background: #0056b3; }
+}
+
+.profile-sidebar-name {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.profile-sidebar-handle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.88rem;
+}
+
+.profile-sidebar-email {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.78rem;
+  text-align: center;
+  word-break: break-all;
+  padding: 0 8px;
+  margin-top: 4px;
+}
+
+/* ── Main ─────────────────────────────────────── */
+.profile-main {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 44px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+
+  @media (max-width: 680px) {
+    padding: 32px 20px 32px;
+  }
+}
+
+/* ── Section ──────────────────────────────────── */
+.profile-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  color: #9ca3af;
+  margin-bottom: 18px;
+}
+
+/* ── Grid 2 cols ──────────────────────────────── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 24px;
+
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Field ────────────────────────────────────── */
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  &--span {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  input {
+    padding: 11px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    width: 100%;
+    background: #fff;
+    color: #1a1a2e;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+  }
+
+  &--readonly input {
+    background: #f9fafb;
+    color: #c0c6d0;
+    cursor: not-allowed;
+    border-color: #f0f1f3;
+  }
+}
+
+.profile-optional {
+  font-weight: 400;
+  color: #d1d5db;
+  font-size: 0.68rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.profile-link-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* ── Actions ──────────────────────────────────── */
+.profile-actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 8px;
+
+  .button {
+    flex: 1;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .button--secondary {
+    background: transparent;
+    color: #6b7280;
+    border: 1.5px solid #e5e7eb;
+    box-shadow: none;
+
+    &:hover { background: #f9fafb; }
+  }
+}

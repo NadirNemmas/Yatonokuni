@@ -6,6 +6,7 @@ export default function SubmitForm({
   title,
   message,
   onSubmit,
+  onSecondary,
   loading = false,
   primaryButtonLabel,
   secondaryButtonLabel,
@@ -15,16 +16,25 @@ export default function SubmitForm({
   return (
     <div id="submitForm" className="submitForm">
       <h2>{title}</h2>
-      {message && <p className="alert-message">{message}</p>}
+      {message && (
+        <p className={`alert-message${message.type ? ` alert-message--${message.type}` : ""}`}>
+          {message.text ?? message}
+        </p>
+      )}
       <form onSubmit={onSubmit}>
         {children}
         <SubmitButton
-          title="Logging in..."
-          handleClick={onSubmit}
+          title={primaryButtonLabel}
           loading={loading}
-          loadingText={primaryButtonLabel}
+          loadingText="..."
         ></SubmitButton>
-        <HomeButton title={secondaryButtonLabel}></HomeButton>
+        {onSecondary ? (
+          <button className="button" type="button" onClick={onSecondary}>
+            {secondaryButtonLabel}
+          </button>
+        ) : (
+          <HomeButton title={secondaryButtonLabel}></HomeButton>
+        )}
       </form>
       {textEndForm && <p>{textEndForm}</p>}
     </div>

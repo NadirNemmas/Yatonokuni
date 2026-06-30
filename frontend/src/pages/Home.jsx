@@ -9,7 +9,6 @@ export default function Home() {
   const { t } = useTranslation();
 
   const HOME_SECTIONS = [
-    { id: null, label: t("home.sections.top") },
     { id: "about", label: t("home.sections.about") },
     { id: "features", label: t("home.sections.features") },
     { id: "contact", label: t("home.sections.contact") },
@@ -17,7 +16,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <SectionDots sections={HOME_SECTIONS} />
+      <SectionDots sections={HOME_SECTIONS} topLabel={t("home.sections.top")} />
 
       <Header title="Yato no kuni">
         <h2>{t("home.welcome")}</h2>

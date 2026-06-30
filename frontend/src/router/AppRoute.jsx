@@ -4,8 +4,10 @@ import Home from "../pages/Home.jsx";
 import Login from "../pages/Login.jsx";
 import Signup from "../pages/Signup.jsx";
 import Projects from "../pages/Projects.jsx";
+import Profile from "../pages/Profile.jsx";
 import GameMasterArtefact from "../pages/GameMasterArtefact.jsx";
 import Licence from "../pages/Licence.jsx";
+import ProtectedRoute from "../context/ProtectedRoutes.jsx";
 
 export default function AppRoute() {
   return (
@@ -17,6 +19,14 @@ export default function AppRoute() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/projects" element={<Projects />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
         {/* <Route path="/test" element={<TestPage />} /> */}
 
         <Route

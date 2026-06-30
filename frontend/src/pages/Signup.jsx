@@ -9,6 +9,8 @@ export default function Signup() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [countdown, setCountdown] = useState(null);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -17,7 +19,6 @@ export default function Signup() {
   });
 
   const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState(null);
 
   const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -42,42 +43,67 @@ export default function Signup() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
-    setMessage("");
+    setMessage(null);
+
     const validation = validate(form);
     setErrors(validation);
     if (Object.keys(validation).length) return;
 
-    setSubmitting(true);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    setLoading(true);
     try {
       const res = await fetch("/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
+        signal: controller.signal,
       });
 
       if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.message || "Signup failed");
+        const body = await res.json().catch(() => ({}));
+        throw { status: res.status, message: body.message || "Signup failed" };
       }
 
-      setMessage({ type: "success", text: "Account created successfully." });
       setForm({ firstName: "", lastName: "", email: "", password: "" });
+      setLoading(false);
+      setSuccessMsg(t("signup.success"));
+      setCountdown(2);
+      await new Promise((r) => setTimeout(r, 1000));
+      setCountdown(1);
+      await new Promise((r) => setTimeout(r, 1000));
       navigate("/login");
     } catch (err) {
-      setMessage({ type: "error", text: err.message || "Server error" });
+      const isTimeout = err?.name === "AbortError";
+      const code = isTimeout ? 408 : (err.status ?? 500);
+      const text = isTimeout
+        ? t("signup.errors.timeout")
+        : `[${code}] ${err.message || "Server error"}`;
+      setLoading(false);
+      setMessage({ type: "error", text });
     } finally {
-      setSubmitting(false);
+      clearTimeout(timeout);
     }
   }
 
   return (
     <Layout>
       <div className="page-container-section">
-        {loading && (
+        {(loading || successMsg) && (
           <div className="loading-overlay">
-            <div className="loader"></div>
-            <p>{t("signup.loading")}</p>
+            {successMsg ? (
+              <>
+                <div className="success-check">✓</div>
+                <p>{successMsg}</p>
+                <p className="overlay-countdown">{t("signup.redirectIn", { count: countdown })}</p>
+              </>
+            ) : (
+              <>
+                <div className="loader"></div>
+                <p>{t("signup.loading")}</p>
+              </>
+            )}
           </div>
         )}
         <SubmitForm

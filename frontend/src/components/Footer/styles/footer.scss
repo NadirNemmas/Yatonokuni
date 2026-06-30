@@ -18,6 +18,8 @@
     gap: 4px;
     transition: color 0.2s;
 
+    svg { color: white; }
+
     &:hover { color: white; }
   }
 }

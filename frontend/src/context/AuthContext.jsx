@@ -2,6 +2,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
+export function resolveUser(raw) {
+  if (!raw) return null;
+  return raw.profile ? { ...raw.authUser, ...raw.profile } : raw.authUser || raw;
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,10 +24,7 @@ export function AuthProvider({ children }) {
         });
         const data = await res.json();
         if (data?.ok && data.user) {
-          const resolved = data.user.profile
-            ? data.user
-            : data.user.authUser || data.user;
-          setUser(resolved);
+          setUser(resolveUser(data.user));
         } else {
           setUser(null);
         }
@@ -44,7 +46,7 @@ export function AuthProvider({ children }) {
     });
     const data = await res.json();
     if (res.ok && data.ok) {
-      setUser(data.user);
+      setUser(resolveUser(data.user));
       return true;
     }
     return false;

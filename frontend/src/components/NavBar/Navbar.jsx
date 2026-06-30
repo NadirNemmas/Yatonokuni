@@ -1,17 +1,35 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import NavigationButton from "../Buttons/NavigationButton.jsx";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
-import { Menu, X, Home, FolderOpen, LogOut } from "lucide-react";
+import { Menu, X, Home, FolderOpen, LogOut, User } from "lucide-react";
 import "./styles/navbar.scss";
+
+function UserMenu({ direction = "down", onProfile, onLogout, t }) {
+  return (
+    <div className={`user-dropdown${direction === "up" ? " user-dropdown--up" : ""}`}>
+      <button className="user-dropdown-item" onClick={onProfile}>
+        <User size={14} /> {t("nav.profile")}
+      </button>
+      <div className="user-dropdown-sep" />
+      <button className="user-dropdown-item user-dropdown-item--danger" onClick={onLogout}>
+        <LogOut size={14} /> {t("nav.logout")}
+      </button>
+    </div>
+  );
+}
 
 export default function NavBar() {
   const navigate = useNavigate();
   const { user, logout, loading } = useAuth();
   const { t } = useTranslation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [drawerUserMenuOpen, setDrawerUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
+  const drawerUserMenuRef = useRef(null);
 
   const NAV_ITEMS = [
     { label: t("nav.home"), icon: Home, type: "route", to: "/" },
@@ -25,6 +43,19 @@ export default function NavBar() {
     if (item.to === "/") window.scrollTo({ top: 0, behavior: "smooth" });
     closeDrawer();
   };
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false);
+      }
+      if (drawerUserMenuRef.current && !drawerUserMenuRef.current.contains(e.target)) {
+        setDrawerUserMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <>
@@ -56,14 +87,27 @@ export default function NavBar() {
 
         <div className="navbar-auth">
           {loading ? null : user ? (
-            <div className="navbar-user">
-              <div className="user-avatar">
-                {user.email?.[0]?.toUpperCase() || "U"}
-              </div>
-              <span className="user-email">{user.email}</span>
-              <button className="logout-btn" onClick={logout}>
-                <LogOut size={14} /> {t("nav.logout")}
+            <div className="navbar-user" ref={userMenuRef}>
+              <button
+                className="user-trigger"
+                onClick={() => setUserMenuOpen((o) => !o)}
+                title={user.username || user.email}
+              >
+                <div className="user-avatar">
+                  {user.avatar_url
+                    ? <img src={user.avatar_url} alt="avatar" className="user-avatar-img" />
+                    : (user.username || user.email)?.[0]?.toUpperCase() || "U"}
+                </div>
+                <span className="user-email">{user.username || user.email}</span>
               </button>
+
+              {userMenuOpen && (
+                <UserMenu
+                  onProfile={() => { navigate("/profile"); setUserMenuOpen(false); }}
+                  onLogout={() => { logout(); setUserMenuOpen(false); }}
+                  t={t}
+                />
+              )}
             </div>
           ) : (
             <>
@@ -106,39 +150,39 @@ export default function NavBar() {
 
           <div className="nav-drawer-footer">
             {loading ? null : user ? (
-              <div className="drawer-user">
-                <div className="user-avatar large">
-                  {user.email?.[0]?.toUpperCase() || "U"}
-                </div>
-                <div className="drawer-user-info">
-                  <div className="drawer-user-email">{user.email}</div>
-                  <button
-                    className="drawer-logout"
-                    onClick={() => {
-                      logout();
-                      closeDrawer();
-                    }}
-                  >
-                    <LogOut size={13} /> {t("nav.logout")}
-                  </button>
-                </div>
+              <div className="drawer-user" ref={drawerUserMenuRef}>
+                <button
+                  className="user-trigger"
+                  onClick={() => setDrawerUserMenuOpen((o) => !o)}
+                  title={user.username || user.email}
+                >
+                  <div className="user-avatar large">
+                    {user.avatar_url
+                      ? <img src={user.avatar_url} alt="avatar" className="user-avatar-img" />
+                      : (user.username || user.email)?.[0]?.toUpperCase() || "U"}
+                  </div>
+                  <span className="drawer-user-email">{user.username || user.email}</span>
+                </button>
+
+                {drawerUserMenuOpen && (
+                  <UserMenu
+                    direction="up"
+                    onProfile={() => { navigate("/profile"); setDrawerUserMenuOpen(false); closeDrawer(); }}
+                    onLogout={() => { logout(); setDrawerUserMenuOpen(false); closeDrawer(); }}
+                    t={t}
+                  />
+                )}
               </div>
             ) : (
               <div className="drawer-auth-buttons">
                 <button
-                  onClick={() => {
-                    navigate("/login");
-                    closeDrawer();
-                  }}
+                  onClick={() => { navigate("/login"); closeDrawer(); }}
                 >
                   {t("nav.login")}
                 </button>
                 <button
                   className="primary"
-                  onClick={() => {
-                    navigate("/signup");
-                    closeDrawer();
-                  }}
+                  onClick={() => { navigate("/signup"); closeDrawer(); }}
                 >
                   {t("nav.signup")}
                 </button>

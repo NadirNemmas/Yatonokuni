@@ -27,14 +27,11 @@ export default function Projets() {
     fetchProjects();
   }, []);
 
-  const projectSections = projectList.map((p) => ({
-    id: `project-${p.id}`,
-    label: p.name,
-  }));
+  const projectSections = projectList.map((p) => ({ id: `project-${p.id}`, label: p.name }));
 
   return (
     <Layout>
-      <SectionDots sections={projectSections} />
+      <SectionDots sections={projectSections} topLabel={t("home.sections.top")} />
 
       <div className="projects-container">
         <Header title={t("projects.title")}>

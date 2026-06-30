@@ -2,19 +2,26 @@ import { useState, useEffect } from "react";
 import "./styles/section-dots.scss";
 
 /**
- * sections: Array<{ id: string | null, label: string }>
- *   id: null  → scroll to top of page
- *   id: string → scroll to element with that DOM id
+ * sections: Array<{ id: string, label: string }>
+ * topLabel?: string — if provided, a "scroll to top" dot is prepended automatically
  */
-export default function SectionDots({ sections = [] }) {
-  const [activeId, setActiveId] = useState(sections[0]?.id ?? null);
+export default function SectionDots({ sections = [], topLabel }) {
+  const allSections = topLabel
+    ? [{ id: null, label: topLabel }, ...sections]
+    : sections;
+
+  const [activeId, setActiveId] = useState(allSections[0]?.id ?? null);
+
+  // Use a content-based key so the effect only re-runs when IDs actually change,
+  // not every time the caller recreates the array reference.
+  const sectionsKey = JSON.stringify(allSections.map((s) => s.id));
 
   useEffect(() => {
-    if (sections.length === 0) return;
+    if (allSections.length === 0) return;
 
     const observers = [];
 
-    sections.forEach(({ id }) => {
+    allSections.forEach(({ id }) => {
       if (!id) return;
       const el = document.getElementById(id);
       if (!el) return;
@@ -27,10 +34,9 @@ export default function SectionDots({ sections = [] }) {
       observers.push(obs);
     });
 
-    // If the first section has no id (= "top"), reset active when near top
-    const firstHasNoId = !sections[0]?.id;
+    const hasTopSection = !allSections[0]?.id;
     const onScroll = () => {
-      if (firstHasNoId && window.scrollY < 80) setActiveId(null);
+      if (hasTopSection && window.scrollY < 80) setActiveId(null);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
 
@@ -38,18 +44,18 @@ export default function SectionDots({ sections = [] }) {
       observers.forEach((o) => o.disconnect());
       window.removeEventListener("scroll", onScroll);
     };
-  }, [sections]);
+  }, [sectionsKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const scrollTo = (id) => {
     if (!id) window.scrollTo({ top: 0, behavior: "smooth" });
     else document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  if (sections.length === 0) return null;
+  if (allSections.length === 0) return null;
 
   return (
     <nav className="section-dots" aria-label="Navigation sections">
-      {sections.map(({ id, label }) => {
+      {allSections.map(({ id, label }) => {
         const isActive = activeId === id;
         return (
           <div

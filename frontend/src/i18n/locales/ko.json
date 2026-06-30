@@ -10,7 +10,8 @@
     "signup": "회원가입",
     "openMenu": "메뉴 열기",
     "close": "닫기",
-    "brand": "Yato no Kuni"
+    "brand": "Yato no Kuni",
+    "profile": "내 프로필"
   },
   "footer": {
     "copyright": "© 2025 저작권",
@@ -50,8 +51,11 @@
     "cancel": "취소",
     "noAccount": "계정이 없으신가요?",
     "signupLink": "여기서 가입하세요",
-    "success": "✅ 로그인됨",
-    "networkError": "네트워크 또는 서버 오류"
+    "success": "로그인 성공!",
+    "loading": "로그인 중...",
+    "timeout": "요청 시간이 초과되었습니다. 다시 시도하세요",
+    "networkError": "네트워크 또는 서버 오류",
+    "redirectIn": "{{count}}초 후 이동..."
   },
   "signup": {
     "title": "계정 만들기",
@@ -64,13 +68,16 @@
     "hasAccount": "이미 계정이 있으신가요?",
     "loginLink": "여기서 로그인하세요",
     "loading": "계정 생성 중...",
+    "success": "계정이 성공적으로 생성되었습니다!",
+    "redirectIn": "{{count}}초 후 이동...",
     "errors": {
       "firstNameRequired": "이름은 필수입니다",
       "lastNameRequired": "성은 필수입니다",
       "emailRequired": "이메일은 필수입니다",
       "emailInvalid": "유효한 이메일을 입력하세요",
       "passwordRequired": "비밀번호는 필수입니다",
-      "passwordTooShort": "비밀번호는 최소 8자 이상이어야 합니다"
+      "passwordTooShort": "비밀번호는 최소 8자 이상이어야 합니다",
+      "timeout": "요청 시간이 초과되었습니다. 다시 시도하세요"
     }
   },
   "projects": {
@@ -86,6 +93,26 @@
     "optionalFields": "선택 항목:",
     "none": "없음",
     "gitLink": "Git 저장소로 →"
+  },
+  "profile": {
+    "title": "내 프로필",
+    "sectionInfo": "개인 정보",
+    "sectionLinks": "외부 계정",
+    "firstName": "이름",
+    "lastName": "성",
+    "email": "이메일",
+    "username": "사용자 이름",
+    "usernamePlaceholder": "예: nadir42",
+    "dateOfBirth": "생년월일",
+    "optional": "(선택)",
+    "changePhoto": "사진 변경",
+    "save": "저장",
+    "cancel": "취소",
+    "loading": "저장 중...",
+    "success": "프로필이 업데이트되었습니다!",
+    "redirectIn": "{{count}}초 후 돌아갑니다...",
+    "noChange": "변경 사항이 감지되지 않았습니다",
+    "error": "프로필 업데이트 중 오류 발생"
   },
   "gma": {
     "description": "GameMasterArtefact는 게임 마스터와 온라인 롤플레잉 게임 플레이어를 위해 설계된 Discord 봇입니다.",

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, logout, signup, getUser } from "./auth.controller.js";
+import { login, logout, signup, getUser, updateProfile } from "./auth.controller.js";
 
 const router = Router();
 
@@ -114,5 +114,30 @@ router.post("/logout", logout);
  *                 user: { $ref: '#/components/schemas/User' }
  */
 router.get("/user", getUser);
+
+/**
+ * @swagger
+ * /auth/profile:
+ *   put:
+ *     summary: Mettre à jour le profil
+ *     tags: [Auth]
+ *     security:
+ *       - cookieAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               firstName: { type: string, example: "John" }
+ *               lastName:  { type: string, example: "Doe" }
+ *     responses:
+ *       200:
+ *         description: Profil mis à jour
+ *       401:
+ *         description: Non authentifié
+ */
+router.put("/profile", updateProfile);
 
 export default router;

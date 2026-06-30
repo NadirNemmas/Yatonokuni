@@ -10,7 +10,8 @@
     "signup": "Sign up",
     "openMenu": "Open menu",
     "close": "Close",
-    "brand": "Yato no Kuni"
+    "brand": "Yato no Kuni",
+    "profile": "My profile"
   },
   "footer": {
     "copyright": "© 2025 Copyright",
@@ -50,8 +51,11 @@
     "cancel": "Cancel",
     "noAccount": "Don't have an account?",
     "signupLink": "Sign up here",
-    "success": "✅ Logged in",
-    "networkError": "Network or server error"
+    "success": "Successfully logged in!",
+    "loading": "Logging in...",
+    "timeout": "Request timed out, please try again",
+    "networkError": "Network or server error",
+    "redirectIn": "Redirecting in {{count}}s..."
   },
   "signup": {
     "title": "Create an account",
@@ -64,13 +68,16 @@
     "hasAccount": "Already have an account?",
     "loginLink": "Log in here",
     "loading": "Creating account...",
+    "success": "Account created successfully!",
+    "redirectIn": "Redirecting in {{count}}s...",
     "errors": {
       "firstNameRequired": "First name required",
       "lastNameRequired": "Last name required",
       "emailRequired": "Email required",
       "emailInvalid": "Enter a valid email",
       "passwordRequired": "Password required",
-      "passwordTooShort": "Password must be at least 8 characters"
+      "passwordTooShort": "Password must be at least 8 characters",
+      "timeout": "Request timed out, please try again"
     }
   },
   "projects": {
@@ -86,6 +93,26 @@
     "optionalFields": "Optional fields:",
     "none": "None",
     "gitLink": "Go to Git repository →"
+  },
+  "profile": {
+    "title": "My profile",
+    "sectionInfo": "Personal information",
+    "sectionLinks": "External accounts",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "username": "Username",
+    "usernamePlaceholder": "e.g. nadir42",
+    "dateOfBirth": "Date of birth",
+    "optional": "(optional)",
+    "changePhoto": "Change photo",
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Saving...",
+    "success": "Profile updated!",
+    "redirectIn": "Back in {{count}}s...",
+    "noChange": "No changes detected",
+    "error": "Error updating profile"
   },
   "gma": {
     "description": "GameMasterArtefact is a Discord bot designed for game masters and online role-playing game players. It allows you to manage characters, character sheets, and execute specific commands to facilitate the flow of game sessions.",
