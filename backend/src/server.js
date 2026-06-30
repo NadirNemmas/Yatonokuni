@@ -21,7 +21,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
     credentials: true,
   })
 );
@@ -36,6 +36,15 @@ app.use((req, res, next) => {
 app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
 app.use("/projets", projetsRoutes);
+
+// Serve frontend in production
+if (process.env.NODE_ENV === "production") {
+  const frontendDist = path.join(__dirname, "../../frontend/dist");
+  app.use(express.static(frontendDist));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendDist, "index.html"));
+  });
+}
 
 // Error handler
 app.use((err, req, res, next) => {
