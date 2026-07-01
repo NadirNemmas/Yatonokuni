@@ -34,7 +34,7 @@
     },
     "features": {
       "title": "Funcionalidades",
-      "description": "Las funcionalidades actuales son limitadas por el momento.\nLa autenticación de usuarios (registro, inicio de sesión) está implementada.\nUna vez conectado, podrás acceder a funcionalidades adicionales y contenido exclusivo.\nTenga en cuenta que algunas funcionalidades pueden no estar completamente operativas.\nLa integración con Lost Ark está actualmente en desarrollo."
+      "description": "Estas son las funcionalidades actualmente disponibles en el sitio:\n\n• Autenticación — Registro, inicio de sesión y gestión del perfil de usuario.\n• Proyectos — Acceso a mis proyectos personales con enlaces a los repositorios GitHub.\n• Lost Ark — Gestión de cuentas y personajes, seguimiento de diarias y selección del Main 6.\n• GameMaster Artefact — Presentación del bot de Discord diseñado para sesiones de rol.\n\nAlgunas páginas requieren estar conectado para acceder."
     },
     "contact": {
       "title": "Contacto",

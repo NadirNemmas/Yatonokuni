@@ -34,7 +34,7 @@
     },
     "features": {
       "title": "Features",
-      "description": "Current features are limited at the moment.\nUser authentication (registration, login) is in place.\nOnce logged in, you will be able to access additional features and exclusive content.\nPlease note that some features may not be fully operational or may require a login.\nLost Ark integration is currently under development."
+      "description": "Here are the features currently available on the site:\n\n• Authentication — Sign up, log in, and manage your user profile.\n• Projects — Browse my personal projects with links to their GitHub repositories.\n• Lost Ark — Manage accounts and characters, track dailies, and set your Main 6.\n• GameMaster Artefact — Overview of a Discord bot built for tabletop RPG sessions.\n\nSome pages require being logged in to access."
     },
     "contact": {
       "title": "Contact",
