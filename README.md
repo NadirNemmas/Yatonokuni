@@ -1,147 +1,211 @@
-# [`Yato no kuni`](https://yatonokuni.onrender.com)
+# [`Yato no Kuni`](https://yatonokuni.onrender.com)
 
-Site utilitaire personnel regroupant plusieurs outils / démos et projets personnels, construit avec React (frontend) et Node.js (backend). Le but est de centraliser des petites applications et démonstrations (auth, projets, bot Discord, etc.) pour un usage personnel et comme portfolio technique.
-
----
-
-## Fonctionnalités principales
-
-- Page d'accueil avec sections (À propos, Fonctionnalités, Contact)
-- Authentification (inscription / connexion) avec gestion de sessions
-- Page "Projects" listant les projets (titre, description, image, technologies)
-- Page détaillée "GameMasterArtefact" : diaporama d'images, liste de commandes et documentation
-- Composants réutilisables (Navbar, Header, Footer, Layout)
-- Slider d'images avec navigation (prev/next) et dots
-- UI responsive et quelques effets glassmorphism pour la navbar/auth
+Site utilitaire personnel regroupant plusieurs outils et projets, construit avec **React + Vite** (frontend) et **Node.js / Express** (backend), avec **Supabase** comme base de données et service d'authentification.
 
 ---
 
-## Structure du dépôt (extrait)
+## Fonctionnalités
 
-- views/client/ — code React (pages et composants)
-  - components/ : Navbar, Header, Footer, Layout, etc.
-  - Home.jsx, Projects.jsx, GameMasterArtefact.jsx, Login.jsx, Signup.jsx
-- src/api/ — backend (endpoints d'auth, etc.)
-- public/docs/images/ — images statiques accessibles depuis le frontend
-- public/css/style.css — styles globaux
-- README.md — ce fichier
+### Général
+- Authentification complète (inscription / connexion / déconnexion) via JWT stocké en cookie HttpOnly
+- Cache `sessionStorage` pour éviter un rechargement blanc au reload
+- Interface multilingue : **Français, English, Español, 日本語, 한국어**
+- Navbar responsive avec menu drawer mobile, sélecteur de langue, et menu utilisateur
+- Backgrounds dynamiques par route
+- Routes protégées (`ProtectedRoute`) et routes conditionnelles par jeu (`GameRoute`)
+
+### Pages
+- **Accueil** — présentation du site (À propos, Fonctionnalités, Contact)
+- **Projets** — liste des projets personnels (titre, description, images, technologies, lien Git)
+- **GameMasterArtefact** — documentation du bot Discord (slider d'images, liste de commandes)
+- **Profil** — édition des informations personnelles (nom, username, date de naissance, avatar)
+- **Lost Ark Tracker** — outil de suivi des dailies/weeklies Lost Ark (voir ci-dessous)
+
+### Lost Ark Tracker
+- Gestion de plusieurs accounts par région
+- Ajout / modification / suppression de personnages (nom, niveau, ilvl, CP actuel, CP objectif, barre de progression)
+- Sélection des **Main 6** (1 à 6 personnages principaux)
+- Tableau de dailies/weeklies avec algorithme automatique :
+  - Raids fixes (Guardian, Kurzan Front, Hell ×3) : toujours affichés et activés
+  - Timeglass : affiché en permanence, activé si `ilvl ≥ 1730`
+  - Autres raids hebdo : top-3 par personnage selon l'ilvl (raids les plus proches du niveau du personnage)
+  - Colonnes affichées = union de tous les top-3 sans répétition
+- Tri par CP ou ilvl (mutuellement exclusifs), filtre Main 6
+- Ordre par défaut : Main 6 en tête, autres personnages en dessous
+- Moyenne CP calculée sur les Main 6 (ou sur tous si aucun Main 6 défini)
+
+---
+
+## Stack technique
+
+| Couche | Technologies |
+|---|---|
+| Frontend | React 18, Vite, React Router, react-i18next, Bootstrap, SCSS |
+| Backend | Node.js, Express, jsonwebtoken, cookie-parser |
+| Base de données | Supabase (PostgreSQL) |
+| Auth | Supabase Auth + JWT HttpOnly cookie |
+| Doc API | Swagger UI (`swagger-jsdoc` + `swagger-ui-express`) |
+| Déploiement | Render (backend + frontend servi en statique) |
+
+---
+
+## Structure du dépôt
+
+```
+Yatonokuni/
+├── frontend/                  # Application React/Vite
+│   ├── src/
+│   │   ├── components/        # Composants réutilisables
+│   │   │   ├── Lostark/       # Table, formulaires, modals Lost Ark
+│   │   │   ├── NavBar/
+│   │   │   ├── Layout/
+│   │   │   └── ...
+│   │   ├── context/           # AuthContext, ProtectedRoute, GameRoute
+│   │   ├── data/              # JSON statiques (raids, régions)
+│   │   ├── i18n/locales/      # Traductions (fr, en, es, jp, ko)
+│   │   ├── lib/               # Helpers (lostark.js, routeBackgrounds.js)
+│   │   ├── pages/             # Pages React
+│   │   └── styles/            # global.scss
+│   └── vite.config.js
+│
+├── backend/                   # API Express
+│   └── src/
+│       ├── api/
+│       │   ├── auth/          # Login, logout, signup, /auth/user
+│       │   ├── lostark/       # Accounts, characters, Main 6, raids
+│       │   └── projets/       # Liste des projets
+│       ├── swagger.js         # Configuration OpenAPI 3.0
+│       └── server.js
+│
+└── README.md
+```
 
 ---
 
 ## Prérequis
 
-- Node.js (>= 16)
-- npm ou yarn
-- (Optionnel) Base de données / service d'auth (ex : Supabase) si vous utilisez les fonctionnalités backend complètes
+- Node.js ≥ 18
+- npm
+- Compte Supabase avec une base de données configurée
 
 ---
 
-## Installation & exécution (local)
+## Installation & exécution locale
 
-1. Cloner le dépôt
+### 1. Cloner le dépôt
 
-   ```bash
-   git clone https://github.com/NadirNemmas/Yatonokuni.git
-   cd Yatonokuni
-   ```
+```bash
+git clone https://github.com/NadirNemmas/Yatonokuni.git
+cd Yatonokuni
+```
 
-2. Installer les dépendances (frontend)
+### 2. Backend
 
-   ```bash
-   npm install
-   # ou
-   yarn
-   ```
+```bash
+cd backend
+npm install
+```
 
-3. Variables d'environnement
+Créer un fichier `.env` dans `backend/` :
 
-   - Créez un fichier `.env` à la racine (ou configurez côté backend) avec les variables nécessaires, par exemple :
-     ```
-     SUPABASE_JWT_SECRET=...
-     SUPABASE_JWT_EXPIRY_TIME=3600
-     NODE_ENV=development
-     ```
-   - Vérifiez les READMEs des dossiers backend pour d'autres variables éventuelles.
+```env
+SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=...
+SUPABASE_JWT_SECRET=...
+NODE_ENV=development
+PORT=8000
+```
 
-4. Lancer en développement
+Lancer le serveur :
 
-   - Frontend (React/Vite):
-     ```bash
-     npm run dev
-     ```
-   - Backend (si présent et séparé) :
-     ```bash
-     cd src/api
-     npm install
-     npm run dev # ou npm start selon config
-     ```
+```bash
+npm start
+```
 
-5. Accéder à l'app :
-   - Ouvrir `http://localhost:5173` (ou le port configuré)
+L'API est disponible sur `http://localhost:8000`.  
+La documentation Swagger est accessible sur `http://localhost:8000/api-docs`.
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+L'application est disponible sur `http://localhost:5173`.
+
+Le proxy Vite redirige automatiquement `/api`, `/auth`, `/lostark`, `/projets`, `/characters` vers `http://localhost:8000`.
+
+---
+
+## Documentation API
+
+La documentation complète de l'API est générée automatiquement via **Swagger UI** :
+
+- **Local** : `http://localhost:8000/api-docs`
+- **Production** : `https://yatonokuni.onrender.com/api-docs`
+
+### Endpoints principaux
+
+| Méthode | Route | Description |
+|---|---|---|
+| POST | `/auth/signup` | Créer un compte |
+| POST | `/auth/login` | Connexion |
+| POST | `/auth/logout` | Déconnexion |
+| GET | `/auth/user` | Utilisateur courant |
+| GET | `/lostark/accounts` | Liste des accounts Lost Ark |
+| POST | `/lostark/accounts` | Créer un account |
+| GET | `/lostark/accounts/:id` | Account + personnages |
+| DELETE | `/lostark/accounts/:id` | Supprimer un account |
+| PUT | `/lostark/accounts/:id/main6` | Définir les Main 6 |
+| POST | `/lostark/accounts/:id/characters` | Ajouter un personnage |
+| PUT | `/lostark/accounts/:id/characters/:charId` | Modifier un personnage |
+| DELETE | `/lostark/accounts/:id/characters/:charId` | Supprimer un personnage |
+| PATCH | `/lostark/accounts/:id/characters/:charId/raid` | Toggle raid fait/non fait |
+
+Tous les endpoints nécessitent un cookie JWT `access_token_jwt` (authentification via `cookieAuth`).
 
 ---
 
 ## Déploiement
 
-- Construire le frontend :
+Le projet est déployé sur **Render** :
+
+- Le backend sert l'API et les fichiers statiques du frontend buildé
+- Build frontend :
   ```bash
-  npm run build
+  cd frontend && npm run build
   ```
-- Déployer les fichiers statiques sur votre hôte (Netlify / Vercel / Render / etc.) et déployer le backend séparément si nécessaire.
-- Pour les cookies cross-origin et les tokens : configurer `SameSite`, `Secure`, `path: "/"` et envoyer les requêtes avec `credentials: "include"`.
+- Le dossier `frontend/dist` est servi en statique par Express
 
----
-
-## Personnalisation rapide
-
-- Ajouter/Modifier un projet :
-
-  - Éditer `views/client/Projects.jsx` -> tableau `projects`
-  - Images : placer dans `public/docs/images/` et référencer par `/docs/images/nom.jpg` ou importer depuis `src` si vous voulez que le bundler les gère.
-
-- Page détaillée `GameMasterArtefact` :
-
-  - Slider : images dans `imageSlider` (GameMasterArtefact.jsx)
-  - Commandes : `commandsList` (format attendu : objets avec `id`, `commandName`, `description`, `fields_required`, `optional_fields`)
-
-- Navbar → sections de la home :
-  - Les liens vers les sections (about/features/contact) utilisent l'id des sections dans `Home.jsx` : vérifiez `id="about"`, `id="features"`, `id="contact"`.
-
----
-
-## Accessibilité & UX
-
-- Les toggles utilisent `aria-expanded` pour indiquer l'état (ouvert / fermé).
-- Le slider contient des `aria` labels pour les slides et le contrôle par dots.
-- Les boutons fixes (navbar / auth) ont un `z-index` élevé pour rester visibles.
+Variables d'environnement à configurer sur Render :
+```
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+SUPABASE_JWT_SECRET
+NODE_ENV=production
+```
 
 ---
 
 ## Contribuer
 
-## 🔒 Contribuer
-
 Ce projet est strictement personnel.  
-Aucune contribution, modification ou redistribution n’est acceptée sans autorisation préalable de l’auteur.
+Aucune contribution, modification ou redistribution n'est acceptée sans autorisation préalable de l'auteur.
 
 ---
 
 ## Licence
 
-Ce projet est distribué sous la licence MIT. Voir le fichier [`LICENCE`](./LICENCE) à la racine du dépôt pour le texte complet.
+Ce projet est distribué sous la licence MIT. Voir le fichier [`LICENCE`](./LICENCE) pour le texte complet.
 
-Résumé :
-
-- **Licence :** MIT
 - **Auteur :** Ahmed Nadir Nemmas (2025)
-- **Droits :** libre utilisation, copie, modification, distribution et sous-licence, à condition de conserver l’avis de copyright et la licence d’origine.
-- **Garantie :** aucune — le logiciel est fourni _“tel quel”_, sans garantie d’aucune sorte.
+- **Garantie :** aucune — le logiciel est fourni _"tel quel"_, sans garantie d'aucune sorte.
 
 ---
 
 ## Contact
 
-Pour toute question :
-
 Émail personnel : nadirne91@gmail.com  
-Émail de l'ÉTS : ahmed-nadir.nemmas.1@ens.etsmtl.ca
+Émail ÉTS : ahmed-nadir.nemmas.1@ens.etsmtl.ca
