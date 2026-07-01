@@ -164,6 +164,7 @@
       "filterMain6": "Main 6",
       "cp": "CP",
       "ilvlRequired": "ilvl {{ilvl}} 必要",
+      "notInTop3": "このキャラクターの3つのレイドに含まれていません",
       "editMain6": "Main 6 を変更",
       "chooseMain6": "Main 6 を選択"
     },

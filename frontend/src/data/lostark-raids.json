@@ -114,5 +114,47 @@
     "type": "weekly",
     "difficulty": "Hard",
     "ilvl": 1730
+  },
+  {
+    "id": "serca_n",
+    "name": "Serca",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1710
+  },
+  {
+    "id": "serca_h",
+    "name": "Serca",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1730
+  },
+  {
+    "id": "serca_nmt",
+    "name": "Serca",
+    "type": "weekly",
+    "difficulty": "Nightmare",
+    "ilvl": 1740
+  },
+  {
+    "id": "cathedral_n",
+    "name": "Horizontal Cathedral",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1700
+  },
+  {
+    "id": "cathedral_h",
+    "name": "Horizontal Cathedral",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1720
+  },
+  {
+    "id": "cathedral_nmt",
+    "name": "Horizontal Cathedral",
+    "type": "weekly",
+    "difficulty": "Nightmare",
+    "ilvl": 1750
   }
 ]

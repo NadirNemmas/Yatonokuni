@@ -26,20 +26,22 @@ export async function getAccounts(authUid) {
   const userId = await resolveUserId(authUid);
   const { data, error } = await supabaseAdmin
     .from("lostark_accounts")
-    .select("id, region, created_at, lostark_characters(id, current_cp)")
+    .select("id, region, created_at, lostark_characters(id, current_cp, is_main)")
     .eq("user_id", userId)
     .order("created_at", { ascending: true });
   if (error) throw error;
   return data.map((acc) => {
     const chars = acc.lostark_characters ?? [];
+    const main6 = chars.filter((c) => c.is_main);
+    const avgBase = main6.length > 0 ? main6 : chars;
     return {
       id: acc.id,
       region: acc.region,
       created_at: acc.created_at,
       character_count: chars.length,
       avg_cp:
-        chars.length > 0
-          ? Math.round(chars.reduce((s, c) => s + (c.current_cp || 0), 0) / chars.length)
+        avgBase.length > 0
+          ? Math.round(avgBase.reduce((s, c) => s + (c.current_cp || 0), 0) / avgBase.length)
           : 0,
     };
   });

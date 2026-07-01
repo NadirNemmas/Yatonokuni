@@ -164,6 +164,7 @@
       "filterMain6": "Main 6",
       "cp": "CP",
       "ilvlRequired": "ilvl {{ilvl}} 필요",
+      "notInTop3": "이 캐릭터의 3개 레이드에 포함되지 않음",
       "editMain6": "Main 6 변경",
       "chooseMain6": "Main 6 선택"
     },

@@ -3,16 +3,7 @@ import { useAuth } from "./AuthContext.jsx";
 
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (!user) {
-    // utilisateur non connecté → redirige vers login
-    return <Navigate to="/login" replace />;
-  }
-
-  // utilisateur connecté → render children
+  if (loading) return null;
+  if (!user) return <Navigate to="/login" replace />;
   return children;
 }

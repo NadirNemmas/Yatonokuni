@@ -164,6 +164,7 @@
       "filterMain6": "Main 6",
       "cp": "CP",
       "ilvlRequired": "ilvl {{ilvl}} requis",
+      "notInTop3": "Pas dans les 3 raids de ce personnage",
       "editMain6": "Modifier le Main 6",
       "chooseMain6": "Choisir le Main 6"
     },
