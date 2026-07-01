@@ -198,10 +198,12 @@ Aucune contribution, modification ou redistribution n'est acceptée sans autoris
 
 ## Licence
 
-Ce projet est distribué sous la licence MIT. Voir le fichier [`LICENCE`](./LICENCE) pour le texte complet.
+Voir le fichier [`LICENCE`](./LICENCE) pour le texte complet.
 
 - **Auteur :** Ahmed Nadir Nemmas (2025)
-- **Garantie :** aucune — le logiciel est fourni _"tel quel"_, sans garantie d'aucune sorte.
+- **Autorisé :** lecture et téléchargement du code à des fins personnelles ou éducatives
+- **Interdit :** modification, revente ou redistribution sans autorisation écrite préalable de l'auteur
+- **Garantie :** aucune — le logiciel est fourni _"tel quel"_
 
 ---
 
