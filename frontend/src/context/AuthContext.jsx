@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
+const AUTH_CACHE_KEY = "auth_user_cache";
 const AuthContext = createContext();
 
 export function resolveUser(raw) {
@@ -7,13 +8,24 @@ export function resolveUser(raw) {
   return raw.profile ? { ...raw.authUser, ...raw.profile } : raw.authUser || raw;
 }
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+function readCache() {
+  try {
+    const raw = sessionStorage.getItem(AUTH_CACHE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
 
-  // Fetch l'utisateur connecté une fois après le montage
-  // Ceci est executé APRÈS le premier render et vérifie si une session existe déjà
-  // Met à jour `user` et change le `loading` en false quand il termine.
+function writeCache(user) {
+  try {
+    if (user) sessionStorage.setItem(AUTH_CACHE_KEY, JSON.stringify(user));
+    else sessionStorage.removeItem(AUTH_CACHE_KEY);
+  } catch {}
+}
+
+export function AuthProvider({ children }) {
+  const cached = readCache();
+  const [user, setUser] = useState(cached);
+  const [loading, setLoading] = useState(!cached);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,12 +36,15 @@ export function AuthProvider({ children }) {
         });
         const data = await res.json();
         if (data?.ok && data.user) {
-          setUser(resolveUser(data.user));
+          const resolved = resolveUser(data.user);
+          setUser(resolved);
+          writeCache(resolved);
         } else {
           setUser(null);
+          writeCache(null);
         }
-      } catch (err) {
-        setUser(null);
+      } catch {
+        // réseau indisponible — on garde le cache existant sans déconnecter
       } finally {
         setLoading(false);
       }
@@ -46,7 +61,9 @@ export function AuthProvider({ children }) {
     });
     const data = await res.json();
     if (res.ok && data.ok) {
-      setUser(resolveUser(data.user));
+      const resolved = resolveUser(data.user);
+      setUser(resolved);
+      writeCache(resolved);
       return true;
     }
     return false;
@@ -55,6 +72,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
     await fetch("/auth/logout", { method: "POST", credentials: "include" });
     setUser(null);
+    writeCache(null);
   };
 
   return (

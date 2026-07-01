@@ -98,6 +98,7 @@
     "title": "Mi perfil",
     "sectionInfo": "Información personal",
     "sectionLinks": "Cuentas externas",
+    "sectionGames": "Juegos jugados",
     "firstName": "Nombre",
     "lastName": "Apellido",
     "email": "Correo electrónico",
@@ -113,6 +114,68 @@
     "redirectIn": "Volver en {{count}}s...",
     "noChange": "No se detectaron cambios",
     "error": "Error al actualizar el perfil"
+  },
+  "lostark": {
+    "loading": "Cargando...",
+    "back": "Volver",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "refreshing": "Actualizando...",
+    "title": "Lost Ark — Mis cuentas",
+    "addAccount": "Añadir una cuenta",
+    "noAccounts": "Sin cuentas. ¡Crea una!",
+    "deleteAccountMessage": "Esta cuenta y todos sus personajes serán eliminados.",
+    "accountNotFound": "Cuenta no encontrada.",
+    "modeDailies": "Gestionar diarias",
+    "modeEdit": "Editar personajes",
+    "noCharacters": "Sin personajes. Ve al modo \"Editar personajes\" para añadir.",
+    "accountCard": {
+      "characters": "Personajes",
+      "avgCp": "Prom. CP"
+    },
+    "accountForm": {
+      "title": "Añadir una cuenta",
+      "region": "Región",
+      "creating": "Creando...",
+      "create": "Crear"
+    },
+    "characterForm": {
+      "editTitle": "Editar personaje",
+      "addTitle": "Añadir personaje",
+      "name": "Nombre",
+      "namePlaceholder": "Nombre del personaje",
+      "level": "Nivel",
+      "itemLevel": "Item Level",
+      "currentCp": "CP actual",
+      "goalCp": "CP objetivo",
+      "optional": "(op.)",
+      "save": "Guardar",
+      "add": "Añadir",
+      "nameRequired": "El nombre es obligatorio",
+      "deleteMessage": "Este personaje será eliminado definitivamente."
+    },
+    "characterList": {
+      "mainBadge": "★ Main",
+      "addCharacter": "Añadir personaje",
+      "edit": "Editar"
+    },
+    "table": {
+      "character": "Personaje",
+      "filterMain6": "Main 6",
+      "cp": "CP",
+      "ilvlRequired": "ilvl {{ilvl}} requerido",
+      "editMain6": "Editar Main 6",
+      "chooseMain6": "Elegir Main 6"
+    },
+    "main6Modal": {
+      "title": "Elegir los 6 principales",
+      "selected": "{{count}} / 6 seleccionados",
+      "confirm": "Confirmar"
+    },
+    "deleteModal": {
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    }
   },
   "gma": {
     "description": "GameMasterArtefact es un bot de Discord diseñado para maestros de juego y jugadores de juegos de rol en línea.",

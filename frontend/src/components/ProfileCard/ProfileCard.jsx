@@ -2,7 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../context/AuthContext.jsx";
-import { Github, Linkedin, Instagram, Globe, Camera } from "lucide-react";
+import { Github, Linkedin, Instagram, Globe, Camera, ChevronDown } from "lucide-react";
+import GAMES from "../../data/games.json";
 import "./styles/profile-card.scss";
 
 const EXTERNAL_LINKS = [
@@ -53,6 +54,9 @@ export default function ProfileCard() {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState(null);
   const [countdown, setCountdown] = useState(null);
+  const [selectedGames, setSelectedGames] = useState([]);
+  const initialGames = useRef([]);
+  const [gamesOpen, setGamesOpen] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -72,6 +76,9 @@ export default function ProfileCard() {
     initialForm.current = loaded;
     setForm(loaded);
     if (user.avatar_url) setAvatarPreview(user.avatar_url);
+    const g = user.games || [];
+    setSelectedGames(g);
+    initialGames.current = g;
   }, [user?.id]);
 
   function handleChange(e) {
@@ -87,6 +94,12 @@ export default function ProfileCard() {
     setAvatarFile(b64);
   }
 
+  function toggleGame(id) {
+    setSelectedGames((prev) =>
+      prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
+    );
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setMessage(null);
@@ -95,6 +108,11 @@ export default function ProfileCard() {
     for (const key of Object.keys(initialForm.current)) {
       if (form[key] !== initialForm.current[key]) diff[key] = form[key];
     }
+
+    const gamesChanged =
+      JSON.stringify([...selectedGames].sort()) !==
+      JSON.stringify([...initialGames.current].sort());
+    if (gamesChanged) diff.games = selectedGames;
 
     if (!Object.keys(diff).length && !avatarFile) {
       setMessage({ type: "info", text: t("profile.noChange") });
@@ -124,6 +142,7 @@ export default function ProfileCard() {
 
       setUser((prev) => ({ ...prev, ...data.profile }));
       initialForm.current = { ...form };
+      initialGames.current = [...selectedGames];
       setAvatarFile(null);
       setLoading(false);
       setSuccessMsg(t("profile.success"));
@@ -296,6 +315,33 @@ export default function ProfileCard() {
                   </div>
                 ))}
               </div>
+            </section>
+
+            <section>
+              <button
+                type="button"
+                className={`profile-games-toggle${gamesOpen ? " is-open" : ""}`}
+                onClick={() => setGamesOpen((o) => !o)}
+              >
+                <h3 className="profile-section-title">
+                  {t("profile.sectionGames")}
+                </h3>
+                <ChevronDown size={16} />
+              </button>
+              {gamesOpen && (
+                <div className="profile-chips">
+                  {GAMES.map(({ id, name }) => (
+                    <button
+                      key={id}
+                      type="button"
+                      className={`profile-chip${selectedGames.includes(id) ? " is-selected" : ""}`}
+                      onClick={() => toggleGame(id)}
+                    >
+                      {name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </section>
 
             <div className="profile-actions">

@@ -98,6 +98,7 @@
     "title": "マイプロフィール",
     "sectionInfo": "個人情報",
     "sectionLinks": "外部アカウント",
+    "sectionGames": "プレイ中のゲーム",
     "firstName": "名",
     "lastName": "姓",
     "email": "メール",
@@ -113,6 +114,68 @@
     "redirectIn": "{{count}}秒後に戻ります...",
     "noChange": "変更が検出されませんでした",
     "error": "プロフィールの更新中にエラーが発生しました"
+  },
+  "lostark": {
+    "loading": "読み込み中...",
+    "back": "戻る",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "refreshing": "更新中...",
+    "title": "Lost Ark — マイアカウント",
+    "addAccount": "アカウントを追加",
+    "noAccounts": "アカウントがありません。作成してください！",
+    "deleteAccountMessage": "このアカウントとすべてのキャラクターが削除されます。",
+    "accountNotFound": "アカウントが見つかりません。",
+    "modeDailies": "デイリー管理",
+    "modeEdit": "キャラクター編集",
+    "noCharacters": "キャラクターがありません。「キャラクター編集」モードで追加してください。",
+    "accountCard": {
+      "characters": "キャラクター",
+      "avgCp": "平均 CP"
+    },
+    "accountForm": {
+      "title": "アカウントを追加",
+      "region": "リージョン",
+      "creating": "作成中...",
+      "create": "作成"
+    },
+    "characterForm": {
+      "editTitle": "キャラクターを編集",
+      "addTitle": "キャラクターを追加",
+      "name": "名前",
+      "namePlaceholder": "キャラクター名",
+      "level": "レベル",
+      "itemLevel": "アイテムレベル",
+      "currentCp": "現在の CP",
+      "goalCp": "目標 CP",
+      "optional": "（任意）",
+      "save": "保存",
+      "add": "追加",
+      "nameRequired": "名前は必須です",
+      "deleteMessage": "このキャラクターは完全に削除されます。"
+    },
+    "characterList": {
+      "mainBadge": "★ メイン",
+      "addCharacter": "キャラクターを追加",
+      "edit": "編集"
+    },
+    "table": {
+      "character": "キャラクター",
+      "filterMain6": "Main 6",
+      "cp": "CP",
+      "ilvlRequired": "ilvl {{ilvl}} 必要",
+      "editMain6": "Main 6 を変更",
+      "chooseMain6": "Main 6 を選択"
+    },
+    "main6Modal": {
+      "title": "6 メインを選択",
+      "selected": "{{count}} / 6 選択済み",
+      "confirm": "確定"
+    },
+    "deleteModal": {
+      "delete": "削除",
+      "cancel": "キャンセル"
+    }
   },
   "gma": {
     "description": "GameMasterArtefactは、ゲームマスターとオンラインRPGプレイヤーのために設計されたDiscordボットです。",

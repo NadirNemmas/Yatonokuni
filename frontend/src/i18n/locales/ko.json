@@ -98,6 +98,7 @@
     "title": "내 프로필",
     "sectionInfo": "개인 정보",
     "sectionLinks": "외부 계정",
+    "sectionGames": "플레이 중인 게임",
     "firstName": "이름",
     "lastName": "성",
     "email": "이메일",
@@ -113,6 +114,68 @@
     "redirectIn": "{{count}}초 후 돌아갑니다...",
     "noChange": "변경 사항이 감지되지 않았습니다",
     "error": "프로필 업데이트 중 오류 발생"
+  },
+  "lostark": {
+    "loading": "로딩 중...",
+    "back": "뒤로",
+    "cancel": "취소",
+    "delete": "삭제",
+    "refreshing": "업데이트 중...",
+    "title": "Lost Ark — 내 계정",
+    "addAccount": "계정 추가",
+    "noAccounts": "계정이 없습니다. 만들어보세요!",
+    "deleteAccountMessage": "이 계정과 모든 캐릭터가 삭제됩니다.",
+    "accountNotFound": "계정을 찾을 수 없습니다.",
+    "modeDailies": "일일 관리",
+    "modeEdit": "캐릭터 편집",
+    "noCharacters": "캐릭터가 없습니다. \"캐릭터 편집\" 모드로 전환하여 추가하세요.",
+    "accountCard": {
+      "characters": "캐릭터",
+      "avgCp": "평균 CP"
+    },
+    "accountForm": {
+      "title": "계정 추가",
+      "region": "지역",
+      "creating": "생성 중...",
+      "create": "생성"
+    },
+    "characterForm": {
+      "editTitle": "캐릭터 편집",
+      "addTitle": "캐릭터 추가",
+      "name": "이름",
+      "namePlaceholder": "캐릭터 이름",
+      "level": "레벨",
+      "itemLevel": "아이템 레벨",
+      "currentCp": "현재 CP",
+      "goalCp": "목표 CP",
+      "optional": "(선택)",
+      "save": "저장",
+      "add": "추가",
+      "nameRequired": "이름은 필수입니다",
+      "deleteMessage": "이 캐릭터는 영구적으로 삭제됩니다."
+    },
+    "characterList": {
+      "mainBadge": "★ 메인",
+      "addCharacter": "캐릭터 추가",
+      "edit": "편집"
+    },
+    "table": {
+      "character": "캐릭터",
+      "filterMain6": "Main 6",
+      "cp": "CP",
+      "ilvlRequired": "ilvl {{ilvl}} 필요",
+      "editMain6": "Main 6 변경",
+      "chooseMain6": "Main 6 선택"
+    },
+    "main6Modal": {
+      "title": "6 메인 선택",
+      "selected": "{{count}} / 6 선택됨",
+      "confirm": "확인"
+    },
+    "deleteModal": {
+      "delete": "삭제",
+      "cancel": "취소"
+    }
   },
   "gma": {
     "description": "GameMasterArtefact는 게임 마스터와 온라인 롤플레잉 게임 플레이어를 위해 설계된 Discord 봇입니다.",

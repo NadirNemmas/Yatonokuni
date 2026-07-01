@@ -4,17 +4,22 @@ import { useAuth } from "../../context/AuthContext.jsx";
 import { useTranslation } from "react-i18next";
 import NavigationButton from "../Buttons/NavigationButton.jsx";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.jsx";
-import { Menu, X, Home, FolderOpen, LogOut, User } from "lucide-react";
+import { Menu, X, Home, FolderOpen, LogOut, User, Swords } from "lucide-react";
 import "./styles/navbar.scss";
 
 function UserMenu({ direction = "down", onProfile, onLogout, t }) {
   return (
-    <div className={`user-dropdown${direction === "up" ? " user-dropdown--up" : ""}`}>
+    <div
+      className={`user-dropdown${direction === "up" ? " user-dropdown--up" : ""}`}
+    >
       <button className="user-dropdown-item" onClick={onProfile}>
         <User size={14} /> {t("nav.profile")}
       </button>
       <div className="user-dropdown-sep" />
-      <button className="user-dropdown-item user-dropdown-item--danger" onClick={onLogout}>
+      <button
+        className="user-dropdown-item user-dropdown-item--danger"
+        onClick={onLogout}
+      >
         <LogOut size={14} /> {t("nav.logout")}
       </button>
     </div>
@@ -31,9 +36,24 @@ export default function NavBar() {
   const userMenuRef = useRef(null);
   const drawerUserMenuRef = useRef(null);
 
+  const GAME_NAV = {
+    "lost-ark": {
+      label: "Lost Ark",
+      icon: Swords,
+      type: "route",
+      to: "/lostark",
+    },
+  };
+
   const NAV_ITEMS = [
     { label: t("nav.home"), icon: Home, type: "route", to: "/" },
-    { label: t("nav.projects"), icon: FolderOpen, type: "route", to: "/projects" },
+    ...(user?.games ?? []).filter((g) => GAME_NAV[g]).map((g) => GAME_NAV[g]),
+    {
+      label: t("nav.projects"),
+      icon: FolderOpen,
+      type: "route",
+      to: "/projects",
+    },
   ];
 
   const closeDrawer = () => setDrawerOpen(false);
@@ -49,7 +69,10 @@ export default function NavBar() {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
         setUserMenuOpen(false);
       }
-      if (drawerUserMenuRef.current && !drawerUserMenuRef.current.contains(e.target)) {
+      if (
+        drawerUserMenuRef.current &&
+        !drawerUserMenuRef.current.contains(e.target)
+      ) {
         setDrawerUserMenuOpen(false);
       }
     }
@@ -94,17 +117,31 @@ export default function NavBar() {
                 title={user.username || user.email}
               >
                 <div className="user-avatar">
-                  {user.avatar_url
-                    ? <img src={user.avatar_url} alt="avatar" className="user-avatar-img" />
-                    : (user.username || user.email)?.[0]?.toUpperCase() || "U"}
+                  {user.avatar_url ? (
+                    <img
+                      src={user.avatar_url}
+                      alt="avatar"
+                      className="user-avatar-img"
+                    />
+                  ) : (
+                    (user.username || user.email)?.[0]?.toUpperCase() || "U"
+                  )}
                 </div>
-                <span className="user-email">{user.username || user.email}</span>
+                <span className="user-email">
+                  {user.username || user.email}
+                </span>
               </button>
 
               {userMenuOpen && (
                 <UserMenu
-                  onProfile={() => { navigate("/profile"); setUserMenuOpen(false); }}
-                  onLogout={() => { logout(); setUserMenuOpen(false); }}
+                  onProfile={() => {
+                    navigate("/profile");
+                    setUserMenuOpen(false);
+                  }}
+                  onLogout={() => {
+                    logout();
+                    setUserMenuOpen(false);
+                  }}
                   t={t}
                 />
               )}
@@ -157,18 +194,34 @@ export default function NavBar() {
                   title={user.username || user.email}
                 >
                   <div className="user-avatar large">
-                    {user.avatar_url
-                      ? <img src={user.avatar_url} alt="avatar" className="user-avatar-img" />
-                      : (user.username || user.email)?.[0]?.toUpperCase() || "U"}
+                    {user.avatar_url ? (
+                      <img
+                        src={user.avatar_url}
+                        alt="avatar"
+                        className="user-avatar-img"
+                      />
+                    ) : (
+                      (user.username || user.email)?.[0]?.toUpperCase() || "U"
+                    )}
                   </div>
-                  <span className="drawer-user-email">{user.username || user.email}</span>
+                  <span className="drawer-user-email">
+                    {user.username || user.email}
+                  </span>
                 </button>
 
                 {drawerUserMenuOpen && (
                   <UserMenu
                     direction="up"
-                    onProfile={() => { navigate("/profile"); setDrawerUserMenuOpen(false); closeDrawer(); }}
-                    onLogout={() => { logout(); setDrawerUserMenuOpen(false); closeDrawer(); }}
+                    onProfile={() => {
+                      navigate("/profile");
+                      setDrawerUserMenuOpen(false);
+                      closeDrawer();
+                    }}
+                    onLogout={() => {
+                      logout();
+                      setDrawerUserMenuOpen(false);
+                      closeDrawer();
+                    }}
                     t={t}
                   />
                 )}
@@ -176,13 +229,19 @@ export default function NavBar() {
             ) : (
               <div className="drawer-auth-buttons">
                 <button
-                  onClick={() => { navigate("/login"); closeDrawer(); }}
+                  onClick={() => {
+                    navigate("/login");
+                    closeDrawer();
+                  }}
                 >
                   {t("nav.login")}
                 </button>
                 <button
                   className="primary"
-                  onClick={() => { navigate("/signup"); closeDrawer(); }}
+                  onClick={() => {
+                    navigate("/signup");
+                    closeDrawer();
+                  }}
                 >
                   {t("nav.signup")}
                 </button>

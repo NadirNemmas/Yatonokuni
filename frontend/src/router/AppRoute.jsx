@@ -7,6 +7,9 @@ import Projects from "../pages/Projects.jsx";
 import Profile from "../pages/Profile.jsx";
 import GameMasterArtefact from "../pages/GameMasterArtefact.jsx";
 import Licence from "../pages/Licence.jsx";
+import Lostark from "../pages/Lostark.jsx";
+import LostarkAccount from "../pages/LostarkAccount.jsx";
+import GameRoute from "../context/GameRoute.jsx";
 import ProtectedRoute from "../context/ProtectedRoutes.jsx";
 
 export default function AppRoute() {
@@ -27,7 +30,8 @@ export default function AppRoute() {
             </ProtectedRoute>
           }
         />
-        {/* <Route path="/test" element={<TestPage />} /> */}
+        <Route path="/lostark" element={<GameRoute game="lost-ark"><Lostark /></GameRoute>} />
+        <Route path="/lostark/account/:id" element={<GameRoute game="lost-ark"><LostarkAccount /></GameRoute>} />
 
         <Route
           path="/projects/gamemasterartefact"

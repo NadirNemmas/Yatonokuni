@@ -9,6 +9,7 @@ import { swaggerSpec } from "./swagger.js";
 import authRoutes from "./api/auth/auth.routes.js";
 import characterRoutes from "./api/characters/characters.routes.js";
 import projetsRoutes from "./api/projets/projets.routes.js";
+import lostarkRoutes from "./api/lostark/lostark.routes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,7 +31,6 @@ app.use(
 
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
-  if (req.body && Object.keys(req.body).length) console.log("Body:", req.body);
   next();
 });
 
@@ -41,6 +41,7 @@ app.use("/swagger.html", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/auth", authRoutes);
 app.use("/characters", characterRoutes);
 app.use("/projets", projetsRoutes);
+app.use("/lostark", lostarkRoutes);
 
 // Serve frontend in production
 if (process.env.NODE_ENV === "production") {

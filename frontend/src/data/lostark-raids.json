@@ -1,0 +1,118 @@
+[
+  {
+    "id": "guardian",
+    "name": "Guardian",
+    "type": "daily",
+    "difficulty": null,
+    "ilvl": 0,
+    "default": true
+  },
+  {
+    "id": "kurzan",
+    "name": "Kurzan Front",
+    "type": "daily",
+    "difficulty": null,
+    "ilvl": 0,
+    "default": true
+  },
+  {
+    "id": "hell",
+    "name": "Hell (×3)",
+    "type": "weekly",
+    "difficulty": null,
+    "ilvl": 0,
+    "default": true
+  },
+  {
+    "id": "timeglass",
+    "name": "Timeglass",
+    "type": "weekly",
+    "difficulty": null,
+    "ilvl": 1730,
+    "default": true
+  },
+  {
+    "id": "echidna_n",
+    "name": "Echidna",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1620
+  },
+  {
+    "id": "echidna_h",
+    "name": "Echidna",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1630
+  },
+  {
+    "id": "aegir_n",
+    "name": "Aegir",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1660
+  },
+  {
+    "id": "aegir_h",
+    "name": "Aegir",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1680
+  },
+  {
+    "id": "brelshaza_n",
+    "name": "Brelshaza",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1670
+  },
+  {
+    "id": "brelshaza_h",
+    "name": "Brelshaza",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1690
+  },
+  {
+    "id": "mordum_n",
+    "name": "Mordum",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1680
+  },
+  {
+    "id": "mordum_h",
+    "name": "Mordum",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1700
+  },
+  {
+    "id": "armoche_n",
+    "name": "Armoche",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1700
+  },
+  {
+    "id": "armoche_h",
+    "name": "Armoche",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1720
+  },
+  {
+    "id": "kazeros_n",
+    "name": "Kazeros",
+    "type": "weekly",
+    "difficulty": "Normal",
+    "ilvl": 1710
+  },
+  {
+    "id": "kazeros_h",
+    "name": "Kazeros",
+    "type": "weekly",
+    "difficulty": "Hard",
+    "ilvl": 1730
+  }
+]

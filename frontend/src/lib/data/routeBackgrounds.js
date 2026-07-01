@@ -4,6 +4,8 @@ import BgSignup from "../../../../docs/images/Background-signin.jpeg";
 import BgProjectsPage from "../../../../docs/images/Background-projects-page.png";
 import BgProjectItem from "../../../../docs/images/Background-project-item.jpeg";
 import BgProfile from "../../../../docs/images/Background-profile.png";
+import BgLostark from "../../../../docs/images/Background-lostark.jpg";
+import BgLostarkAccount from "../../../../docs/images/Background-lostark-account.jpeg";
 
 export const routeBackgrounds = {
   "/": BgAcceuil,
@@ -12,4 +14,6 @@ export const routeBackgrounds = {
   "/projects": BgProjectsPage,
   "/projects/gamemasterartefact": BgProjectItem,
   "/profile": BgProfile,
+  "/lostark": BgLostark,
+  "/lostark/account/": BgLostarkAccount,
 };

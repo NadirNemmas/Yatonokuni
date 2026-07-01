@@ -135,7 +135,7 @@ export const updateProfile = async (req, res) => {
     const {
       email, username, date_of_birth,
       github_url, linkedin_url, instagram_url, website_url,
-      avatar,
+      avatar, games,
     } = req.body || {};
 
     let avatar_url;
@@ -147,6 +147,7 @@ export const updateProfile = async (req, res) => {
       email, username, date_of_birth,
       github_url, linkedin_url, instagram_url, website_url,
       ...(avatar_url ? { avatar_url } : {}),
+      ...(games !== undefined ? { games } : {}),
     });
 
     return res.status(200).json({ ok: true, profile });

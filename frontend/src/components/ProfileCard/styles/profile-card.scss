@@ -189,6 +189,63 @@
   flex-shrink: 0;
 }
 
+/* ── Games toggle ─────────────────────────────── */
+.profile-games-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+
+  .profile-section-title {
+    margin-bottom: 0;
+  }
+
+  svg {
+    color: #9ca3af;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  &.is-open svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* ── Chips ────────────────────────────────────── */
+.profile-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.profile-chip {
+  padding: 7px 16px;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+
+  &:hover {
+    border-color: #007bff;
+    color: #007bff;
+  }
+
+  &.is-selected {
+    background: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+}
+
 /* ── Actions ──────────────────────────────────── */
 .profile-actions {
   display: flex;

@@ -1,0 +1,8 @@
+[
+  { "id": "na-east",       "name": "NA East" },
+  { "id": "na-west",       "name": "NA West" },
+  { "id": "eu-central",    "name": "EU Central" },
+  { "id": "eu-west",       "name": "EU West" },
+  { "id": "south-america", "name": "South America" },
+  { "id": "asia-pacific",  "name": "Asia Pacific" }
+]

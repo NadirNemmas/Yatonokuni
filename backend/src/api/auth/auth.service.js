@@ -79,37 +79,27 @@ export const updateUserProfile = async (uid, fields) => {
     }
   }
 
-  // Tenter la mise à jour
-  const { data: rows, error: updateErr } = await supabaseAdmin
+  if (fields.games !== undefined) {
+    updates.games = Array.isArray(fields.games) ? fields.games : [];
+  }
+
+  const { error: updateErr } = await supabaseAdmin
     .from("users")
     .update(updates)
-    .eq("auth_id", uid)
-    .select();
+    .eq("auth_id", uid);
 
   if (updateErr) throw updateErr;
 
-  // Si aucune ligne mise à jour → l'utilisateur n'a pas encore de profil, on le crée
-  if (!rows?.length) {
-    const { data: authData } = await supabase.auth.admin.getUserById(uid);
-    const meta = authData?.user?.user_metadata || {};
+  const { data: profile, error: fetchErr } = await supabaseAdmin
+    .from("users")
+    .select("*")
+    .eq("auth_id", uid)
+    .single();
 
-    const { data: inserted, error: insertErr } = await supabaseAdmin
-      .from("users")
-      .insert([{
-        auth_id:    uid,
-        email:      updates.email || authData?.user?.email || "",
-        first_name: meta.firstName || "",
-        last_name:  meta.lastName  || "",
-        ...updates,
-      }])
-      .select()
-      .single();
+  if (fetchErr || !profile)
+    throw Object.assign(new Error("Profil introuvable"), { status: 404 });
 
-    if (insertErr) throw insertErr;
-    return inserted;
-  }
-
-  return rows[0];
+  return profile;
 };
 
 // Upload avatar to Supabase Storage and return public URL

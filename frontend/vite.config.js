@@ -20,6 +20,12 @@ export default defineConfig({
       "/auth": "http://localhost:8000",
       "/projets": "http://localhost:8000",
       "/characters": "http://localhost:8000",
+      "/lostark": {
+        target: "http://localhost:8000",
+        bypass(req) {
+          if (req.headers.accept?.includes("text/html")) return "/index.html";
+        },
+      },
     },
   },
 });
